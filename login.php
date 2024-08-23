@@ -1,7 +1,6 @@
 <?php
-	$nombreUser= $_POST["nombreUser"];
-	$email = $_POST["email"];
-    $contraseña = $_POST["contraseña"];
+	$nombreUser= $_GET["nombreUser"];
+    $contraseña = $_GET["contraseña"];
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
