@@ -11,20 +11,29 @@
     <header>
         <h1>Metalized</h1>
     </header>
+
     <main>
-        <div class="formulario">
-            <form action="inicio.php" method="post">
-                <input class="username" type="text" name="nombreUser" placeholder="Nombre de Usuario" required>
-                <input class="email" type="email" name="email" placeholder="Email" required>
-                <input class="password" type="password" name="contraseña" placeholder="Contraseña" required>
-                <button type="submit">Registrarse</button>
-            </form>
-            <p>Si ya tenes una cuenta ingresá <a href="login.html">acá</a></p>
+        <div id="bienvenida">
+            <h2>Bienvenido!</h1>
+            <p>Acá encontrarás tu música favorita. 
+            <br>Un reproductor exclusivamente de rock, metal y sus subgéneros<br>
+            Registrate y empezá a escuchar</p>
         </div>
-        
-        <div class="fotoytexto">
-            <img src="calavera paso 15.png"> 
-            <h2>Registrate<br>y empezá a escuchar<br>tu música preferida!</h2>
+
+        <section class="contenedor">
+            <div class="formulario">
+                <form action="inicio.php" method="post">
+                    <input class="username" type="text" name="nombreUser" placeholder="Nombre de Usuario" required>
+                    <input class="email" type="email" name="email" placeholder="Email" required>
+                    <input class="password" type="password" name="contraseña" placeholder="Contraseña" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+                <p>Si ya tenes una cuenta ingresá <a href="login.html">acá</a></p>
+            </div>
+        </section>
+
+        <sectiom id="logo">
+                <img src="calavera paso 15.png"> 
         </div>
     </main>
 </body>
