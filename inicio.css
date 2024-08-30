@@ -12,10 +12,16 @@ header{
     margin-bottom: 0;
 }
 
+@font-face{
+    font-family: 'Deicide Remain';
+    src: url('metalized/Deicide Remain.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 header h1{
-    font-family: 'Decide Remain';
-    src: url('') format('truetype');
-    font-size:20px;
+    font-family: 'Deicide Remain';
+    font-size: 20px;
 }
 
 main{
