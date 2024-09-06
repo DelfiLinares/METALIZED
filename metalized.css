@@ -1,7 +1,15 @@
 body{
     background-color: black;
     color: white ;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Arial Bold', sans-serif;
+    display: flex;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    width: 10cm;
 }
 
 main{
@@ -12,22 +20,21 @@ main{
 
 #contenedor1{
     background-color: rgb(70, 70, 70);
-    width: 20%;
+    width: 100%;
     height: 100%;
     float: left;
     padding: 5px;
 }
 
 .seccionUsuario{
-    height: 40%;
+    height: 22%;
     display: inline-block;
     margin: 15px;
-    margin-bottom: 25px;
 }
 
 .seccionUsuario img{
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     border-radius: 60%;
     float: left;
 }
@@ -43,16 +50,18 @@ main{
 .menu{
     height: 60%;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: bold;  
+    border-top: 1px solid rgb(109, 109, 109);
 }
 
 .menu ul{
-    margin: 5px;
+    margin-left: -15px;
 }
 
 .menu ul li{
     list-style-type: none;
-    margin: 25px 10px;
+    margin: 20px 5px;
+    font-size: 20px;
 }
 
 .milibreria{
@@ -62,7 +71,7 @@ main{
 
 #contenedor2{
     background-color: rgb(70, 70, 70);
-    width: 78%;
+    width: 96%;
     height: 90%;
     float: right;
     padding: 10px;
@@ -81,7 +90,7 @@ main{
 }
 
 .nyl {
-    float:right;
+    float: right;
 }
 
 .nyl h3{
@@ -125,6 +134,7 @@ footer{
     right: 0;
     bottom: 0;
     padding: 5px; 
+    align-items: flex-end;
 }
 
 #imagenCancion{
