@@ -252,10 +252,13 @@ footer{
     margin-bottom: 15px;
 }
 
-#barraReproductora{
-    height: 10%;
-    justify-content: center;
-    align-content: center;
-    float: right;
+#barraReproductora-iconos{
+    margin-left: 50%;
+}
+
+#barraReproductora-iconos img{
+    margin: 20px;
+    width: 30px;
+
 }
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
