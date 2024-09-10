@@ -9,18 +9,12 @@ header{
     display: flex;
     flex-direction: column;
     height: 85vh;
-    width: 10cm;
-}
-
-main{
-    display: inline-block;
-    width: 100%;
-    height: 100%;
+    width: 9cm;
 }
 
 #contenedor1{
     background-color: rgb(70, 70, 70);
-    width: 100%;
+    width: 95%;
     height: 100%;
     float: left;
     padding: 5px;
@@ -69,10 +63,10 @@ main{
     font-weight: lighter;
 }
 
-#contenedor2{
+main{
     display:block;
     background-color: rgb(70, 70, 70);
-    width: 96%;
+    width: 85%;
     height: 90%;
     float: right;
     padding: 10px;
@@ -133,20 +127,46 @@ main{
 
 .contenedorAlbum{
     display: inline-block;
-    width: 20%;
+    background-color: rgb(124, 124, 124);
+    width: 22%;
     margin: 10px;
+    align-items: center;
 }
 
 .contenedorAlbum img{
     width: 60px;
     height: 60px;
+    float: left;
+    margin-right: 3px;
 }
 
 .contenedorAlbum p{
-    background-color: rgb(124, 124, 124);
     color: rgb(0, 0, 0);
-    border-radius: 1%;
     font-size: 15px;
+    align-content:flex-start;
+    float: right;
+    margin-left: 0px;
+}
+
+#artistas{
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedorArtista {
+    width: 100%;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.contenedorArtista img{
+    width: 200px;
+    height: 200px;
+}
+
+.contenedorArtista p {
+    align-content: center;
+    justify-content: center;
 }
 
 footer{
