@@ -5,6 +5,7 @@ body{
     display: flex;
 }
 
+/* ------------ HEADER (MENU) --------------- */
 header{
     display: flex;
     flex-direction: column;
@@ -18,6 +19,7 @@ header{
     height: 100%;
     float: left;
     padding: 5px;
+    border-radius: 10px;
 }
 
 .seccionUsuario{
@@ -62,51 +64,77 @@ header{
     margin-bottom: 10px;
     font-weight: lighter;
 }
+/* ------------ HEADER (MENU) --------------- */
 
+/* ++++++++++++ MAIN (INICIO) +++++++++++ */
 main{
     display:block;
-    background-color: rgb(70, 70, 70);
     width: 85%;
-    height: 90%;
+    height: 100%;
     float: right;
     padding: 10px;
     justify-content: space-around;
+    margin-top: -10px;
 }
 
 .barra_horizontal{
     width: 100%;
-    height: 20%;
+    height: 15%;
     display: inline-block;
     justify-content: space-around;
+    background-color: black;
 }
 
-.barra_horizontal h2{
+.solapa{
+    width: 15%;
+    height: 30px;
     float: left;
+    background-color: rgb(70, 70, 70);
+    border-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 10px 15px;
+}
+
+.solapa h2{
+    margin-top: 0px;
+    margin-left: 5px;
+    font-size: 21px;
+}
+
+.inicio{
+    background-color: rgb(70, 70, 70);
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    padding: 10px 15px;
+    height: 100%;
 }
 
 .nyl {
-    float: right;
+    display: inline-block;
+    background-color: black;
+    float:right;
 }
 
 .nyl h3{
     float: left;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
 } 
 
 .nyl img{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     float: right;
-    margin-top: 5px;
 }
 
 .barraBusq{
     background-color: rgb(124, 124, 124);
     border: 1px rgb(109, 109, 109) solid;
-    border-radius: 10px;
+    border-radius: 8px;
     width: 30%;
+    height: 10%;
     margin-left: 25%;
     justify-content: center;
 }
@@ -143,32 +171,40 @@ main{
 .contenedorAlbum p{
     color: rgb(0, 0, 0);
     font-size: 15px;
-    align-content:flex-start;
-    float: right;
+    align-content:center;
+    float: left;
+    font-weight: bold;
     margin-left: 0px;
 }
 
 #artistas{
     display: flex;
     flex-direction: row;
+    margin-top: 20px;
 }
 
 .contenedorArtista {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-content: center;
 }
 
 .contenedorArtista img{
     width: 200px;
     height: 200px;
+    align-content: center;
+    justify-content: center;
 }
 
 .contenedorArtista p {
     align-content: center;
     justify-content: center;
+    font-weight: bolder;
+    color: black;
 }
+/* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
+/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
 footer{
     display: inline-block;
     width: 100%;
@@ -188,8 +224,8 @@ footer{
 }
 
 #imagenCancion img{
-    width: 90px;
-    height: 90px;
+    width: 60px;
+    height: 60px;
     margin: 3px;
 }
 
@@ -199,14 +235,14 @@ footer{
 }
 
 #infoCancion h2{
-    font-size: 20px;
+    font-size: 15px;
     color: black;
     margin-top: 20%;
     margin-bottom: 5%;
 }
 
 #infoCancion h3{
-    font-size:15px;
+    font-size:12px;
     color: rgba(0, 0, 0, 0.651);
     margin-top: 0px;
 }
@@ -222,3 +258,4 @@ footer{
     align-content: center;
     float: right;
 }
+/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
