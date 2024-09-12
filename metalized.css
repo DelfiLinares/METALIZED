@@ -1,7 +1,8 @@
 body{
     background-color: black;
     color: white ;
-    font-family: 'Arial Bold', sans-serif;
+    font-family: "Arimo", sans-serif;
+    font-style: normal;
     display: flex;
 }
 
@@ -134,7 +135,7 @@ main{
     border: 1px rgb(109, 109, 109) solid;
     border-radius: 8px;
     width: 30%;
-    height: 10%;
+    height: 15%;
     margin-left: 25%;
     justify-content: center;
 }
@@ -142,8 +143,18 @@ main{
 .barraBusq h3{
     font-size: 15px;
     font-weight: 500;
-    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
     color: rgb(255, 255, 255);
+}
+
+.barraBusq img{
+    float: right;
+    width: 30px;
+    height: 30px;
+    margin-top: -32px;
+    padding-right: 10px;
 }
 
 #albumes{
@@ -174,26 +185,27 @@ main{
     align-content:center;
     float: left;
     font-weight: bold;
-    margin-left: 0px;
+    margin-left: 5px;
+    margin-top: 10%;
 }
 
 #artistas{
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
     margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .contenedorArtista {
     width: 100%;
-    justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
 .contenedorArtista img{
     width: 200px;
     height: 200px;
-    align-content: center;
-    justify-content: center;
 }
 
 .contenedorArtista p {
