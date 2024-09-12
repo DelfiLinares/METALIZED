@@ -94,7 +94,7 @@ main{
     border-radius: 10px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
-    padding: 10px 15px;
+    padding: 10px;
 }
 
 .solapa h2{
@@ -114,7 +114,7 @@ main{
 .nyl {
     display: inline-block;
     background-color: black;
-    float:right;
+    float: right;
 }
 
 .nyl h3{
@@ -128,6 +128,7 @@ main{
     width: 50px;
     height: 50px;
     float: right;
+    margin-top: -3px;
 }
 
 .barraBusq{
