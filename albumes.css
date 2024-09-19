@@ -210,7 +210,7 @@ main{
     color:rgb(168, 167, 167)
 }
 
-#canciones {
+#albumes {
     height: 76vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
@@ -222,12 +222,12 @@ main{
 #populares, #masEscuchados, #masTiempoSinEscuchar{
     margin: 15px;
 }
-.divCancion{
+.divAlbum{
     padding: 5px;
     width:100%;
 }
 
-.contenedorCancion{
+.contenedorAlbum{
     background-color: #5e5e5e;
     display: inline-block;
     width: 18%;
@@ -235,7 +235,7 @@ main{
     align-items: center;
 }
 
-.contenedorCancion img{
+.contenedorAlbum img{
     width: 150px;
     height: 150px;
     align-content: center;
