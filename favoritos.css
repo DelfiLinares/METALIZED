@@ -220,7 +220,7 @@ main{
     margin: 0px;
     color:rgb(168, 167, 167)
 }
- 
+
 #albumes{
     display: inline-block;
     flex-wrap: wrap;
@@ -290,7 +290,7 @@ main{
     height: auto;
 }
 
-.artista {
+.artistas {
     margin: 8px 0px;
     text-align: center;
     justify-content: center;
@@ -318,7 +318,6 @@ main{
     align-content: center;
     justify-content: center;
     margin: 5%;
-    border-radius: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -336,11 +335,13 @@ main{
 }
 
 .artista {
-    margin: 8px 0px;
+    font-size: 15px;
+    margin: 0px;
+    margin-bottom: 10px;
     text-align: center;
+    font-weight: 400;
     justify-content: center;
-    font-weight: bolder;
-    color: black;
+    color: rgb(29, 29, 29);
 }
 
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
@@ -394,13 +395,15 @@ footer{
 }
 
 #barraReproduccion{
+    width: 40%;
     display: block;
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 #barraReproductora-iconos{
     height: 55%;
     margin-top: 0px;
+    margin-left: 20%;
 }
 
 #barraReproductora-iconos img{
@@ -409,13 +412,13 @@ footer{
 }
 
 #barraProgeso{
+    width: 15%;
     height: 50%;
-    margin-left: 50%;
+    margin-left: 5%;
 }
 
 .progress {
     height: 5px;
-    width: 55%;
     border-radius: 5px;
     background-color: #5f1010;
     margin-bottom: 15px;
@@ -431,4 +434,6 @@ footer{
     border-radius: 5px;
 }
 
+
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
