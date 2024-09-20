@@ -2,7 +2,7 @@ body{
     background-color: black;
     color: white ;
     font-family: "Roboto", sans-serif;
-    font-weight: 600;
+    font-weight: lighter;
     font-style: normal;
     display: flex;
 }
@@ -261,6 +261,7 @@ main{
     margin: 0px;
     margin-bottom: 10px;
     text-align: center;
+    font-weight: 400;
     justify-content: center;
     color: rgb(29, 29, 29);
 }
@@ -314,15 +315,16 @@ footer{
     margin: 3px;
     margin-bottom: 15px;
 }
-
 #barraReproduccion{
+    width: 40%;
     display: block;
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 #barraReproductora-iconos{
     height: 55%;
     margin-top: 0px;
+    margin-left: 20%;
 }
 
 #barraReproductora-iconos img{
@@ -331,13 +333,13 @@ footer{
 }
 
 #barraProgeso{
+    width: 15%;
     height: 50%;
-    margin-left: 50%;
+    margin-left: 5%;
 }
 
 .progress {
     height: 5px;
-    width: 55%;
     border-radius: 5px;
     background-color: #5f1010;
     margin-bottom: 15px;
