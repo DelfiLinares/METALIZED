@@ -1,7 +1,8 @@
 body{
     background-color: black;
     color: white ;
-    font-family: "Arimo", sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
     font-style: normal;
     display: flex;
 }
@@ -123,7 +124,7 @@ main{
 
 .solapa{
     width: 15%;
-    height: 40px;
+    height: 43px;
     float: left;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
@@ -212,7 +213,7 @@ main{
 }
 
 #artistas {
-    height: 76vh; 
+    height: 75vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
@@ -347,3 +348,4 @@ footer{
 
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
