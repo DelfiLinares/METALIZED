@@ -212,7 +212,7 @@ main{
     color:rgb(168, 167, 167)
 }
 
-#Playlists {
+#playlists {
     height: 75vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
