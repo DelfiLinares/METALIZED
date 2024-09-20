@@ -235,16 +235,20 @@ main{
     margin: 0px;
     align-items: center;
     border-radius: 5%;
+    text-align: center;
 }
 
 .contenedorArtista img{
     width: 150px;
-    height: 150px;
     align-content: center;
     justify-content: center;
     margin: 5%;
-    margin-bottom: 0px;
     border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 .artista {
@@ -320,27 +324,26 @@ footer{
     width: 25px;
 }
 
-#barraProgeso{
-    height: 50%;
-    margin-left: 50%;
+#barraProgreso {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; 
 }
 
 .progress {
+    width: 80%; 
+    background-color: #555;
+    border-radius: 5px; 
     height: 5px;
-    width: 55%;
-    border-radius: 5px;
-    background-color: #5f1010;
-    margin-bottom: 15px;
-    justify-content: center;
+    position: relative;
 }
 
 .progress-bar {
+    background-color: #0e0e0e; 
     height: 100%;
-    background: #0e0e0e;
-    display: flex;
-    align-items: center;
-    transition: width 0.25s;
     border-radius: 5px;
+    transition: width 0.4s ease; 
 }
+
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
