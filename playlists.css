@@ -2,7 +2,7 @@ body{
     background-color: black;
     color: white ;
     font-family: "Roboto", sans-serif;
-    font-weight: 600;
+    font-weight: lighter;
     font-style: normal;
     display: flex;
 }
@@ -309,13 +309,15 @@ footer{
 }
 
 #barraReproduccion{
+    width: 40%;
     display: block;
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 #barraReproductora-iconos{
     height: 55%;
     margin-top: 0px;
+    margin-left: 20%;
 }
 
 #barraReproductora-iconos img{
@@ -323,26 +325,29 @@ footer{
     width: 25px;
 }
 
-#barraProgreso {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px; 
+#barraProgeso{
+    width: 15%;
+    height: 50%;
+    margin-left: 5%;
 }
 
 .progress {
-    width: 80%; 
-    background-color: #555;
-    border-radius: 5px; 
     height: 5px;
-    position: relative;
+    border-radius: 5px;
+    background-color: #5f1010;
+    margin-bottom: 15px;
+    justify-content: center;
 }
 
 .progress-bar {
-    background-color: #0e0e0e; 
     height: 100%;
+    background: #0e0e0e;
+    display: flex;
+    align-items: center;
+    transition: width 0.25s;
     border-radius: 5px;
-    transition: width 0.4s ease; 
 }
+
 
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
