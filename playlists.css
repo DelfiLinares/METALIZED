@@ -140,7 +140,6 @@ main{
 }
 
 .nyl {
-    display: inline-block;
     background-color: black;
     float: right;
 }
@@ -244,7 +243,6 @@ main{
     align-content: center;
     justify-content: center;
     margin: 5%;
-    border-radius: 50%;
     display: block;
     margin-left: auto;
     margin-right: auto;

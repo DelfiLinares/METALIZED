@@ -139,7 +139,6 @@ main{
 }
 
 .nyl {
-    display: inline-block;
     background-color: black;
     float: right;
 }
