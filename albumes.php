@@ -17,15 +17,17 @@
     }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');</style>
+    <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="canciones.css" type="text/css"/>
+    <link rel="stylesheet" href="albumes.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -58,7 +60,7 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Canciones</h1>
+                    <h1>Albumes</h1>
                 </div>
 
                 <div class="nyl">
@@ -73,21 +75,24 @@
                 </div>
             </div>
         
-            <div id="canciones">
+            <div id="albumes">
                     <section id="populares">
                         <div class="descripcion">
                             <h2>Popular</h2>
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>
+                        <div class="divAlbum">
+                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                                <div class="contenedorCancion">
+                                    <img src="<?php echo $fila['imagen']?> ">
+                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
+                                </div> 
+                    <?php } ?>
+                            <div class="botonMas">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAArklEQVRIS2NkoDFgpLH5DKMWEAzhQRVERUDnLgPiFwSdjaSAWB9kAvVMA+LbQGxHiiXEWiAONPQYECsB8R0gtgLi18T4hFgLQGYhW3ID6hOClpBiAcySg0CGOhATZQmpFoAsEQHiI8RaMugsIMn1IO+S4gNQJJMU/qRYQFYKIsWCDKDi6UB8E5o8XxGTB0ixAKS2GIiXkpKLSbWAWEejqCMlkkctICsECGqieRwAAC9CIhnQGO9nAAAAAElFTkSuQmCC"/>
+                            </div>
                         </div>
                     </section>
 
@@ -97,14 +102,14 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>
+                        <div class="divAlbum">
+                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                                <div class="contenedorCancion">
+                                    <img src="<?php echo $fila['imagen']?>">
+                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
+                                </div> 
+                    <?php } ?>                        
                         </div>
                     </section>
 
@@ -114,14 +119,14 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?> 
+                        <div class="divAlbum">
+                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                                <div class="contenedorCancion">
+                                    <img src="<?php echo $fila['imagen']?>">
+                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
+                                </div> 
+                    <?php } ?>
                         </div>
                     </section>
             </div>
