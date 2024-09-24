@@ -6,6 +6,7 @@ body{
 
 .logo-contenedor {
     position: fixed;
+    bottom: 0;
     top: 0;
     left: 0;
     width: 100%;
@@ -15,13 +16,14 @@ body{
     justify-content: center;
     align-items: center;
     z-index: 10;
-    animation: fadeOut 8s forwards; 
+    animation: fadeOut 5.5s forwards; 
 }
 
-.logo {
+.logoC {
     max-width: 30%;
     animation: fadeIn 3.5s ease-out;
 }
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -39,7 +41,6 @@ body{
     }
     90% {
         opacity: 0;
-        z-index: 10;
     }
     100% {
         opacity: 0;
@@ -47,6 +48,13 @@ body{
     }
 }
 
+.fade-out-complete, .contenedor {
+    display: none;
+}
+
+.fade-out-complete + .contenedor {
+    display: block;
+}
 
 header{
     padding: 10px;
