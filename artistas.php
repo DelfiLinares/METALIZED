@@ -10,9 +10,7 @@
     }
     else{
         $query = 
-        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id ;";
+        "SELECT imagen, nombre FROM Artista LIMIT 5";
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
@@ -41,15 +39,15 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.html">Inicio</a></li>
-                    <li><a href="descubre.html">Descubre</a></li>
+                    <li><a href="metalized.php">Inicio</a></li>
+                    <li><a href="descubre.php">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
-                            <li id="uno"><a href="canciones.html">Canciones</a></li>
-                            <li id="dos"><a href="artistas.html">Artistas</a></li>
-                            <li id="tres"><a href="albumes.html">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.html">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.html">Playlists</a></li>
+                            <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="dos"><a href="artistas.php">Artistas</a></li>
+                            <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
+                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -84,7 +82,7 @@
 
                         <div class="divArtista">
                 <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                            <div class="contenedorCancion">
+                            <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
                             </div> 
@@ -99,8 +97,13 @@
                         </div>
 
                         <div class="divArtista">
-                <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                            <div class="contenedorCancion">
+                <?php 
+                        $consulta = 
+                        "SELECT imagen, nombre FROM Artista LIMIT 5";
+                        $resultado1 = mysqli_query($conexion, $consulta);
+
+                while($fila = mysqli_fetch_assoc($resultado1)){ ?> 
+                            <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
                             </div> 
@@ -115,8 +118,12 @@
                         </div>
 
                         <div class="divArtista">
-                <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                            <div class="contenedorCancion">
+                <?php 
+                        $consulta2 = 
+                        "SELECT imagen, nombre FROM Artista LIMIT 5";
+                        $resultado2 = mysqli_query($conexion, $consulta2);
+                while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
+                            <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
                             </div> 

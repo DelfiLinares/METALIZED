@@ -12,7 +12,9 @@
         $query = 
         "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id ;";
+        JOIN Artista ON idArtista = Artista.id 
+        LIMIT 5;";
+
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
@@ -43,11 +45,11 @@
                     <li><a href="descubre.html">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
-                            <li id="uno"><a href="canciones.html">Canciones</a></li>
-                            <li id="dos"><a href="artistas.html">Artistas</a></li>
-                            <li id="tres"><a href="albumes.html">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.html">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.html">Playlists</a></li>
+                        <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="dos"><a href="artistas.php">Artistas</a></li>
+                            <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
+                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -81,14 +83,23 @@
                         </div>
 
                         <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+            <?php 
+                    $consulta = 
+                    "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+                    JOIN Album ON idAlbum = Album.id 
+                    JOIN Artista ON idArtista = Artista.id 
+                    LIMIT 5;";
+
+                    $resultadito = mysqli_query($conexion, $consulta);
+
+            while($fila = mysqli_fetch_assoc($resultadito)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
                             <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
             <?php } ?>  
-<!-- 2. hay que poner un limit o algo en el while para que se repita solo 5 veces cada contenedor? -->
+
                         </div>
                     </section>
 
@@ -100,7 +111,8 @@
                         </div>
 
                         <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+            <?php 
+            while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
@@ -109,7 +121,6 @@
             <?php } ?>
                         </div>
                     </section>
-<!-- 3. si son distintas consultas para cada div, como los ponemos? -->
 
                     <section id="masTiempoSinEscuchar">
                         <div class="descripcion">
@@ -118,13 +129,22 @@
                         </div>
 
                         <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+            <?php 
+                    $consulta = 
+                    "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+                    JOIN Album ON idAlbum = Album.id 
+                    JOIN Artista ON idArtista = Artista.id 
+                    LIMIT 5;";
+
+                    $resultadito2 = mysqli_query($conexion, $consulta);
+
+            while($fila = mysqli_fetch_assoc($resultadito2)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
                             <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
-            <?php } ?> 
+            <?php } ?>  
                         </div>
                     </section>
             </div>

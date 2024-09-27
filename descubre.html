@@ -1,3 +1,22 @@
+<?php 
+    $servername = "127.0.0.1";
+    $database = "Metalized";
+    $username = "alumno";
+    $password = "alumnoipm";
+
+    $conexion = mysqli_connect($servername, $username, $password, $database);
+    if (!$conexion) {
+        die("Conexion fallida: " . mysqli_connect_error());
+    }
+    else{
+        $query = 
+        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id ;";
+        $resultado = mysqli_query($conexion, $query);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     

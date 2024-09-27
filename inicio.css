@@ -2,7 +2,6 @@ body{
     background-color: black;
     color: white ;
     font-family: "Roboto", sans-serif;
-    font-weight: lighter;
     font-style: normal;
 }
 
@@ -18,12 +17,12 @@ body{
     justify-content: center;
     align-items: center;
     z-index: 10;
-    animation: fadeOut 5.5s forwards; 
+    animation: fadeOut 2.5s forwards; 
 }
 
 .logoC {
     max-width: 30%;
-    animation: fadeIn 3.5s ease-out forwards;
+    animation: fadeIn 2.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -110,7 +109,7 @@ main{
 
 .formulario{
     width: 25%;
-    margin-top: 80px;
+    margin-top: 30px;
     margin-right: 20%;
     float: right;
 }
@@ -153,7 +152,7 @@ button{
 #logo{
     width: 25%;
     float: left;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 25%;
 }
 
