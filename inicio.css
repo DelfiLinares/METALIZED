@@ -1,7 +1,9 @@
 body{
     background-color: black;
     color: white ;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: lighter;
+    font-style: normal;
 }
 
 .logo-contenedor {
@@ -21,7 +23,7 @@ body{
 
 .logoC {
     max-width: 30%;
-    animation: fadeIn 3.5s ease-out;
+    animation: fadeIn 3.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -44,17 +46,18 @@ body{
     }
     100% {
         opacity: 0;
-        z-index: -1;
+        visibility: hidden;
     }
 }
 
-.fade-out-complete, .contenedor {
-    display: none;
+.contenedor {
+    display: none; 
 }
 
 .fade-out-complete + .contenedor {
     display: block;
 }
+
 
 header{
     padding: 10px;
@@ -64,15 +67,7 @@ header{
     margin-bottom: 0;
 }
 
-@font-face{
-    font-family: 'Deicide Remain';
-    src: url('metalized/Deicide Remain.otf') format('otf');
-    font-weight: normal;
-    font-style: normal;
-}
-
 header h1{
-    font-family: 'Deicide Remain';
     font-size: 20px;
 }
 
@@ -127,6 +122,11 @@ main{
 
 .formulario p a{
     color:white;
+}
+
+.formulario button a{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
 }
 
 input{

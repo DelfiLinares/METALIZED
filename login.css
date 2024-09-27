@@ -39,6 +39,11 @@ main{
     color:white;
 }
 
+.formulario button a{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+}
+
 input{
     border: 5px gray bold ;
 }

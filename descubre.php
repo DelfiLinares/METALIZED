@@ -17,15 +17,18 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');</style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="canciones.css" type="text/css"/>
+    <link rel="stylesheet" href="descubre.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -58,14 +61,14 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Canciones</h1>
+                    <h1>Descubre</h1>
                 </div>
 
                 <div class="nyl">
                     <h3>Metalized</h3>
                     <img src="calavera.png">
                 </div>
-
+                
                 <div class="barraBusq">
                     <h3>Buscar</h3>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXBJREFUSEu1lH1VA0EMxGcUgAUUAAoAB1QBVAGgAKqAooCigFZBWwdFAeCgVRDe8LK8Pbp7TT8u/93b2/1lkkmIjoMdv48iwMyOAdwBuAZw5kksAIwBvJBcRhNbA5jZLYBnAIKUQo8/kBxFIA2AP/7qFycAhiRn+jazSwBPAC78vEdSilrjD+Bl+fTM+7UMzUyQRwBScrKpXDkgXZyQVO2rYWZSJSUDkrpXjRygJp4CuEplqd3yck0BLEieRwGmH0mGrGtmof9zBaELKVsHrEjW3Pb7664lUo/eAcxJyl2hHqQmj0n2gk3WPAyjAEn9AnAkv5MclC5mNv3WlIdt6sOUpOtTVhRong2a/J9KstGijR5kzdOqkGwpKcXKzwWTtTXtb7UytS27e192mg3Fhy87Pbg0szQ3OhuR7JcgIc9XeiGlaW9VITsDvC/aqDdZAmtK9gJEIHsDCpDGJj4IIIPM/q/5gwG2smnb6G971rmCH/JPnxkOXXf0AAAAAElFTkSuQmCC" 
@@ -73,60 +76,37 @@
                 </div>
             </div>
         
-            <div id="canciones">
-                    <section id="populares">
-                        <div class="descripcion">
-                            <h2>Popular</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
+            <div id="descubre">
 
-                        <div class="divCancion">
+                <section id="albumes">
+                    <div class="descripcion">
+                        <h2>Ultimos lanzamientos - albumes </h2>
+                        <h3>Mostrar todo</h3>
+                    </div>
+
             <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
+                        <div class="contenedorAlbum">
                             <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
                             <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
             <?php } ?>  
-<!-- 2. hay que poner un limit o algo en el while para que se repita solo 5 veces cada contenedor? -->
-                        </div>
-                    </section>
+                </section>
 
+                <section id="populares">
+                    <div class="descripcion">
+                        <h2>Playlists populares</h2>
+                        <h3>Mostrar todo</h3>
+                    </div>
 
-                    <section id="masEscuchados">
-                        <div class="descripcion">
-                            <h2>Username's mas escuchadas</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
-
-                        <div class="divCancion">
+                  
             <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>
-                        </div>
-                    </section>
-<!-- 3. si son distintas consultas para cada div, como los ponemos? -->
-
-                    <section id="masTiempoSinEscuchar">
-                        <div class="descripcion">
-                            <h2>Volver a escuchar</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
-
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?> 
-                        </div>
-                    </section>
+                <div class="contenedorAlbum">
+                    <img src="<?php echo $fila['imagen']?>">
+                    <p class="artista"> <?php echo $fila['nombre']?> </p>
+                </div> 
+            <?php } ?>  
+                    </div>
+                </section>
             </div>
     </main>
 

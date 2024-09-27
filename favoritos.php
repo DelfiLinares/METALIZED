@@ -23,9 +23,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');</style>
+    <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="canciones.css" type="text/css"/>
+    <link rel="stylesheet" href="favoritos.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -58,7 +58,7 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Canciones</h1>
+                    <h2>Favoritos</h2>
                 </div>
 
                 <div class="nyl">
@@ -73,60 +73,87 @@
                 </div>
             </div>
         
-            <div id="canciones">
-                    <section id="populares">
-                        <div class="descripcion">
-                            <h2>Popular</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
+            <div id="favoritos">
 
-                        <div class="divCancion">
+                <section id="albumes">
+                    <div class="descripcion">
+                        <h2>Albumes</h2>
+                        <h3>Mostrar todo</h3>
+                    </div>
+
             <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
+                        <div class="contenedorAlbum">
+                            <img src=<?php echo $fila['imagen']?>>
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>  
-<!-- 2. hay que poner un limit o algo en el while para que se repita solo 5 veces cada contenedor? -->
-                        </div>
-                    </section>
-
-
-                    <section id="masEscuchados">
-                        <div class="descripcion">
-                            <h2>Username's mas escuchadas</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
-
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
             <?php } ?>
-                        </div>
-                    </section>
-<!-- 3. si son distintas consultas para cada div, como los ponemos? -->
+                </section>
 
-                    <section id="masTiempoSinEscuchar">
-                        <div class="descripcion">
-                            <h2>Volver a escuchar</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
+                <section id="artistas">
+                    <div class="descripcion">
+                        <h2>Artistas</h2>
+                        <h3>Mostrar todo</h3>
+                    </div>
 
-                        <div class="divCancion">
-            <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                    <div class="divArtista">
+                        <div class="contenedorArtista">
+                            <img src="imagen.png">
+                            <p class="artista">Megadeth</p>
                         </div> 
-            <?php } ?> 
-                        </div>
-                    </section>
+                        <div class="contenedorArtista">
+                            <img src="imagen.png">
+                            <p class="artista">Megadeth</p>
+                        </div> 
+                        <div class="contenedorArtista">
+                            <img src="imagen.png">
+                            <p class="artista">Megadeth</p>
+                        </div> 
+                        <div class="contenedorArtista">
+                            <img src="imagen.png">
+                            <p class="artista">Megadeth</p>
+                        </div> 
+                        <div class="contenedorArtista">
+                            <img src="imagen.png">
+                            <p class="artista">Megadeth</p>
+                        </div> 
+                    </div>
+                </section>
+
+                <section id="canciones">
+                    <div class="descripcion">
+                        <h2>Canciones</h2>
+                        <h3>Mostrar todo</h3>
+                    </div>
+
+                    <div class="divCancion">
+                        <div class="contenedorCancion">
+                            <img src="lovegun.jpg">
+                            <p class="titulo">Love Gun</p>
+                            <p class="artista">Kiss</p>
+                        </div> 
+                        <div class="contenedorCancion">
+                            <img src="mopp.jpg">
+                            <p class="titulo">Master of Puppets</p>
+                            <p class="artista">Metallica</p>
+                        </div> 
+                        <div class="contenedorCancion">
+                            <img src="hth.jpg">
+                            <p class="titulo">Highway to Hell</p>
+                            <p class="artista">ACDC</p>
+                        </div> 
+                        <div class="contenedorCancion">
+                            <img src="ilrnr.jpg">
+                            <p class="titulo">I love Rock n' Roll</p>
+                            <p class="artista">Joan Jett</p>
+                        </div> 
+                        <div class="contenedorCancion">
+                            <img src="inutero.jpg">
+                            <p class="titulo">In Utero</p>
+                            <p class="artista">Nirvana</p>
+                        </div> 
+                    </div>
+                </section>
+
             </div>
     </main>
 
@@ -150,6 +177,11 @@
                 <div class="progress">
                     <div class="progress-bar" style="width:75%;"></div>
                 </div> 
+            </div>
+        </section>
+    </footer>
+</body>
+</html> 
             </div>
         </section>
     </footer>
