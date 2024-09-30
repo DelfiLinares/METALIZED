@@ -9,8 +9,19 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $query = 
-        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+        $queryPopular = 
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
+        LIMIT 5;";
+
+        $queryMasEsc = 
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
         WHERE id IN
@@ -18,15 +29,24 @@
                     WHERE count(idCancion) > 
                                             (SELECT avg(cantVecesEscuchadas) FROM 
                                             (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-        LIMIT 5;";
+                    GROUP BY idUsuario)
+        LIMIT 5;" ;
 
-        $consulta = 
-        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+        $queryMTSE =
+                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id 
-        LIMIT 5;";
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+                    GROUP BY idUsuario)
+        LIMIT 5;" ; 
         
-        $resultado = mysqli_query($conexion, $query);
+        $resultadoP = mysqli_query($conexion, $queryPopular);
+        $resultadoME = mysqli_query($conexion, $queryMasEsc);
+        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
     }
 ?>
 
@@ -85,6 +105,7 @@
                     id="lupa" />
                 </div>
             </div>
+
         
             <div id="canciones">
                     <section id="populares">
@@ -92,19 +113,15 @@
                             <h2>Popular</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-
                         <div class="divCancion">
             <?php 
-
-
-            while($fila = mysqli_fetch_assoc($resultadito)){ ?> 
+            while($fila = mysqli_fetch_assoc($resultadoP)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
                             <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
             <?php } ?>  
-
                         </div>
                     </section>
 
@@ -114,10 +131,9 @@
                             <h2>Username's mas escuchadas</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-
                         <div class="divCancion">
             <?php 
-            while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+            while($fila = mysqli_fetch_assoc($resultadoME)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
@@ -127,23 +143,15 @@
                         </div>
                     </section>
 
+                
                     <section id="masTiempoSinEscuchar">
                         <div class="descripcion">
                             <h2>Volver a escuchar</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-
                         <div class="divCancion">
             <?php 
-                    $consulta = 
-                    "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
-                    JOIN Album ON idAlbum = Album.id 
-                    JOIN Artista ON idArtista = Artista.id 
-                    LIMIT 5;";
-
-                    $resultadito2 = mysqli_query($conexion, $consulta);
-
-            while($fila = mysqli_fetch_assoc($resultadito2)){ ?> 
+            while($fila = mysqli_fetch_assoc($resultadoMTSE)){ ?> 
                         <div class="contenedorCancion">
                             <img src="<?php echo $fila['imagen']?>">
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
