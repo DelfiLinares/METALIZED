@@ -13,7 +13,7 @@
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
+        WHERE Cancion.id IN
                     (SELECT idCancion FROM Usuario_escucha_cancion 
                     WHERE count(idCancion) > 
                                             (SELECT avg(cantVecesEscuchadas) FROM 
@@ -24,7 +24,7 @@
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
+        WHERE Cancion.id IN
                     (SELECT idCancion FROM Usuario_escucha_cancion 
                     WHERE count(idCancion) > 
                                             (SELECT avg(cantVecesEscuchadas) FROM 
@@ -36,7 +36,7 @@
                 "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
+        WHERE Cancion.id IN
                     (SELECT idCancion FROM Usuario_escucha_cancion 
                     WHERE count(idCancion) > 
                                             (SELECT avg(cantVecesEscuchadas) FROM 
