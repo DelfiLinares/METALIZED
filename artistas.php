@@ -8,9 +8,43 @@
     if (!$conexion) {
         die("Conexion fallida: " . mysqli_connect_error());
     }
-    else{
-        $query = 
-        "SELECT imagen, nombre FROM Artista LIMIT 5";
+    else{        
+        $queryPopular = 
+        "SELECT imagen, nombre FROM Artista 
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
+        LIMIT 5;";
+
+        $queryMasEsc = 
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+                    GROUP BY idUsuario)
+        LIMIT 5;" ;
+
+        $queryMTSE =
+                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+                    GROUP BY idUsuario)
+        LIMIT 5;" ; 
+        
+        $resultadoP = mysqli_query($conexion, $queryPopular);
+        $resultadoME = mysqli_query($conexion, $queryMasEsc);
+        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
