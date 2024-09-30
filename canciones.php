@@ -20,6 +20,12 @@
                                             (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
         LIMIT 5;";
 
+        $consulta = 
+        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id 
+        LIMIT 5;";
+        
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
@@ -89,13 +95,7 @@
 
                         <div class="divCancion">
             <?php 
-                    $consulta = 
-                    "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
-                    JOIN Album ON idAlbum = Album.id 
-                    JOIN Artista ON idArtista = Artista.id 
-                    LIMIT 5;";
 
-                    $resultadito = mysqli_query($conexion, $consulta);
 
             while($fila = mysqli_fetch_assoc($resultadito)){ ?> 
                         <div class="contenedorCancion">
