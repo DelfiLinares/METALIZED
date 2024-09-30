@@ -12,7 +12,12 @@
         $query = 
         "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
         LIMIT 5;";
 
         $resultado = mysqli_query($conexion, $query);
