@@ -142,8 +142,8 @@ main{
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
     border-top-left-radius: 0px;
-    padding: 7px 12px;
-    height: 75vh;
+    padding: 5px 12px;
+    height: 85vh;
 }
 
 #inicio h3{
@@ -151,7 +151,6 @@ main{
 }
 
 .nyl {
-    display: inline-block;
     background-color: black;
     float: right;
 }
@@ -195,6 +194,14 @@ main{
     height: 30px;
     margin-top: -34px;
     padding-right: 10px;
+}
+
+.descripcion h2{
+    font-size: 18px;
+    width: 60%;
+    text-align: start;
+    float: left;
+    margin: 0px;
 }
 
 #albumes{
@@ -253,6 +260,25 @@ main{
     justify-content: center;
     font-weight: bolder;
     color: black;
+}
+
+.titulo {
+    margin: 6px 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    justify-content: center;
+    font-weight: bolder;
+    color: black;
+}
+
+.artista {
+    font-size: 15px;
+    margin: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 400;
+    justify-content: center;
+    color: rgb(29, 29, 29);
 }
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
