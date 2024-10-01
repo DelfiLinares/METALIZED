@@ -1,54 +1,3 @@
-<?php 
-    $servername = "127.0.0.1";
-    $database = "Metalized";
-    $username = "alumno";
-    $password = "alumnoipm";
-
-    $conexion = mysqli_connect($servername, $username, $password, $database);
-    if (!$conexion) {
-        die("Conexion fallida: " . mysqli_connect_error());
-    }
-    else{        
-        $queryPopular = 
-        "SELECT imagen, nombre FROM Artista 
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
-        LIMIT 5;";
-
-        $queryMasEsc = 
-        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
-        LIMIT 5;" ;
-
-        $queryMTSE =
-                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
-        LIMIT 5;" ; 
-        
-        $resultadoP = mysqli_query($conexion, $queryPopular);
-        $resultadoME = mysqli_query($conexion, $queryMasEsc);
-        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
-        $resultado = mysqli_query($conexion, $query);
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     
@@ -57,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-    </style>
+        </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="artistas.css" type="text/css"/>
+    <link rel="stylesheet" href="playlists.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -107,20 +56,34 @@
                 </div>
             </div>
         
-            <div id="artistas">
-                    <section id="populares">
+            <div id="playlists">
+                    <section id="favoritos">
                         <div class="descripcion">
-                            <h2>Popular</h2>
+                            <h2>Favoritos</h2>
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divArtista">
-                <?php while($fila = mysqli_fetch_assoc($resultadoP)){ ?> 
-                            <div class="contenedorArtista">
-                                <img src="<?php echo $fila['imagen']?>">
-                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
                             </div> 
-                <?php } ?>
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
 
@@ -130,14 +93,57 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divArtista">
-                <?php 
-                while($fila = mysqli_fetch_assoc($resultadoME)){ ?> 
-                            <div class="contenedorArtista">
-                                <img src="<?php echo $fila['imagen']?>">
-                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
                             </div> 
-                <?php } ?>
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                        </div>
+                    </section>
+
+                    <section id="creadasPorUser">
+                        <div class="descripcion">
+                            <h2>Creadas por vos</h2>
+                            <h3>Mostrar todo</h3>
+                        </div>
+
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
 
@@ -147,14 +153,27 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="divArtista">
-                <?php 
-                while($fila = mysqli_fetch_assoc($resultadoMTSE)){ ?> 
-                            <div class="contenedorArtista">
-                                <img src="<?php echo $fila['imagen']?>">
-                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
                             </div> 
-                <?php } ?>
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
             </div>

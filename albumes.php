@@ -10,30 +10,40 @@
     }
     else{
         $query = 
-        "SELECT Cancion.titulo, Album.imagen, nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id ;";
+        "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
+        JOIN Artista ON idArtista = Artista.id;";
         $resultado = mysqli_query($conexion, $query);
+
+        $albumes = [];
+        while($fila = mysqli_fetch_assoc($resultado)) {
+            $albumes[] = $fila;
+        }
+
+        $queryCanAct =
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE Cancion.id =
+                            (SELECT idCancion FROM Usuario_escucha_Cancion 
+                            WHERE plays = current_date() AND plays = current_time()
+                            );";
+
+        $cancionActual = mysqli_query($conexion, $queryCanAct);
     }
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
-    <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="albumes.css" type="text/css"/>
+    <link rel="stylesheet" href="albumes.css">
     <title>Metalized</title>
 </head>
-
 <body>
     <header>
-        <section id="contenedor1">
+    <section id="contenedor1">
             <div class="seccionUsuario">
                 <img src="ftPerfil.jpg" >
                 <h2>Username</h2>
@@ -41,15 +51,15 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.html">Inicio</a></li>
-                    <li><a href="descubre.html">Descubre</a></li>
+                    <li><a href="metalized.php">Inicio</a></li>
+                    <li><a href="descubre.php">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
-                            <li id="uno"><a href="canciones.html">Canciones</a></li>
-                            <li id="dos"><a href="artistas.html">Artistas</a></li>
-                            <li id="tres"><a href="albumes.html">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.html">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.html">Playlists</a></li>
+                            <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="dos"><a href="artistas.php">Artistas</a></li>
+                            <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
+                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -58,7 +68,7 @@
     </header>
 
     <main>
-            <div class="barra_horizontal">
+        <div class="barra_horizontal">
                 <div class="solapa">
                     <h1>Albumes</h1>
                 </div>
@@ -74,71 +84,79 @@
                     id="lupa" />
                 </div>
             </div>
-        
-            <div id="albumes">
-                    <section id="populares">
-                        <div class="descripcion">
-                            <h2>Popular</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
 
-                        <div class="divAlbum">
-                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                                <div class="contenedorCancion">
-                                    <img src="<?php echo $fila['imagen']?> ">
-                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
-                                </div> 
-                    <?php } ?>
-                            <div class="botonMas">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAArklEQVRIS2NkoDFgpLH5DKMWEAzhQRVERUDnLgPiFwSdjaSAWB9kAvVMA+LbQGxHiiXEWiAONPQYECsB8R0gtgLi18T4hFgLQGYhW3ID6hOClpBiAcySg0CGOhATZQmpFoAsEQHiI8RaMugsIMn1IO+S4gNQJJMU/qRYQFYKIsWCDKDi6UB8E5o8XxGTB0ixAKS2GIiXkpKLSbWAWEejqCMlkkctICsECGqieRwAAC9CIhnQGO9nAAAAAElFTkSuQmCC"/>
+        <div id="albumes">
+            <section id="populares">
+                <div class="descripcion">
+                    <h2>Popular</h2>
+                </div>
+                <div class="carousel">
+                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                            <div class="contenedorAlbum">
+                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
                             </div>
-                        </div>
-                    </section>
+                        <?php endfor; ?>
+                    </div>
+                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+            </section>
+            
+            <section id="masEscuchados">
+                <div class="descripcion">
+                    <h2>Username's mas escuchadas</h2>
+                </div>
+                <div class="carousel">
+                    <button class="prevME" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                            <div class="contenedorAlbum">
+                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    <button class="nextME" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+            </section>
+            
 
-                    <section id="masEscuchados">
-                        <div class="descripcion">
-                            <h2>Username's mas escuchadas</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
+            <section id="masTiempoSinEscuchar">
+                <div class="descripcion">
+                    <h2>Volver a escuchar</h2>
+                </div>
+                <div class="carousel">
+                    <button class="prevMTSE" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                            <div class="contenedorAlbum">
+                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    <button class="nextMTSE" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+            </section>
 
-                        <div class="divAlbum">
-                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                                <div class="contenedorCancion">
-                                    <img src="<?php echo $fila['imagen']?>">
-                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
-                                </div> 
-                    <?php } ?>                        
-                        </div>
-                    </section>
-
-                    <section id="masTiempoSinEscuchar">
-                        <div class="descripcion">
-                            <h2>Volver a escuchar</h2>
-                            <h3>Mostrar todo</h3>
-                        </div>
-
-                        <div class="divAlbum">
-                    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                                <div class="contenedorCancion">
-                                    <img src="<?php echo $fila['imagen']?>">
-                                    <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                                    <p class="artista"> <?php echo $fila['nombre']?> </p>
-                                </div> 
-                    <?php } ?>
-                        </div>
-                    </section>
-            </div>
+        </div>
     </main>
 
     <footer>
         <div id="imagenCancion">
-            <img src="imagen.png">
-            <div id="infoCancion">
-                <h2>Peace sells</h2>
-                <h3>Megadeth</h3>
-            </div>
+            <?php 
+            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
+                <img src="<?php echo $fila['imagen']?>">
+                <div id="infoCancion">
+                    <h2> <?php echo $fila['titulo']?> </h2>
+                    <h3>  <?php echo $fila['nombre']?>  </h3>
+                </div>
+                <?php } ?>  
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
@@ -155,5 +173,32 @@
             </div>
         </section>
     </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalAlbums = <?php echo count($albumes); ?>; 
+        const slidesContainer = document.querySelectorAll('.slides');
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) {
+            currentSlide = 0; }
+            else if (currentSlide > totalAlbums - 5) {
+            currentSlide = totalAlbums - 5; }
+
+            slidesContainer.forEach(container => {
+            container.innerHTML = '';
+            for (let i = currentSlide; i < currentSlide + 5 && i < totalAlbums; i++) {
+                const album = <?php echo json_encode($albumes); ?>[i];
+                container.innerHTML += `
+                    <div class="contenedorAlbum">
+                    <img src="${album.imagen}" alt="Album">
+                    <p class="titulo">${album.titulo}</p>
+                    <p class="artista">${album.nombre}</p>
+                    </div>`;
+            }
+            });
+        }
+    </script>
 </body>
-</html> 
+</html>
