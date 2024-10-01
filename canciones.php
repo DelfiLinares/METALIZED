@@ -13,40 +13,67 @@
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
-        LIMIT 5;";
-
+        WHERE Cancion.id IN (
+            SELECT idCancion FROM Usuario_escucha_Cancion 
+            GROUP BY idCancion HAVING COUNT(idCancion) > (
+                SELECT AVG(cantVecesEscuchadas) FROM (
+                    SELECT COUNT(*) AS cantVecesEscuchadas 
+                    FROM Usuario_escucha_Cancion 
+                    GROUP BY idCancion
+                ) AS s1
+            )
+        )
+        ORDER BY (SELECT COUNT(*) FROM Usuario_escucha_Cancion
+        WHERE idCancion = Cancion.id) DESC LIMIT 5";
+        
+        
         $queryMasEsc = 
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
-        LIMIT 5;" ;
-
+        WHERE Cancion.id IN (
+            SELECT idCancion FROM Usuario_escucha_Cancion 
+            GROUP BY idCancion HAVING COUNT(idCancion) > (
+                SELECT AVG(cantVecesEscuchadas) FROM (
+                    SELECT COUNT(*) AS cantVecesEscuchadas 
+                    FROM Usuario_escucha_Cancion 
+                    GROUP BY idUsuario
+                ) AS s1
+            )
+        )
+        ORDER BY (SELECT count(*) FROM Usuario_escucha_Cancion 
+        WHERE idCancion = Cancion.id) DESC LIMIT 5;"; 
+        
         $queryMTSE =
-                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
-        LIMIT 5;" ; 
+        WHERE Cancion.id IN (
+            SELECT idCancion FROM Usuario_escucha_Cancion 
+            GROUP BY idCancion HAVING COUNT(idCancion) > (
+                SELECT count(*) FROM Usuario_escucha_Cancion
+                WHERE plays < current_date() AND plays < current_time()
+                ORDER BY plays ASC;
+                )
+            )
+        )
+        ORDER BY (SELECT count(*) FROM Usuario_escucha_Cancion 
+        WHERE idCancion = Cancion.id) DESC LIMIT 5;";
         
+        
+        $queryCanAct =
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE Cancion.id =
+                            (SELECT idCancion FROM Usuario_escucha_Cancion 
+                            WHERE plays = current_date() AND plays = current_time()
+                            );";
+
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
         $resultadoVAE = mysqli_query($conexion, $queryMTSE);
+        $cancionActual = mysqli_query($conexion, $queryCanAct);
     }
 ?>
 
@@ -72,8 +99,8 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.html">Inicio</a></li>
-                    <li><a href="descubre.html">Descubre</a></li>
+                    <li><a href="metalized.php">Inicio</a></li>
+                    <li><a href="descubre.php">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
                         <li id="uno"><a href="canciones.php">Canciones</a></li>
@@ -165,11 +192,14 @@
 
     <footer>
         <div id="imagenCancion">
-            <img src="imagen.png">
-            <div id="infoCancion">
-                <h2>Peace sells</h2>
-                <h3>Megadeth</h3>
-            </div>
+            <?php 
+            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
+                <img src="<?php echo $fila['imagen']?>">
+                <div id="infoCancion">
+                    <h2> <?php echo $fila['titulo']?> </h2>
+                    <h3>  <?php echo $fila['nombre']?>  </h3>
+                </div>
+                <?php } ?>  
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
