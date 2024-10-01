@@ -221,6 +221,11 @@ main{
     color:rgb(168, 167, 167)
 }
 
+.descripcion h3:hover{
+    cursor: pointer;
+    color: white;
+}
+
 #albumes{
     display: inline-block;
     flex-wrap: wrap;
