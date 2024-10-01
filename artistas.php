@@ -115,7 +115,7 @@
                         </div>
 
                         <div class="divArtista">
-                <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                <?php while($fila = mysqli_fetch_assoc($resultadoP)){ ?> 
                             <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
@@ -132,11 +132,7 @@
 
                         <div class="divArtista">
                 <?php 
-                        $consulta = 
-                        "SELECT imagen, nombre FROM Artista LIMIT 5";
-                        $resultado1 = mysqli_query($conexion, $consulta);
-
-                while($fila = mysqli_fetch_assoc($resultado1)){ ?> 
+                while($fila = mysqli_fetch_assoc($resultadoME)){ ?> 
                             <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
@@ -153,10 +149,7 @@
 
                         <div class="divArtista">
                 <?php 
-                        $consulta2 = 
-                        "SELECT imagen, nombre FROM Artista LIMIT 5";
-                        $resultado2 = mysqli_query($conexion, $consulta2);
-                while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
+                while($fila = mysqli_fetch_assoc($resultadoMTSE)){ ?> 
                             <div class="contenedorArtista">
                                 <img src="<?php echo $fila['imagen']?>">
                                 <p class="artista"> <?php echo $fila['nombre']?> </p>
