@@ -87,11 +87,11 @@
 
         <div id="albumes">
             <section id="populares">
-                <div class="descripcion">
                     <h2>Popular</h2>
-                </div>
                 <div class="carousel">
-                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="seccionBoton">
+                        <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
+                    </div>
                     <div class="slides">
                         <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
                             <div class="contenedorAlbum">
@@ -101,16 +101,18 @@
                             </div>
                         <?php endfor; ?>
                     </div>
-                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                    <div class="seccionBoton">
+                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
+                    </div>
                 </div>
             </section>
             
             <section id="masEscuchados">
-                <div class="descripcion">
                     <h2>Username's mas escuchadas</h2>
-                </div>
                 <div class="carousel">
-                    <button class="prevME" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="seccionBoton">
+                    <button class="prevME" onclick="changeSlide(1, -1)">&#10094;</button>
+                    </div>
                     <div class="slides">
                         <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
                             <div class="contenedorAlbum">
@@ -120,17 +122,19 @@
                             </div>
                         <?php endfor; ?>
                     </div>
-                    <button class="nextME" onclick="changeSlide(1)">&#10095;</button>
+                    <div class="seccionBoton">
+                    <button class="nextME" onclick="changeSlide(1, 1)">&#10095;</button>
+                    </div>
                 </div>
             </section>
             
 
             <section id="masTiempoSinEscuchar">
-                <div class="descripcion">
                     <h2>Volver a escuchar</h2>
-                </div>
                 <div class="carousel">
-                    <button class="prevMTSE" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="seccionBoton">
+                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
+                    </div>
                     <div class="slides">
                         <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
                             <div class="contenedorAlbum">
@@ -140,7 +144,9 @@
                             </div>
                         <?php endfor; ?>
                     </div>
-                    <button class="nextMTSE" onclick="changeSlide(1)">&#10095;</button>
+                    <div class="seccionBoton">
+                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
+                    </div>
                 </div>
             </section>
 
@@ -175,30 +181,34 @@
     </footer>
 
     <script>
-        let currentSlide = 0;
-        const totalAlbums = <?php echo count($albumes); ?>; 
-        const slidesContainer = document.querySelectorAll('.slides');
+    const totalAlbums = <?php echo count($albumes); ?>; 
+    const slidesContainers = document.querySelectorAll('.slides');
+    let currentSlides = [0, 0, 0]; 
 
-        function changeSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) {
-            currentSlide = 0; }
-            else if (currentSlide > totalAlbums - 5) {
-            currentSlide = totalAlbums - 5; }
+    function changeSlide(carouselIndex, direction) {
+        currentSlides[carouselIndex] += direction;
 
-            slidesContainer.forEach(container => {
-            container.innerHTML = '';
-            for (let i = currentSlide; i < currentSlide + 5 && i < totalAlbums; i++) {
-                const album = <?php echo json_encode($albumes); ?>[i];
-                container.innerHTML += `
-                    <div class="contenedorAlbum">
-                    <img src="${album.imagen}" alt="Album">
-                    <p class="titulo">${album.titulo}</p>
-                    <p class="artista">${album.nombre}</p>
-                    </div>`;
-            }
-            });
+        // Limitar el índice de la diapositiva actual
+        if (currentSlides[carouselIndex] < 0) {
+            currentSlides[carouselIndex] = 0;
+        } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
+            currentSlides[carouselIndex] = totalAlbums - 5;
         }
+
+        // Actualizar solo el carrusel correspondiente
+        slidesContainers[carouselIndex].innerHTML = '';
+        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalAlbums; i++) {
+            const album = <?php echo json_encode($albumes); ?>[i];
+            slidesContainers[carouselIndex].innerHTML += `
+                <div class="contenedorAlbum">
+                <img src="${album.imagen}" alt="Album">
+                <p class="titulo">${album.titulo}</p>
+                <p class="artista">${album.nombre}</p>
+                </div>`;
+        }
+    }
+</script>
+
     </script>
 </body>
 </html>
