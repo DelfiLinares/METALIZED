@@ -76,7 +76,7 @@
                 <section id="albumes">
                     <div class="descripcion">
                         <h2>Albumes</h2>
-                        <h3>Mostrar todo</h3>
+                        <h3><a href="mostrarTodo_albumesP"> Mostrar todo </a></h3>
                     </div>
             <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorAlbum">
@@ -113,7 +113,8 @@
             <?php 
             $query3 = 
             "SELECT Album.imagen, Artista.nombre, 
-            Cancion.titulo FROM Cancion 
+            Cancion.
+            titulo FROM Cancion 
             JOIN Album ON idAlbum = Album.id
             JOIN Artista ON idArtista = Artista.id LIMIT 5";
             $resultado3 = mysqli_query($conexion, $query3);
