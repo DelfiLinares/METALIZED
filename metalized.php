@@ -1,3 +1,20 @@
+<?php 
+    $servername = "127.0.0.1";
+    $database = "Metalized";
+    $username = "alumno";
+    $password = "alumnoipm";
+
+    $conexion = mysqli_connect($servername, $username, $password, $database);
+    if (!$conexion) {
+        die("Conexion fallida: " . mysqli_connect_error());
+    }
+    else{
+        $query = 
+        "SELECT imagen, titulo FROM Album LIMIT 8";
+        $resultado = mysqli_query($conexion, $query);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -20,15 +37,15 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.html">Inicio</a></li>
-                    <li><a href="descubre.html">Descubre</a></li>
+                    <li><a href="metalized.php">Inicio</a></li>
+                    <li><a href="descubre.php">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
-                            <li id="uno"><a href="canciones.html">Canciones</a></li>
-                            <li id="dos"><a href="artistas.html">Artistas</a></li>
-                            <li id="tres"><a href="albumes.html">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.html">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.html">Playlists</a></li>
+                            <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="dos"><a href="artistas.php">Artistas</a></li>
+                            <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
+                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -58,31 +75,34 @@
                 <h3>Escuchado Recientemente</h3>
 
                 <section id="albumes">
-                    <div class="contenedorAlbum">
-                        <img src="imagen.png">
-                        <p>Peace Sells...</p>
-                    </div> 
-
+                    <div class="descripcion">
+                        <h2>Albumes</h2>
+                    </div>
+            <?php 
+            while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                        <div class="contenedorAlbum">
+                            <img src=<?php echo $fila['imagen']?>>
+                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                        </div> 
+            <?php } ?>
                 </section>
 
                 <section id="artistas">
-                    <div class="contenedorArtista">
-                        <img src="metallica.png">
-                        <p>Metallica</p>
+                    <div class="descripcion">
+                        <h2>Artistas</h2>
                     </div>
-                    <div class="contenedorArtista">
-                        <img src="kiss.jpg">
-                        <p>Kiss</p>
-                    </div>
-                    <div class="contenedorArtista">
-                        <img src="soad.jpg">
-                        <p>S.O.A.D</p>
-                    </div>
-                    <div class="contenedorArtista">
-                        <img src="sodastereo.jpg">
-                        <p>Soda Stereo</p>
-                    </div>
+            <?php 
+            $query2 = 
+            "SELECT imagen, nombre FROM Artista LIMIT 4";
+            $resultado2 = mysqli_query($conexion, $query2);
+            while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
+                        <div class="contenedorArtista">
+                            <img src=<?php echo $fila['imagen']?>>
+                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                        </div> 
+            <?php } ?>
                 </section>
+
             </div>
     </main>
 
