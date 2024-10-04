@@ -15,16 +15,14 @@
         JOIN Artista ON idArtista = Artista.id
         WHERE Cancion.id IN (
             SELECT idCancion FROM Usuario_escucha_Cancion 
-            GROUP BY idCancion HAVING COUNT(idCancion) > (
+            WHERE COUNT(idCancion) > (
                 SELECT AVG(cantVecesEscuchadas) FROM (
                     SELECT COUNT(*) AS cantVecesEscuchadas 
                     FROM Usuario_escucha_Cancion 
-                    GROUP BY idCancion
-                ) AS s1
-            )
-        )
-        ORDER BY (SELECT COUNT(*) FROM Usuario_escucha_Cancion
-        WHERE idCancion = Cancion.id) DESC LIMIT 5";
+                    GROUP BY idCancion               ) AS s1
+            ORDER BY cantVecesEscuchadas DESC 
+            LIMIT 5                  ) AS s2
+                            )";
         
         
         $queryMasEsc = 
@@ -37,12 +35,11 @@
                 SELECT AVG(cantVecesEscuchadas) FROM (
                     SELECT COUNT(*) AS cantVecesEscuchadas 
                     FROM Usuario_escucha_Cancion 
-                    GROUP BY idUsuario
+                    GROUP BY idCancion AND idUsuario 
+                    = /* id del user q inicio sesion */
                 ) AS s1
             )
-        )
-        ORDER BY (SELECT count(*) FROM Usuario_escucha_Cancion 
-        WHERE idCancion = Cancion.id) DESC LIMIT 5;"; 
+        )"; 
         
         $queryMTSE =
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
@@ -50,15 +47,14 @@
         JOIN Artista ON idArtista = Artista.id
         WHERE Cancion.id IN (
             SELECT idCancion FROM Usuario_escucha_Cancion 
-            GROUP BY idCancion HAVING COUNT(idCancion) > (
-                SELECT count(*) FROM Usuario_escucha_Cancion
+            WHERE idCancion =   (
+                SELECT idCancion FROM Usuario_escucha_Cancion
                 WHERE plays < current_date() AND plays < current_time()
-                ORDER BY plays ASC;
-                )
-            )
-        )
-        ORDER BY (SELECT count(*) FROM Usuario_escucha_Cancion 
-        WHERE idCancion = Cancion.id) DESC LIMIT 5;";
+                ORDER BY plays ASC
+                                )
+                            )
+            GROUP BY idCancion 
+        );";
         
         
         $queryCanAct =
