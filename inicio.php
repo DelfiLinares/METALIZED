@@ -17,6 +17,12 @@ else {
     $resultado = mysqli_query($conexion, $query);
 
     if ($resultado) {
+        $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser';";
+        $resultado = mysqli_query($conexion, $query);
+        $fila = mysqli_fetch_assoc($resultado);
+
+        session_start();
+        $_SESSION["idUsuario"] = $fila["id"];
         header("Location: metalized.php");
         exit();
     } else {
