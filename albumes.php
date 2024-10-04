@@ -9,16 +9,48 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $query = 
-        "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
-        JOIN Artista ON idArtista = Artista.id;";
-        $resultado = mysqli_query($conexion, $query);
-
-        $albumes = [];
-        while($fila = mysqli_fetch_assoc($resultado)) {
-            $albumes[] = $fila;
-        }
-
+        $queryPopular = 
+        "SELECT Album.id, Album.titulo FROM Album
+        JOIN Cancion ON Album.id = idAlbum
+        JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion
+        GROUP BY Album.id
+        count(Usuario_escucha_Cancion.idCancion) 
+        AS cantVecesAlbumEscuchado 
+        ORDER BY cantVecesAlbumEscuchado DESC
+        LIMIT 5;"; 
+        
+        $queryMasEsc = 
+        "SELECT Album.imagen, Album.titulo FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE Cancion.id IN (
+            SELECT idCancion FROM Usuario_escucha_Cancion 
+            GROUP BY idCancion HAVING COUNT(idCancion) > (
+                SELECT AVG(cantVecesEscuchadas) FROM (
+                    SELECT COUNT(*) AS cantVecesEscuchadas 
+                    FROM Usuario_escucha_Cancion 
+                    GROUP BY idCancion AND idUsuario 
+                    = /* id del user q inicio sesion */
+                ) AS s1
+            )
+        );";
+        
+        $queryMTSE =
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE Cancion.id IN (
+            SELECT idCancion FROM Usuario_escucha_Cancion 
+            WHERE idCancion =   (
+                SELECT idCancion FROM Usuario_escucha_Cancion
+                WHERE plays < current_date() AND plays < current_time()
+                ORDER BY plays ASC
+                                )
+                            )
+            GROUP BY idCancion 
+        );";
+        
+        
         $queryCanAct =
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
@@ -28,6 +60,9 @@
                             WHERE plays = current_date() AND plays = current_time()
                             );";
 
+        $resultadoP = mysqli_query($conexion, $queryPopular);
+        $resultadoME = mysqli_query($conexion, $queryMasEsc);
+        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
         $cancionActual = mysqli_query($conexion, $queryCanAct);
     }
 ?>
@@ -64,7 +99,7 @@
                     </li>
                 </ul>
             </div>
-        </section>
+    </section>
     </header>
 
     <main>
@@ -83,7 +118,7 @@
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXBJREFUSEu1lH1VA0EMxGcUgAUUAAoAB1QBVAGgAKqAooCigFZBWwdFAeCgVRDe8LK8Pbp7TT8u/93b2/1lkkmIjoMdv48iwMyOAdwBuAZw5kksAIwBvJBcRhNbA5jZLYBnAIKUQo8/kBxFIA2AP/7qFycAhiRn+jazSwBPAC78vEdSilrjD+Bl+fTM+7UMzUyQRwBScrKpXDkgXZyQVO2rYWZSJSUDkrpXjRygJp4CuEplqd3yck0BLEieRwGmH0mGrGtmof9zBaELKVsHrEjW3Pb7664lUo/eAcxJyl2hHqQmj0n2gk3WPAyjAEn9AnAkv5MclC5mNv3WlIdt6sOUpOtTVhRong2a/J9KstGijR5kzdOqkGwpKcXKzwWTtTXtb7UytS27e192mg3Fhy87Pbg0szQ3OhuR7JcgIc9XeiGlaW9VITsDvC/aqDdZAmtK9gJEIHsDCpDGJj4IIIPM/q/5gwG2smnb6G971rmCH/JPnxkOXXf0AAAAAElFTkSuQmCC" 
                     id="lupa" />
                 </div>
-            </div>
+        </div>
 
         <div id="albumes">
             <section id="populares">
@@ -187,28 +222,23 @@
 
     function changeSlide(carouselIndex, direction) {
         currentSlides[carouselIndex] += direction;
-
-        // Limitar el índice de la diapositiva actual
         if (currentSlides[carouselIndex] < 0) {
             currentSlides[carouselIndex] = 0;
         } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
             currentSlides[carouselIndex] = totalAlbums - 5;
         }
 
-        // Actualizar solo el carrusel correspondiente
         slidesContainers[carouselIndex].innerHTML = '';
         for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalAlbums; i++) {
             const album = <?php echo json_encode($albumes); ?>[i];
             slidesContainers[carouselIndex].innerHTML += `
                 <div class="contenedorAlbum">
-                <img src="${album.imagen}" alt="Album">
+                <img src="${album.imagen}" alt="Cover del Album">
                 <p class="titulo">${album.titulo}</p>
                 <p class="artista">${album.nombre}</p>
                 </div>`;
         }
     }
-</script>
-
     </script>
 </body>
 </html>

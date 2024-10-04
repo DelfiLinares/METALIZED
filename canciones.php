@@ -22,7 +22,7 @@
                     GROUP BY idCancion               ) AS s1
             ORDER BY cantVecesEscuchadas DESC 
             LIMIT 5                  ) AS s2
-                            )";
+                            ); ";
         
         
         $queryMasEsc = 
@@ -136,15 +136,22 @@
                             <h2>Popular</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-                        <div class="divCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($resultadoP)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>  
+                        <div class="carousel">
+                    <div class="seccionBoton">
+                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
+                    </div>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($canciones)); $i++): ?>
+                            <div class="contenedorCancion">
+                                <img src="<?php echo $canciones[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="seccionBoton">
+                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
+                    </div>
                         </div>
                     </section>
 
@@ -154,15 +161,22 @@
                             <h2>Username's mas escuchadas</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-                        <div class="divCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($resultadoME)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>
+                        <div class="carousel">
+                    <div class="seccionBoton">
+                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
+                    </div>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($canciones)); $i++): ?>
+                            <div class="contenedorCancion">
+                                <img src="<?php echo $canciones[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="seccionBoton">
+                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
+                    </div>
                         </div>
                     </section>
 
@@ -172,15 +186,22 @@
                             <h2>Volver a escuchar</h2>
                             <h3>Mostrar todo</h3>
                         </div>
-                        <div class="divCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($resultadoMTSE)){ ?> 
-                        <div class="contenedorCancion">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
-                        </div> 
-            <?php } ?>  
+                        <div class="carousel">
+                    <div class="seccionBoton">
+                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
+                    </div>
+                    <div class="slides">
+                        <?php for ($i = 0; $i < min(5, count($canciones)); $i++): ?>
+                            <div class="contenedorCancion">
+                                <img src="<?php echo $canciones[$i]['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
+                                <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    <div class="seccionBoton">
+                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
+                    </div>
                         </div>
                     </section>
             </div>
@@ -212,5 +233,31 @@
             </div>
         </section>
     </footer>
+
+    <script>
+    const totalSongs = <?php echo count($canciones); ?>; 
+    const slidesContainers = document.querySelectorAll('.slides');
+    let currentSlides = [0, 0, 0]; 
+
+    function changeSlide(carouselIndex, direction) {
+        currentSlides[carouselIndex] += direction;
+        if (currentSlides[carouselIndex] < 0) {
+            currentSlides[carouselIndex] = 0;
+        } else if (currentSlides[carouselIndex] > totalSongs - 5) {
+            currentSlides[carouselIndex] = totalSongs - 5;
+        }
+
+        slidesContainers[carouselIndex].innerHTML = '';
+        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalSongs; i++) {
+            const album = <?php echo json_encode($canciones); ?>[i];
+            slidesContainers[carouselIndex].innerHTML += `
+                <div class="contenedorCancion">
+                <img src="${Album.imagen}" alt="Cover del Album">
+                <p class="titulo">${Cancion.titulo}</p>
+                <p class="artista">${Artista.nombre}</p>
+                </div>`;
+        }
+    }
+    </script>
 </body>
 </html> 

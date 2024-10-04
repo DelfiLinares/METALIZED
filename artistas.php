@@ -15,7 +15,8 @@
                     (SELECT idCancion FROM Usuario_escucha_cancion 
                     WHERE count(idCancion) > 
                                             (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion
+                                            GROUP BY idCancion))
         LIMIT 5;";
 
         $queryMasEsc = 
@@ -162,11 +163,14 @@
 
     <footer>
         <div id="imagenCancion">
-            <img src="imagen.png">
-            <div id="infoCancion">
-                <h2>Peace sells</h2>
-                <h3>Megadeth</h3>
-            </div>
+            <?php 
+            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
+                <img src="<?php echo $fila['imagen']?>">
+                <div id="infoCancion">
+                    <h2> <?php echo $fila['titulo']?> </h2>
+                    <h3>  <?php echo $fila['nombre']?>  </h3>
+                </div>
+                <?php } ?>  
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">

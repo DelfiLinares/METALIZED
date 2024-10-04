@@ -10,7 +10,11 @@
     }
     else{
         $query = 
-        "SELECT imagen, titulo FROM Album LIMIT 8";
+        "SELECT Album.imagen, Album.titulo FROM Album
+        JOIN Cancion ON idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON idCancion = Cancion.id
+        WHERE plays < current_date() ORDER BY plays ASC 
+        LIMIT 8";
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
@@ -93,7 +97,12 @@
                     </div>
             <?php 
             $query2 = 
-            "SELECT imagen, nombre FROM Artista LIMIT 4";
+            "SELECT Artista.imagen, Artista.nombre FROM Artista
+            JOIN Album ON idArtista = Artista.id 
+            JOIN Cancion ON idAlbum = Album.id
+            JOIN Usuario_escucha_Cancion ON idCancion = Cancion.id
+            WHERE plays < current_date() ORDER BY plays ASC 
+            LIMIT 4";
             $resultado2 = mysqli_query($conexion, $query2);
             while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
@@ -108,11 +117,14 @@
 
     <footer>
         <div id="imagenCancion">
-            <img src="imagen.png">
-            <div id="infoCancion">
-                <h2>Peace sells</h2>
-                <h3>Megadeth</h3>
-            </div>
+            <?php 
+            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
+                <img src="<?php echo $fila['imagen']?>">
+                <div id="infoCancion">
+                    <h2> <?php echo $fila['titulo']?> </h2>
+                    <h3>  <?php echo $fila['nombre']?>  </h3>
+                </div>
+            <?php } ?>  
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
@@ -126,11 +138,6 @@
                 <div class="progress">
                     <div class="progress-bar" style="width:75%;"></div>
                 </div> 
-            </div>
-        </section>
-    </footer>
-</body>
-</html> 
             </div>
         </section>
     </footer>

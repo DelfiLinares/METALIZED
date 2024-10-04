@@ -23,6 +23,7 @@ CREATE TABLE Usuario_escucha_Cancion(
     imagen varchar(45),
     idUsuario int,
     idCancion int,
+    plays datetime,
     primary key (idUsuario, idCancion),
     foreign key (idUsuario) references Usuario(id),
     foreign key (idCancion) references Cancion(id)
@@ -59,8 +60,12 @@ CREATE TABLE Playlist (
 CREATE TABLE Playlist_tiene_Cancion(
     idPlaylist int,
     idCancion int,
-	diayhora_añadida datetime,
+    diayhora_añadida datetime,
     primary key (idCancion, idPlaylist),
     foreign key (idPlaylist) references Playlist(id),
     foreign key (idCancion) references Cancion(id)
+);
+
+CREATE TABLE Usuario_guarda_Playlist(
+
 );
