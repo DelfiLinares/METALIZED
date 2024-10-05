@@ -1,5 +1,5 @@
 <?php
-	$nombreUser= $_GET["nombreUser"];
+    $nombreUser= $_GET["nombreUser"];
     $contraseña = $_GET["contraseña"];
     $servername = "127.0.0.1";
     $database = "Metalized";
@@ -11,28 +11,15 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $query = "insert into Usuario values(null, '$nombreUser', '$email', '$contraseña');";
+        $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser';";
         $resultado = mysqli_query($conexion, $query);
-        echo "Datos que hay en la base:\n";
-        $resultados = mysqli_query($conexion,"select * from Usuario;");
-        while($fila = mysqli_fetch_assoc($resultados)){?>
-            <p><?php echo $fila['nombreUser']. " " .$fila['email']. " " .$fila['contraseña']?></p>
-            <?php }
+        $fila = mysqli_fetch_assoc($resultado);
+
+        session_start();
+        $_SESSION["idUsuario"] = $fila["id"];
+        header("Location: metalized.php");
     }
 
-    function mostrarDatosTabla($conexion){  ?>
-        <table>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Contraseña</th>
-<?php   $resultados = mysqli_query($conexion,"select * from Usuario;");
-        while($fila = mysqli_fetch_assoc($resultados)){ ?>
-        <tr>
-            <td> <?php echo $fila['nombreUser']?> </td>
-            <td> <?php echo $fila['email']?> </td>
-            <td> <?php echo $fila['contraseña']?> </td>
-        </tr>
-        <?php }?>
-        </table>
+
     <?php }
     mysqli_close($conexion);?>
