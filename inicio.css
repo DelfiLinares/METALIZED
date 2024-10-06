@@ -1,3 +1,4 @@
+
 body{
     background-color: black;
     color: white ;
@@ -66,10 +67,6 @@ header{
     margin-bottom: 0;
 }
 
-header h1{
-    font-size: 20px;
-}
-
 main{
     width:100%;
     height:100%;
@@ -90,7 +87,7 @@ main{
 
 #bienvenida h2{
     font-size: 30px;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: 5px;
     margin-left: 25%;
     margin-right: 25%;
@@ -99,31 +96,45 @@ main{
 #bienvenida p{
     font-size: 20px;
     color: gray;
+    margin-top: 3px;
 }
 
 #contenedor{
-    width:100%;
-    height:100%;
+    width:70%;
+    height:90%;
+    justify-self: center;
+    align-content: center;
+    align-items: center;
+    margin-left: 15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     display: inline-block;
+    border: 2px rgb(57, 0, 0) solid;
+    border-radius: 10px;
+    box-shadow: 0 0 60px 0 rgb(98, 1, 20) ;
 }
 
-.formulario{
-    width: 25%;
-    margin-top: 30px;
-    margin-right: 20%;
+.form{
+    width: 40%;
+    margin-top: 20px;
     float: right;
 }
 
-.formulario p{
+.formulario{
+    width:100%;
+    height:100%;
+}
+
+.form p{
     margin-left: 15px;
     color: gray;
 }
 
-.formulario p a{
+.form p a{
     color:white;
 }
 
-.formulario button a{
+.form button a{
     color:rgb(0, 0, 0);
     text-decoration: none;
 }
@@ -150,15 +161,86 @@ button{
 }
 
 #logo{
-    width: 25%;
+    width: 20%;
+    height: 20%;
     float: left;
-    margin-top: 30px;
-    margin-left: 25%;
+    margin-top: 20px;
+    margin-left: 15%;
+    margin-bottom: 20px;
 }
 
 
 #logo img{
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     padding: 5px;
+}
+
+@media (max-width: 982px) {
+    .form {
+        width: 100%;
+        float: none;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .formulario {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form p {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    input, button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #logo {
+        width: 50%;
+        float: none;
+        margin: 20px auto;
+    }
+
+    #logo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #bienvenida p, #bienvenida h2 {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (max-width: 640px) {
+    .form {
+        width: 90%;
+    }
+
+    #logo {
+        width: 50%;
+    }
+
+    input, button {
+        width: 80%;
+    }
+}
+
+@media (max-width: 320px) {
+    .form {
+        width: 95%;
+    }
+
+    input, button {
+        width: 90%;
+        font-size: 14px;
+        padding: 8px;
+    }
 }
