@@ -225,10 +225,16 @@ main{
 /**/
 
 /**/
+.contenedor2{
+    width:100%;
+    display: inline-block;
+}
+
 .canciones{
     display:block;
-    width: 40%;
+    width: 30%;
     padding: 10px;
+    float: left;
 }
 
 .canciones h1{
@@ -251,7 +257,7 @@ main{
 .info-popular{
     float: right;
     margin: 0px;
-    margin-right: 25%;
+    margin-right: 10%;
 }
 
 .titulo{
@@ -263,6 +269,25 @@ main{
     font-size: 15px;
     margin: 0px;
 }
+
+#albumes{
+    float: right;
+    width: 60%;
+}
+
+.album{
+    margin: 5px;
+}
+
+.album img{
+    width: 250px;
+    height: 250px;
+}
+
+.album h3{
+    width:100%;
+}
+
 /**/
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
@@ -355,3 +380,4 @@ footer{
 
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
