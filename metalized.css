@@ -66,7 +66,6 @@ a{
     color:white;
 }
 
-
 #uno, #dos, #tres, #cuatro, #cinco{
     justify-self: center;
     align-items: center;
@@ -156,7 +155,7 @@ main{
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
-    color: #8E1717;
+    COLOR:#8E1717;
 } 
 
 .nyl img{

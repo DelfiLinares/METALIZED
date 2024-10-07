@@ -11,15 +11,16 @@
     }
     else{        
         $queryPopular = 
-        "SELECT Artista.imagen, Artista.nombre FROM Artista 
-        JOIN Album ON Album.id = Album.idArtista
+        "SELECT Album.imagen, Cancion.titulo FROM Album 
         JOIN Cancion ON Album.id = Cancion.idAlbum
-        JOIN Usuario_escucha_Cancion ue ON Cancion.id = idCancion
-        GROUP BY Artista.id 
-        ORDER BY COUNT(idCancion) DESC;";
+        GROUP BY Cancion.id 
+        ORDER BY COUNT(Cancion.id) DESC;";
 
-        $queryMasEsc = "  SELECT titulo, imagen, nombre FROM Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
-        GROUP BY idCancion WHERE idUsuario = ".$_SESSION['idUsuario']." ORDER BY count(*) DESC;" ;
+        $queryMasEsc = "SELECT Cancion.titulo, Album.imagen FROM Album
+        JOIN Cancion ON Cancion.idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_cancion.idCancion  
+        WHERE Usuario_escucha_cancion.idUsuario = ".$_SESSION['idUsuario']." 
+        GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
 
         $queryMTSE =" SELECT titulo, imagen, nombre FROM Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
         GROUP BY idCancion WHERE idUsuario = ".$_SESSION['idUsuario']."

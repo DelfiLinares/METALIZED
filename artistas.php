@@ -11,13 +11,16 @@
     else{        
         $queryPopular = 
         "SELECT imagen, nombre FROM Artista 
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion
-                                            GROUP BY idCancion))
-        LIMIT 5;";
+        JOIN Album ON idArtista = Artista.id
+        JOIN Cancion ON idAlbum = Album.id
+        WHERE Cancion.id IN
+            (SELECT idCancion FROM Usuario_escucha_Cancion 
+            WHERE count(idCancion) > 
+                    (SELECT avg(cantVecesEscuchadas) FROM 
+                    (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion
+                    GROUP BY idCancion))
+            ORDER BY count(idCancion) DESC LIMIT 10
+            );";
 
         $queryMasEsc = 
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 

@@ -89,7 +89,6 @@ a{
 #cinco{
     list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAy0lEQVRIS2NkoDFgpLH5DKMWwEP4////V4AcbZgAIxCA2PAgAir4T058wAxC108zC2AGw31Cjqux6YH5YOAsoFYc4PQBzS2gNC6GRhwghy/QxcFAX1cBsR4QvwVicXDGgmYwjGRKTBwgZSp3oAE7sAUrVZIp0DGngIab0tKCL0DDubFY8BvoAzZkcZLKIqQgOgo0xAqLBceBalDEybXAGWj4HiwWOAItOIDVB6TmA2A8BAD11AOxBhBfBeJmoOEb0c0ZrdEIhizNgwgAYc1mGaNV2V8AAAAASUVORK5CYII=");
 }
-
 .milibreria{
     margin-bottom: 10px;
     font-weight: lighter;
@@ -214,11 +213,15 @@ main{
 }
 
 .contenedorAlbum{
-    background-color: #5e5e5e;
+    background-color: rgb(70, 70, 70);
     display: inline-block;
     width: 18%;
     padding: 5px;
     align-items: center ;
+}
+
+.contenedorAlbum:hover{
+    background-color: #5e5e5e;
 }
 
 .contenedorAlbum img{
