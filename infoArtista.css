@@ -230,7 +230,7 @@ main{
     display: inline-block;
 }
 
-.canciones{
+#canciones{
     display:block;
     width: 30%;
     padding: 10px;
@@ -271,20 +271,26 @@ main{
 }
 
 #albumes{
+    display: inline-block;
     float: right;
     width: 60%;
+    padding: 5px;
 }
 
 .album{
+    width: 20%;
     margin: 5px;
+    margin-right: 2px;
 }
 
 .album img{
-    width: 250px;
-    height: 250px;
+    width: 100px;
+    height: 100px;
+    margin: 0;
 }
 
 .album h3{
+    margin: 0px;
     width:100%;
 }
 
