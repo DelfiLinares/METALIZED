@@ -387,3 +387,100 @@ footer{
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
 
+
+
+@media (max-width: 460px){
+    header{
+        height: 85vh;
+        width: 1cm;
+    }
+
+    #contenedor{
+        width: 100%;
+    }
+
+    .menu a{
+        display: none;
+    }
+
+    .menu ul{
+        margin-left: -26px;
+    }
+
+    .nyl{
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .nyl h3{
+        font-size: 16px;
+    }
+
+    .nyl img{
+        width: 40px;
+        height: 40px; 
+    }
+
+    #mi_libreria p{
+        display:none;
+    }
+
+    .seccionUsuario h2{
+        display: none;
+    }
+
+    .seccionUsuario{
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        margin-left: -2px;
+    }
+
+    .seccionUsuario img{
+        width: 42px;
+        height: 42px;
+    }
+
+    main{
+        width: 95%;
+        margin-left: 10px;
+        margin-right: -7px;
+        height: 45vh;
+        float: right;
+    }
+
+    .solapa h1{
+        display:none;
+    }
+
+    .barraBusq{
+        background-color: black;
+        border: black;
+        border-radius: 20%;
+        width: 15%;
+        height: 100%;
+        justify-content: center;
+    }
+
+    .barraBusq:hover{
+        background-color: rgb(124, 124, 124);
+        cursor: pointer;
+    }
+
+    .barraBusq img{
+        margin-top: 10px;
+        margin-right: 0;
+        padding-right: 5px;
+    }
+
+    .barraBusq h3{
+        display: none;
+    }
+
+    #imagenCancion img{
+        width: 50px;
+        height: 50px;
+        margin: 7px;
+    }
+}
