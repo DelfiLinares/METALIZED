@@ -22,9 +22,9 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.php">Inicio</a></li>
-                    <li><a href="descubre.php">Descubre</a></li>
-                    <li>Mi libreria
+                    <li id="inicio"><a href="metalized.php">Inicio</a></li>
+                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
+                    <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
@@ -56,13 +56,15 @@
                 </div>
             </div>
         
-            <div id="artista">
+            
+                <div id="artista">
+                <!----
                 <section class="fotoynombre">
                     <img src="metallica.png"> 
-                    <!---<img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">-->
+                    <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
                     <div class="info">
                         <h1 class="nombre">Metallica</h1>
-                        <!--<p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>-->
+                        <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
                         <p>Lorem ipsum dolor sit amet consectetur adipiscing elit 
                         quam diam, senectus scelerisque eu tempor odio platea 
                         aliquet nostra ullamcorper, mus pretium taciti sed lacus dapibus eros phasellus. Quisque curae donec
@@ -125,8 +127,9 @@
                                 <h3 class="titulo"> Master of Puppets</h3>
                             </div>
                     </section>
-                </div>
+                </div> --->
             </div>
+            
     </main>
 
     <footer>
@@ -154,3 +157,4 @@
     </footer>
 </body>
 </html> 
+
