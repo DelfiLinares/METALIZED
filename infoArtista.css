@@ -65,7 +65,7 @@ a{
     color:white;
 }
 
-#uno, #dos, #tres, #cuatro, #cinco{
+#uno, #dos, #tres, #cuatro, #cinco, #inicio, #descubre{
     justify-self: center;
     align-items: center;
 }
@@ -154,6 +154,24 @@ main{
     margin-top: -3px;
 }
 
+
+.barraBusq input {
+    padding: 12px;
+    margin-right: 5px;
+    background-color:  rgb(124, 124, 124);
+    color: white;
+    border: none;
+}
+
+.barraBusq button {
+    padding: 20px 10px;
+    color: rgb(109, 109, 109);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
 .barraBusq{
     background-color: rgb(124, 124, 124);
     border: 1px rgb(109, 109, 109) solid;
@@ -163,16 +181,6 @@ main{
     margin-left: 25%;
     justify-content: center;
 }
-
-.barraBusq h3{
-    font-size: 15px;
-    font-weight: 500;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    padding-left: 20px;
-    color: rgb(255, 255, 255);
-}
-
 .barraBusq img{
     float: right;
     width: 30px;
@@ -241,14 +249,18 @@ main{
     font-size: 23px;
 }
 
-.cancion{
+#cancion{
     width: 100%;
-    background-color: #0e0e0e;
     display: inline-block;
     margin: 5px;
 }
 
-.cancion img{
+#cancion:hover{
+    cursor: pointer;
+    background-color: #0e0e0e;
+}
+
+#cancion img{
     float: left; 
     width: 80px;
     height: 80px; 
@@ -271,27 +283,36 @@ main{
 }
 
 #albumes{
-    display: inline-block;
     float: right;
-    width: 60%;
-    padding: 5px;
+    display: inline-block;
+    width: 65%;
+    height: 70%;
+    padding: 10px;
 }
 
-.album{
-    width: 20%;
-    margin: 5px;
-    margin-right: 2px;
+#album{
+    width: 40%;
+    height: 50%;
+    margin: 0px;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: space-around;
 }
 
-.album img{
-    width: 100px;
-    height: 100px;
+#album:hover{
+    cursor: pointer;
+    background-color: #0e0e0e;
+}
+
+#album img{
+    width: 150px;
+    height: 150px;
     margin: 0;
 }
 
-.album h3{
-    margin: 0px;
-    width:100%;
+#album h3{
+    font-size: 20px;
+    margin: 5px;
 }
 
 /**/
@@ -389,7 +410,7 @@ footer{
 
 
 
-@media (max-width: 460px){
+@media (max-width: 500px){
     header{
         height: 85vh;
         width: 1cm;
@@ -407,13 +428,17 @@ footer{
         margin-left: -26px;
     }
 
+    #inicio, #descubre{
+    display: none;
+}
+
     .nyl{
         justify-content: center;
-        margin-top: 5px;
+        margin: 5px 7px 0px 7px;
     }
 
     .nyl h3{
-        font-size: 16px;
+        display: none;
     }
 
     .nyl img{
@@ -446,7 +471,7 @@ footer{
         width: 95%;
         margin-left: 10px;
         margin-right: -7px;
-        height: 45vh;
+        height: 100%;
         float: right;
     }
 
@@ -454,24 +479,27 @@ footer{
         display:none;
     }
 
-    .barraBusq{
-        background-color: black;
-        border: black;
-        border-radius: 20%;
-        width: 15%;
-        height: 100%;
-        justify-content: center;
+    .solapa{
+        width: 100px;
+        height: 43px;
     }
 
-    .barraBusq:hover{
-        background-color: rgb(124, 124, 124);
-        cursor: pointer;
+    .barra_horizontal{
+        height:45px;
+        margin-bottom: 0px;
+    }
+
+    .barraBusq{
+        background-color: rgb(0, 0, 0);
+        border: black;
+        margin-left: 190px;
+        width: 30px;
     }
 
     .barraBusq img{
-        margin-top: 10px;
-        margin-right: 0;
-        padding-right: 5px;
+        width: 25px;
+        height: 25px;
+        margin: 10px;
     }
 
     .barraBusq h3{
@@ -483,4 +511,106 @@ footer{
         height: 50px;
         margin: 7px;
     }
+
+    #artista{
+        height: 78vh;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    #artista img{
+        width: 30%;
+        height: 70%;
+        margin: 3px;
+    }
+
+    .fotoynombre{
+        padding: 5px;
+        width: 97%;
+        height: 20%;
+        margin-bottom: 5px;
+    }
+
+    .info{
+        width:65%;
+    }
+
+    .info h1{
+        font-size: 20px;
+        margin: 10px 20px 10px 3px;
+    }
+
+    .info p{
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    #imagenCancion{
+        width: 30%;
+    }
+
+    #imagenCancion img{
+        margin-right: 0px;
+    }
+
+    #infoCancion{
+        width: 40%;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    #barraProgreso{
+        width: 100%;
+        margin-left: 25%;
+    }
+
+    #barraReproductora-iconos{
+        width: 120%;
+        height: 20%;
+    }
+
+    #barraReproductora-iconos img{
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+    }
+
+    #barraReproduccion{
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
+
+    #contenedor2{
+        width: 100%;
+        height: 50%;
+    }
+
+    #canciones{
+        width: 96%;
+        padding: 6px;
+    }
+
+    #canciones h1{
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #cancion{
+        width: 98%;
+        height: 30%;
+    }
+
+    #cancion img{
+        width: 20%;
+        height: 20%;
+    }
+
+    .info-popular{
+        margin-right: 20%;
+    }
+
+    .info-popular h3{
+        font-size: 15px;
+    }
 }
+
