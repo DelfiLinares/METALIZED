@@ -11,25 +11,24 @@
     }
     else{        
         $queryPopular = 
-        "SELECT Album.imagen, Cancion.titulo FROM Album 
-        JOIN Cancion ON Album.id = Cancion.idAlbum
+        "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
+        JOIN Cancion ON Album.id = Cancion.idAlbum JOIN Artista ON Artista.id = Album.idArtista
         GROUP BY Cancion.id 
         ORDER BY COUNT(Cancion.id) DESC;";
 
-        $queryMasEsc = "SELECT Cancion.titulo, Album.imagen FROM Album
-        JOIN Cancion ON Cancion.idAlbum = Album.id
-        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_cancion.idCancion  
-        WHERE Usuario_escucha_cancion.idUsuario = ".$_SESSION['idUsuario']." 
+        $queryMasEsc = "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album
+        JOIN Cancion ON Cancion.idAlbum = Album.id JOIN Artista ON Artista.id = Album.idArtista
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
+        WHERE Usuario_escucha_Cancion.idUsuario = ".$_SESSION['idUsuario']." 
         GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
 
-        $queryMTSE =" SELECT titulo, imagen, nombre FROM Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
-        GROUP BY idCancion WHERE idUsuario = ".$_SESSION['idUsuario']."
-        ORDER BY count(*) DESC, plays ASC;" ; 
+        $queryMTSE ="SELECT Album.titulo, Album.imagen, Artista.nombre as nombre FROM Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
+        JOIN Album ON Album.id = Cancion.idAlbum
+        JOIN Artista ON Artista.id = Album.idArtista WHERE idUsuario = ".$_SESSION['idUsuario']." GROUP BY idCancion ORDER BY count(*) DESC, plays ASC;" ; 
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
         $resultadoVAE = mysqli_query($conexion, $queryMTSE);
-        $resultado = mysqli_query($conexion, $query);
     }
 ?>
 

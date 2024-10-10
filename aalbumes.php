@@ -10,16 +10,13 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $query = 
+        $queryPopular = 
         "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
-        JOIN Artista ON idArtista = Artista.id;";
-        $resultado = mysqli_query($conexion, $query);
+        JOIN Cancion ON Album.id = Cancion.idAlbum JOIN Artista ON Artista.id = Album.idArtista
+        GROUP BY Cancion.id 
+        ORDER BY COUNT(Cancion.id) DESC;";
 
-        $albumes = [];
-        while($fila = mysqli_fetch_assoc($resultado)) {
-            $albumes[] = $fila;
-        }
-
+    
         $queryCanAct =
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
@@ -28,6 +25,9 @@
                             (SELECT idCancion FROM Usuario_escucha_Cancion 
                             WHERE plays = current_date() AND plays = current_time()
                             );";
+
+$resultadoP = mysqli_query($conexion, $queryPopular);
+
 
         $cancionActual = mysqli_query($conexion, $queryCanAct);
     }
@@ -94,13 +94,13 @@
                         <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
                     </div>
                     <div class="slides">
-                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
                             <div class="contenedorAlbum">
-                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
-                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
-                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
+                                <img src="<?php echo $fila['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $fila['titulo']; ?></p>
+                                <p class="artista"><?php echo $fila['nombre']; ?></p>
                             </div>
-                        <?php endfor; ?>
+                        <?php } ?>
                     </div>
                     <div class="seccionBoton">
                     <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
