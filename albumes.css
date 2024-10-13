@@ -366,4 +366,155 @@ footer{
     border-radius: 5px;
 }
 
-/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/    
+/**/@media (max-width: 500px){
+    header{
+        height: 85vh;
+        width: 1cm;
+    }
+
+    #contenedor{
+        width: 100%;
+    }
+
+    .menu a{
+        display: none;
+    }
+
+    .menu ul{
+        margin-left: -26px;
+    }
+
+    #inicio, #descubre{
+    display: none;
+    }
+
+    .nyl{
+        justify-content: center;
+        margin: 5px 7px 0px 7px;
+    }
+
+    .nyl h3{
+        display: none;
+    }
+
+    .nyl img{
+        width: 40px;
+        height: 40px; 
+    }
+
+    #mi_libreria p{
+        display:none;
+    }
+
+    .seccionUsuario h2{
+        display: none;
+    }
+
+    .seccionUsuario{
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        margin-left: -2px;
+    }
+
+    .seccionUsuario img{
+        width: 42px;
+        height: 42px;
+    }
+
+    main{
+        width: 95%;
+        margin-left: 10px;
+        margin-right: -7px;
+        height: 100%;
+        float: right;
+    }
+
+    .solapa h1{
+        display:none;
+    }
+
+    .solapa{
+        width: 100px;
+        height: 43px;
+    }
+
+    .barra_horizontal{
+        height:45px;
+        margin-bottom: 0px;
+    }
+
+    .barraBusq{
+        background-color: rgb(0, 0, 0);
+        border: black;
+        margin-left: 190px;
+        width: 30px;
+    }
+
+    .barraBusq img{
+        width: 25px;
+        height: 25px;
+        margin: 10px;
+    }
+
+    .barraBusq h3{
+        display: none;
+    }
+
+    #imagenCancion img{
+        width: 50px;
+        height: 50px;
+        margin: 7px;
+    }
+
+    #artista{
+        height: 78vh;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    #imagenCancion{
+        width: 30%;
+    }
+
+    #imagenCancion img{
+        margin-right: 0px;
+    }
+
+    #infoCancion{
+        width: 40%;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
+    #barraProgreso{
+        width: 100%;
+        margin-left: 25%;
+    }
+
+    #barraReproductora-iconos{
+        width: 120%;
+        height: 20%;
+    }
+
+    #barraReproductora-iconos img{
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+    }
+
+    #barraReproduccion{
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+    }
+
+    #contenedor2{
+        width: 100%;
+        height: 50%;
+    }
+
+
+}
+/* ++++++++++++ MAIN (INICIO) +++++++++++ */
