@@ -10,7 +10,7 @@
     }
     else{        
         $queryPopular = 
-        "SELECT imagen, nombre FROM Artista 
+        "SELECT Artista.imagen, Artista.nombre FROM Artista 
         JOIN Album ON idArtista = Artista.id
         JOIN Cancion ON idAlbum = Album.id
         WHERE Cancion.id IN
@@ -23,27 +23,27 @@
             );";
 
         $queryMasEsc = 
-        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
+        "SELECT Artista.imagen, Artista.nombre FROM Artista 
+        JOIN Album ON idArtista = Artista.id
+        JOIN Cancion ON idAlbum = Album.id
+        WHERE Cancion.id IN
+            (SELECT idCancion FROM Usuario_escucha_cancion 
+            WHERE count(idCancion) > 
+                (SELECT avg(cantVecesEscuchadas) FROM 
+                (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+            GROUP BY idUsuario)
         LIMIT 5;" ;
 
         $queryMTSE =
-                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE id IN
-                    (SELECT idCancion FROM Usuario_escucha_cancion 
-                    WHERE count(idCancion) > 
-                                            (SELECT avg(cantVecesEscuchadas) FROM 
-                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-                    GROUP BY idUsuario)
+        "SELECT Artista.imagen, Artista.nombre FROM Artista 
+        JOIN Album ON idArtista = Artista.id
+        JOIN Cancion ON idAlbum = Album.id
+        WHERE Cancion.id IN
+          (SELECT idCancion FROM Usuario_escucha_cancion 
+          WHERE count(idCancion) > 
+             (SELECT avg(cantVecesEscuchadas) FROM 
+             (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+          GROUP BY idUsuario)
         LIMIT 5;" ; 
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
