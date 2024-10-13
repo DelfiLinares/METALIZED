@@ -13,14 +13,7 @@
         "SELECT Artista.imagen, Artista.nombre FROM Artista 
         JOIN Album ON idArtista = Artista.id
         JOIN Cancion ON idAlbum = Album.id
-        WHERE Cancion.id IN
-            (SELECT idCancion FROM Usuario_escucha_Cancion 
-            WHERE count(idCancion) > 
-                    (SELECT avg(cantVecesEscuchadas) FROM 
-                    (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion
-                    GROUP BY idCancion))
-            ORDER BY count(idCancion) DESC LIMIT 10
-            );";
+        GROUP BY Cancion.id ORDER BY COUNT(Cancion.id) DESC";
 
         $queryMasEsc = 
         "SELECT Artista.imagen, Artista.nombre FROM Artista 
