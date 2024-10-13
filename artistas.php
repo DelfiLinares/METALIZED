@@ -1,4 +1,5 @@
 <?php 
+    start_session();
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
@@ -19,13 +20,9 @@
         "SELECT Artista.imagen, Artista.nombre FROM Artista 
         JOIN Album ON idArtista = Artista.id
         JOIN Cancion ON idAlbum = Album.id
-        WHERE Cancion.id IN
-            (SELECT idCancion FROM Usuario_escucha_cancion 
-            WHERE count(idCancion) > 
-                (SELECT avg(cantVecesEscuchadas) FROM 
-                (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-            GROUP BY idUsuario)
-        LIMIT 5;" ;
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
+        WHERE Usuario_escucha_Cancion.idUsuario = ".$_SESSION['idUsuario']." 
+        GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
 
         $queryMTSE =
         "SELECT Artista.imagen, Artista.nombre FROM Artista 
