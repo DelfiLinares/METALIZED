@@ -16,18 +16,28 @@
         GROUP BY Cancion.id 
         ORDER BY COUNT(Cancion.id) DESC;";
 
-    
+        $queryMasEsc = "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album
+        JOIN Cancion ON Cancion.idAlbum = Album.id JOIN Artista ON Artista.id = Album.idArtista
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
+        WHERE Usuario_escucha_Cancion.idUsuario = ".$_SESSION['idUsuario']." 
+        GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
+
+        $queryMTSE ="SELECT Album.titulo, Album.imagen, Artista.nombre as nombre FROM Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
+        JOIN Album ON Album.id = Cancion.idAlbum
+        JOIN Artista ON Artista.id = Album.idArtista WHERE idUsuario = ".$_SESSION['idUsuario']." GROUP BY idCancion ORDER BY count(*) DESC, plays ASC;" ; 
+        
+        $resultadoP = mysqli_query($conexion, $queryPopular);
+        $resultadoME = mysqli_query($conexion, $queryMasEsc);
+        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
+        
         $queryCanAct =
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
         JOIN Album ON idAlbum = Album.id 
         JOIN Artista ON idArtista = Artista.id
         WHERE Cancion.id =
-                            (SELECT idCancion FROM Usuario_escucha_Cancion 
-                            WHERE plays = current_date() AND plays = current_time()
-                            );";
-
-$resultadoP = mysqli_query($conexion, $queryPopular);
-
+            (SELECT idCancion FROM Usuario_escucha_Cancion 
+            WHERE plays = current_date() AND plays = current_time()
+            );";
 
         $cancionActual = mysqli_query($conexion, $queryCanAct);
     }
@@ -115,13 +125,13 @@ $resultadoP = mysqli_query($conexion, $queryPopular);
                     <button class="prevME" onclick="changeSlide(1, -1)">&#10094;</button>
                     </div>
                     <div class="slides">
-                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                        <?php while($fila = mysqli_fetch_assoc($resultadoME)) { ?>
                             <div class="contenedorAlbum">
                                 <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
                                 <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
                                 <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
                             </div>
-                        <?php endfor; ?>
+                        <?php } ?>
                     </div>
                     <div class="seccionBoton">
                     <button class="nextME" onclick="changeSlide(1, 1)">&#10095;</button>
@@ -137,13 +147,13 @@ $resultadoP = mysqli_query($conexion, $queryPopular);
                     <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
                     </div>
                     <div class="slides">
-                        <?php for ($i = 0; $i < min(5, count($albumes)); $i++): ?>
+                        <?php while($fila = mysqli_fetch_assoc($resultadoMTSE)) { ?>
                             <div class="contenedorAlbum">
                                 <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
                                 <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
                                 <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
                             </div>
-                        <?php endfor; ?>
+                        <?php } ?>
                     </div>
                     <div class="seccionBoton">
                     <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
