@@ -28,13 +28,8 @@
         "SELECT Artista.imagen, Artista.nombre FROM Artista 
         JOIN Album ON idArtista = Artista.id
         JOIN Cancion ON idAlbum = Album.id
-        WHERE Cancion.id IN
-          (SELECT idCancion FROM Usuario_escucha_cancion 
-          WHERE count(idCancion) > 
-             (SELECT avg(cantVecesEscuchadas) FROM 
-             (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
-          GROUP BY idUsuario)
-        LIMIT 5;" ; 
+        JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
+        WHERE idUsuario = ".$_SESSION['idUsuario']." GROUP BY idCancion ORDER BY count(*) DESC, plays ASC;"; 
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
