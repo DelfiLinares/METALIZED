@@ -1,5 +1,5 @@
 <?php 
-    start_session();
+    session_start();
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
