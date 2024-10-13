@@ -33,7 +33,7 @@
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
-        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
+        $resultadoMTSE = mysqli_query($conexion, $queryMTSE);
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
