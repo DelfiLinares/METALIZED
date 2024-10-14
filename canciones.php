@@ -88,9 +88,9 @@
 <body>
     <header>
         <section id="contenedor1">
-            <div class="seccionUsuario">
-                <img src="ftPerfil.jpg" >
-                <h2>Username</h2>
+            <div class="nyl">
+                <h2>Metalized</h2>
+                <img src="calavera.png">
             </div>
 
             <div class="menu">
@@ -99,7 +99,7 @@
                     <li><a href="descubre.php">Descubre</a></li>
                     <li>Mi libreria
                         <ul class="milibreria">
-                        <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
                             <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
@@ -114,12 +114,12 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Canciones</h1>
+                    <h1>Artistas</h1>
                 </div>
 
-                <div class="nyl">
-                    <h3>Metalized</h3>
-                    <img src="calavera.png">
+                <div class="seccionUsuario">
+                    <img src="ftPerfil.jpg" >
+                    <h2>Username</h2>
                 </div>
 
                 <div class="barraBusq">
