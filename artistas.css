@@ -327,6 +327,10 @@ footer{
     margin-left: 35%;
 }
 
+#barraProgreso-responsive{
+    display:none;
+}
+
 #barraReproductora-iconos{
     height: 55%;
     margin-top: 0px;
