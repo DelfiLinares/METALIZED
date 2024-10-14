@@ -358,6 +358,10 @@ footer{
     width: 25px;
 }
 
+#barraProgreso-responsive{
+    display:none;
+}
+
 #barraProgeso{
     width: 15%;
     height: 50%;
