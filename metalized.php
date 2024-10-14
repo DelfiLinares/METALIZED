@@ -31,9 +31,9 @@
 <body>
     <header>
         <section id="contenedor1">
-            <div class="seccionUsuario">
-                <img src="ftPerfil.jpg" >
-                <h2>Username</h2>
+            <div class="nyl">
+                <h2>Metalized</h2>
+                <img src="calavera.png">
             </div>
 
             <div class="menu">
@@ -57,12 +57,12 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h2>Inicio</h2>
+                    <h1>Artistas</h1>
                 </div>
 
-                <div class="nyl">
-                    <h3>Metalized</h3>
-                    <img src="calavera.png">
+                <div class="seccionUsuario">
+                    <img src="ftPerfil.jpg" >
+                    <h2>Username</h2>
                 </div>
 
                 <div class="barraBusq">
