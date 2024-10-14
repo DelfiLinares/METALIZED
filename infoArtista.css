@@ -271,6 +271,10 @@ main{
 }
 
 .info-popular{
+    width: 80%;
+    height: 100%;
+    align-content: center;
+    display: inline-block;
     float: right;
     margin: 0px;
     margin-right: 10%;
@@ -278,12 +282,18 @@ main{
 
 .titulo{
     font-size: 18px;
+    margin-top: 2.5%;
     margin-bottom: 0px;
+    float: left;
+    text-align:center;
 }
 
 .duracion{
     font-size: 15px;
+    margin-top: 2.5%;
     margin: 0px;
+    text-align:center;
+    float:right;
 }
 
 #albumes{
@@ -415,7 +425,7 @@ footer{
 
 
 
-@media (max-width: 500px){
+@media (max-width: 800px){
     header{
         height: 85vh;
         width: 1cm;
