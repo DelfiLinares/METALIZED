@@ -25,25 +25,30 @@ header{
     border-radius: 10px;
 }
 
-.seccionUsuario{
+.nyl{
     height: 22%;
-    display: inline-block;
-    margin: 15px;
-}
-
-.seccionUsuario img{
-    width: 100px;
-    height: 100px;
-    border-radius: 60%;
-    float: left;
-}
-
-.seccionUsuario h2{
-    float: right;
-    margin-top: 20%;
-    margin-left: 15px;
-    font-size: 20px;
+    display: inline-block;   
+    justify-content: center;
     align-content: center;
+    margin: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nyl img{
+    width: 120px;
+    height: 120px;
+    justify-content: center;
+    align-content: center;
+}
+
+.nyl h2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 20px;
+    text-align: center;
 }
 
 .menu{
@@ -68,6 +73,13 @@ a{
 
 #uno, #dos, #tres, #cuatro, #cinco{
     justify-self: center;
+    align-items: center;
+}
+
+#uno, #dos, #tres, #cuatro, #cinco{
+    margin: 8px 3px 10px 3px;
+    padding-bottom:9px;
+    height: 22px;
     align-items: center;
 }
 
@@ -145,25 +157,29 @@ main{
     margin: 7px;
 }
 
-.nyl {
+.seccionUsuario {
+    display: inline-block;
     background-color: black;
     float: right;
 }
 
-.nyl h3{
+.seccionUsuario h2{
     float: left;
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
-    COLOR:#8E1717;
+    color: #8E1717;
+    font-size: 16px;
 } 
 
-.nyl img{
+.seccionUsuario img{
     width: 48px;
     height: 48px;
     float: right;
     margin-top: -3px;
+    border-radius: 100%;
 }
+
 
 .barraBusq{
     background-color: rgb(124, 124, 124);
@@ -326,6 +342,10 @@ footer{
     margin-bottom: 15px;
 }
 
+#barraProgreso-responsive{
+    display:none;
+}
+
 #barraReproduccion{
     display: block;
     margin-left: 50%;
@@ -383,3 +403,254 @@ footer{
 
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
+@media (max-width: 500px){
+    header{
+        height: 85vh;
+        width: 1cm;
+    }
+
+    #contenedor{
+        width: 100%;
+    }
+
+    .menu a{
+        display: none;
+    }
+
+    .menu ul{
+        margin-left: -26px;
+    }
+
+    #inicio, #descubre{
+    display: none;
+}
+
+    .seccionUsuario{
+        justify-content: center;
+        margin: 5px 7px 0px 7px;
+    }
+
+    .seccionUsuario h2{
+        display: none;
+    }
+
+    .seccionUsuario img{
+        width: 40px;
+        height: 40px; 
+    }
+
+    #mi_libreria p{
+        display:none;
+    }
+
+    .nyl h2{
+        display: none;
+    }
+
+    .nyl{
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        margin-left: -2px;
+    }
+
+    .nyl img{
+        width: 42px;
+        height: 42px;
+    }
+
+    main{
+        width: 95%;
+        margin-left: 10px;
+        margin-right: -7px;
+        height: 100%;
+        float: right;
+    }
+
+    .solapa h1{
+        display:none;
+    }
+
+    .solapa{
+        width: 100px;
+        height: 43px;
+    }
+
+    .barra_horizontal{
+        height:45px;
+        margin-bottom: 0px;
+    }
+
+    .barraBusq{
+        background-color: rgb(0, 0, 0);
+        border: black;
+        margin-left: 190px;
+        width: 30px;
+    }
+
+    .barraBusq img{
+        width: 25px;
+        height: 25px;
+        margin: 10px;
+    }
+
+    .barraBusq h3{
+        display: none;
+    }
+
+    #imagenCancion img{
+        width: 50px;
+        height: 50px;
+        margin: 7px;
+    }
+
+    #artista{
+        height: 78vh;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    #artista img{
+        width: 30%;
+        height: 70%;
+        margin: 3px;
+    }
+
+    .fotoynombre{
+        padding: 5px;
+        width: 97%;
+        height: 20%;
+        margin-bottom: 5px;
+    }
+
+    .info{
+        width:65%;
+    }
+
+    .info h1{
+        font-size: 20px;
+        margin: 10px 20px 10px 3px;
+    }
+
+    .info p{
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    #imagenCancion{
+        width: 70%;
+        margin-top: 2%;
+    }
+
+    #imagenCancion img{
+        margin-right: 0px;
+        width: 20%;
+        height: 20% ;
+    }
+
+    #infoCancion{
+        width: 75%;
+        height: 25%;
+        margin-top: -25px;
+        margin-left: 0px;
+    }
+
+    #infoCancion h2{
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    #infoCancion h3{
+        font-size: 14px;
+    }
+
+    #barraProgreso{
+        display:none;
+    }
+
+    #barraProgreso-responsive{
+        display: flex;
+        background-color: #5f1010;
+        height: 3px;
+        width: 95%;;
+        margin-left: 1.25%;
+        margin-right: 1.25%;
+    }
+
+    .progress-responsive {
+        height: 3px;
+        border-radius: 5px;
+        background-color: #000000;
+        justify-content: center;
+    }
+
+    .progress-bar-responsive {
+        height: 100%;
+        display: flex;
+        background-color: #0e0e0e;
+        align-items: center;
+        border-radius: 5px;
+    }
+    
+    #barraReproductora-iconos{
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding-top: 15%;
+    }
+
+    #barraReproductora-iconos img{
+        width: 22px;
+        height: 22px;
+        margin: 4px;
+    }
+
+    #repetir, #aleatorio{
+        display: none;
+    }
+
+    #barraReproduccion{
+        width: 30%;
+        height: 90%;
+        margin: 0;
+        margin-top: 2%;
+        float: left;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    #contenedor2{
+        width: 100%;
+        height: 50%;
+    }
+
+    #canciones{
+        width: 96%;
+        padding: 6px;
+    }
+
+    #canciones h1{
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #cancion{
+        width: 98%;
+        height: 30%;
+    }
+
+    #cancion img{
+        width: 20%;
+        height: 20%;
+    }
+
+    .info-popular{
+        margin-right: 20%;
+    }
+
+    .info-popular h3{
+        font-size: 15px;
+    }
+}
