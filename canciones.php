@@ -208,6 +208,11 @@
     </main>
 
     <footer>
+        <div id="barraProgreso-responsive">
+            <div class="progress-responsive">
+                <div class="progress-bar-responsive" style="width:75%;"></div>
+            </div> 
+        </div>
         <div id="imagenCancion">
             <?php 
             while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
