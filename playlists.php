@@ -1,44 +1,3 @@
-<?php 
-    $servername = "127.0.0.1";
-    $database = "Metalized";
-    $username = "alumno";
-    $password = "alumnoipm";
-
-    $conexion = mysqli_connect($servername, $username, $password, $database);
-    if (!$conexion) {
-        die("Conexion fallida: " . mysqli_connect_error());
-    }
-    else{        
-        $query = "SELECT imagen, nombre FROM Playlist;";
-
-        /*
-        $queryFavs = "";
-
-        $queryPopular = 
-        "SELECT Playlist.imagen, Playlist.nombre FROM Playlist
-        JOIN Playlist_tiene_Cancion ON Playlist.id = idPlaylist
-        JOIN Usuario_escucha_Cancion
-        ON Playlist_tiene_Cancion.idCancion = Usuario_escucha_Cancion = idCancion
-        WHERE idCancion IN 
-            (SELECT idCancion FROM Usuario_escucha_cancion 
-            WHERE count(idCancion) > 
-                                    (SELECT avg(cantVecesEscuchadas) FROM 
-                                    (SELECT count(*) AS cantVecesEscuchadas 
-                                    FROM Usuario_escucha_Cancion
-                                    GROUP BY idCancion)
-                                    )
-            )
-        LIMIT 5;" 
-        ;    
-        
-        
-        */
-        $resultado = mysqli_query($conexion, $query);
-    }
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
     
@@ -63,9 +22,9 @@
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.php">Inicio</a></li>
-                    <li><a href="descubre.php">Descubre</a></li>
-                    <li>Mi libreria
+                    <li id="inicio"><a href="metalized.php">Inicio</a></li>
+                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
+                    <li id="mi_libreria" >Mi libreria
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
@@ -104,21 +63,27 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        
-                        <div class="carousel">
-                                <div class="seccionBoton">
-                                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
-                                </div>
-                            <div class="slides">
-                                <?php for ($i = 0; $i < min(5, count($playlists)); $i++): ?>
-                                <div class="contenedorPlaylist">
-                                    <img src="<?php echo $playlists[$i]['Playlist.imagen']; ?>" alt="Cover Playlist">
-                                    <p class="titulo"><?php echo $playlists[$i]['Playlist.nombre']; ?></p>
-                                </div> <?php endfor; ?>
-                            </div>
-                                <div class="seccionBoton">
-                                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
-                                </div>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
 
@@ -128,20 +93,27 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="carousel">
-                                <div class="seccionBoton">
-                                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
-                                </div>
-                            <div class="slides">
-                                <?php for ($i = 0; $i < min(5, count($playlists)); $i++): ?>
-                                <div class="contenedorPlaylist">
-                                    <img src="<?php echo $playlists[$i]['Playlist.imagen']; ?>" alt="Cover Playlist">
-                                    <p class="titulo"><?php echo $playlists[$i]['Playlist.nombre']; ?></p>
-                                </div> <?php endfor; ?>
-                            </div>
-                                <div class="seccionBoton">
-                                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
-                                </div>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
 
@@ -151,20 +123,27 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="carousel">
-                                <div class="seccionBoton">
-                                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
-                                </div>
-                            <div class="slides">
-                                <?php for ($i = 0; $i < min(5, count($playlists)); $i++): ?>
-                                <div class="contenedorPlaylist">
-                                    <img src="<?php echo $playlists[$i]['Playlist.imagen']; ?>" alt="Cover Playlist">
-                                    <p class="titulo"><?php echo $playlists[$i]['Playlist.nombre']; ?></p>
-                                </div> <?php endfor; ?>
-                            </div>
-                                <div class="seccionBoton">
-                                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
-                                </div>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
 
@@ -174,20 +153,27 @@
                             <h3>Mostrar todo</h3>
                         </div>
 
-                        <div class="carousel">
-                                <div class="seccionBoton">
-                                    <button class="prevMTSE" onclick="changeSlide(2, -1)">&#10094;</button>
-                                </div>
-                            <div class="slides">
-                                <?php for ($i = 0; $i < min(5, count($playlists)); $i++): ?>
-                                <div class="contenedorPlaylist">
-                                    <img src="<?php echo $playlists[$i]['Playlist.imagen']; ?>" alt="Cover Playlist">
-                                    <p class="titulo"><?php echo $playlists[$i]['Playlist.nombre']; ?></p>
-                                </div> <?php endfor; ?>
-                            </div>
-                                <div class="seccionBoton">
-                                    <button class="nextMTSE" onclick="changeSlide(2, 1)">&#10095;</button>
-                                </div>
+                        <div class="divPlaylists">
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
+                            <div class="contenedorPlaylists">
+                                <img src="imagen.png">
+                                <p class="Playlists">Megadeth</p>
+                            </div> 
                         </div>
                     </section>
             </div>
@@ -195,14 +181,11 @@
 
     <footer>
         <div id="imagenCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
-                <img src="<?php echo $fila['imagen']?>">
-                <div id="infoCancion">
-                    <h2> <?php echo $fila['titulo']?> </h2>
-                    <h3>  <?php echo $fila['nombre']?>  </h3>
-                </div>
-            <?php } ?>  
+            <img src="imagen.png">
+            <div id="infoCancion">
+                <h2>Peace sells</h2>
+                <h3>Megadeth</h3>
+            </div>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
@@ -219,30 +202,5 @@
             </div>
         </section>
     </footer>
-
-    <script>
-    const totalPlaylists = <?php echo count($playlists); ?>; 
-    const slidesContainers = document.querySelectorAll('.slides');
-    let currentSlides = [0, 0, 0]; 
-
-    function changeSlide(carouselIndex, direction) {
-        currentSlides[carouselIndex] += direction;
-        if (currentSlides[carouselIndex] < 0) {
-            currentSlides[carouselIndex] = 0;
-        } else if (currentSlides[carouselIndex] > totalPlaylists - 5) {
-            currentSlides[carouselIndex] = totalPlaylists - 5;
-        }
-
-        slidesContainers[carouselIndex].innerHTML = '';
-        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalPlaylists; i++) {
-            const album = <?php echo json_encode($playlists); ?>[i];
-            slidesContainers[carouselIndex].innerHTML += `
-                <div class="contenedorPlaylist">
-                <img src="${Playlist.imagen}" alt="Cover de la Playlist">
-                <p class="artista">${Playlist.nombre}</p>
-                </div>`;
-        }
-    }
-    </script>
 </body>
 </html> 

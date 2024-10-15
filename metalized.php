@@ -11,7 +11,7 @@
     }
     else{
         $query = 
-        "SELECT imagen, titulo FROM Album LIMIT 8";
+        "SELECT imagen, titulo FROM Album LIMIT 6";
         $resultado = mysqli_query($conexion, $query);
     }
 ?>
@@ -24,6 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="metalized.css" type="text/css"/>
     <title>Metalized</title>
 </head>
@@ -32,21 +33,19 @@
     <header>
         <section id="contenedor1">
             <div class="nyl">
-                <h2>Metalized</h2>
                 <img src="calavera.png">
+                <h2>Metalized</h2>
             </div>
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.php">Inicio</a></li>
-                    <li><a href="descubre.php">Descubre</a></li>
-                    <li>Mi libreria
+                    <li class="inicio"><a href="metalized.php">Inicio</a></li>
+                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
+                    <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -57,7 +56,7 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Artistas</h1>
+                    <h2>Inicio</h2>
                 </div>
 
                 <div class="seccionUsuario">
@@ -75,10 +74,10 @@
             <div id="inicio">
                 <h3>Escuchado Recientemente</h3>
 
-                <section id="albumes">
-                    <div class="descripcion">
+                <div class="descripcion">
                         <h2>Albumes</h2>
-                    </div>
+                </div>
+                <section id="albumes">
             <?php 
             while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorAlbum">
@@ -88,13 +87,14 @@
             <?php } ?>
                 </section>
 
-                <section id="artistas">
-                    <div class="descripcion">
+                <div class="descripcion">
                         <h2>Artistas</h2>
-                    </div>
+                </div>
+
+                <section id="artistas">
             <?php 
             $query2 = 
-            "SELECT imagen, nombre FROM Artista LIMIT 4";
+            "SELECT imagen, nombre FROM Artista LIMIT 3";
             $resultado2 = mysqli_query($conexion, $query2);
             while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
@@ -104,16 +104,32 @@
             <?php } ?>
                 </section>
 
+                <section id="canciones">
+                <?php 
+            $query3 = 
+            "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+            JOIN Album ON idAlbum = Album.id 
+            JOIN Artista ON idArtista = Artista.id LIMIT 3";
+            $resultado3 = mysqli_query($conexion, $query3);
+            while($fila = mysqli_fetch_assoc($resultado2)){ ?>
+                    <div class="contenedorCancion">
+                        <img src="<?php echo $canciones[$i]['imagen']; ?>" >
+                        <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
+                        <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
+                    </div>
+            <? } ?>
+                </section>
             </div>
     </main>
 
     <footer>
         <div id="imagenCancion">
             <img src="imagen.png">
-            <div id="infoCancion">
+            <di
+    margin-left: 5px;v id="infoCancion">
                 <h2>Peace sells</h2>
                 <h3>Megadeth</h3>
-            </div>
+            </di>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
