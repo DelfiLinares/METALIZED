@@ -11,8 +11,24 @@
     }
     else{
         $query = 
-        "SELECT imagen, titulo FROM Album LIMIT 6";
+        "SELECT Album.imagen, Album.titulo FROM Album 
+        JOIN Cancion ON Cancion.idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        ORDER BY plays DESC LIMIT 6";
+
+        $query2 = "SELECT Artista.imagen, Artista.nombre FROM Album 
+        JOIN Artista ON Artista.id = Album.idArtista
+        JOIN Cancion ON Cancion.idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        GROUP BY Artista.id ORDER BY count(plays) DESC LIMIT 3;";
+
+        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id LIMIT 3";
+
         $resultado = mysqli_query($conexion, $query);
+        $resultado2 = mysqli_query($conexion, $query2);
+        $resultado3 = mysqli_query($conexion, $query3);
     }
 ?>
 
@@ -61,7 +77,7 @@
 
                 <div class="seccionUsuario">
                     <img src="ftPerfil.jpg" >
-                    <h2>Username</h2>
+                    <h2><?php echo $_SESSION['usuario'] ?></h2>
                 </div>
 
                 <div class="barraBusq">
@@ -75,16 +91,15 @@
                 <h3>Escuchado Recientemente</h3>
 
                 <div class="descripcion">
-                        <h2>Albumes</h2>
+                    <h2>Albumes</h2>
                 </div>
                 <section id="albumes">
-            <?php 
-            while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorAlbum">
                             <img src=<?php echo $fila['imagen']?>>
                             <p class="titulo"> <?php echo $fila['titulo']?> </p>
                         </div> 
-            <?php } ?>
+                <?php } ?>
                 </section>
 
                 <div class="descripcion">
@@ -92,32 +107,22 @@
                 </div>
 
                 <section id="artistas">
-            <?php 
-            $query2 = 
-            "SELECT imagen, nombre FROM Artista LIMIT 3";
-            $resultado2 = mysqli_query($conexion, $query2);
-            while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
+                    <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
                             <img src=<?php echo $fila['imagen']?>>
                             <p class="artista"> <?php echo $fila['nombre']?> </p>
                         </div> 
-            <?php } ?>
+                    <?php } ?>
                 </section>
 
                 <section id="canciones">
-                <?php 
-            $query3 = 
-            "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-            JOIN Album ON idAlbum = Album.id 
-            JOIN Artista ON idArtista = Artista.id LIMIT 3";
-            $resultado3 = mysqli_query($conexion, $query3);
-            while($fila = mysqli_fetch_assoc($resultado2)){ ?>
+                <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?>
                     <div class="contenedorCancion">
-                        <img src="<?php echo $canciones[$i]['imagen']; ?>" >
+                        <img src="<?php echo $resultado3[$i]['imagen']; ?>" >
                         <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
                         <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
                     </div>
-            <? } ?>
+                <? } ?>
                 </section>
             </div>
     </main>
@@ -143,11 +148,6 @@
                 <div class="progress">
                     <div class="progress-bar" style="width:75%;"></div>
                 </div> 
-            </div>
-        </section>
-    </footer>
-</body>
-</html> 
             </div>
         </section>
     </footer>
