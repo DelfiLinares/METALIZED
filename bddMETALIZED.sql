@@ -20,13 +20,15 @@ CREATE TABLE Cancion (
 );
 
 CREATE TABLE Usuario_escucha_Cancion(
+	id int auto_increment primary key,
     idUsuario int,
     idCancion int,
     plays datetime,
-    primary key (idUsuario, idCancion),
     foreign key (idUsuario) references Usuario(id),
     foreign key (idCancion) references Cancion(id)
 );
+
+drop table Usuario_escucha_Cancion;
 
 CREATE TABLE Album (
     id int not null,
@@ -66,15 +68,16 @@ CREATE TABLE Playlist_tiene_Cancion(
     foreign key (idCancion) references Cancion(id)
 );*/
 
-INSERT INTO Usuario_escucha_Cancion VALUES
-(1,4, "2024-09-27 15:46:45"), 
+INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays)
+VALUES 
+/*(1,4,"2024-09-27 15:46:45"), 
 (1,5,"2024-09-27 15:45:45"), 
 (1,3,"2024-09-26 18:45:35"), 
 (1,6,"2024-09-27 13:56:45"), 
 (1,2,"2024-09-25 16:25:15"),
 (1,5,"2024-08-27 14:35:45"),
 (1,5,"2024-09-27 15:59:49"),  
-(1,5,"2024-09-25 13:45:45"), 
+(1,5,"2024-09-25 13:45:45"),
 (1,5,"2024-09-27 15:45:45"), 
 (1,2,"2024-05-27 15:45:45"), 
 (1,3,"2024-09-08 12:45:45"), 
@@ -90,7 +93,56 @@ INSERT INTO Usuario_escucha_Cancion VALUES
 (1, 35, "2024-10-11 14:25:33"),
 (1, 39, "2024-10-12 20:45:22"),
 (1, 47, "2024-10-14 17:50:45"),
+(1, 56, "2024-10-16 19:12:08");*/
+(1,4,"2024-09-20 15:46:45"), 
+(1,5,"2023-09-28 15:45:45"), 
+(1,40,"2024-05-26 18:47:35"), 
+(1,6,"2023-06-27 13:56:45"), 
+(1,2,"2023-06-15 16:26:15"),
+(1,5,"2023-08-27 14:35:45"),
+(1,5,"2024-09-27 15:52:49"),  
+(1,6,"2024-09-25 13:45:45"),
+(1,40,"2024-09-27 15:45:45"), 
+(1,40,"2024-05-27 15:45:45"), 
+(1,3,"2024-09-08 12:45:45"), 
+(1,6,"2024-06-27 13:45:15"), 
+(1,40,"2024-09-21 15:05:45"), 
+(1,6,"2024-09-23 17:45:45"),
+(1, 7, "2024-09-15 16:05:12"),
+(1, 9, "2024-09-20 10:22:34"),
+(1, 12, "2024-09-28 11:14:47"),
+(1, 17, "2024-10-01 12:33:22"),
+(1, 22, "2024-10-05 09:18:45"),
+(1, 34, "2024-10-10 18:30:12"),
+(1, 35, "2024-10-11 14:25:33"),
+(1, 39, "2024-10-12 20:45:22"),
+(1, 47, "2024-10-14 17:50:45"),
 (1, 56, "2024-10-16 19:12:08"),
+(1,24,"2024-09-20 15:46:45"), 
+(1,25,"2023-09-28 15:45:45"), 
+(1,40,"2024-05-26 18:47:35"), 
+(1,6,"2023-06-27 13:56:45"), 
+(1,2,"2023-06-15 16:26:15"),
+(1,35,"2023-08-27 14:35:45"),
+(1,35,"2024-09-27 15:52:49"),  
+(1,36,"2024-09-25 13:45:45"),
+(1,40,"2024-09-27 15:45:45"), 
+(1,40,"2024-05-27 15:45:45"), 
+(1,3,"2024-09-08 12:45:45"), 
+(1,6,"2024-06-27 13:45:15"), 
+(1,40,"2024-09-21 15:05:45"), 
+(1,6,"2024-09-23 17:45:45"),
+(1, 7, "2024-09-15 16:05:12"),
+(1, 19, "2024-10-20 10:22:34"),
+(1, 15, "2024-10-20 11:14:47"),
+(1, 17, "2024-10-21 12:33:22"),
+(1, 16, "2024-10-19 09:18:45"),
+(1, 19, "2024-10-11 18:30:12"),
+(1, 35, "2024-10-11 14:25:33"),
+(1, 39, "2024-10-12 20:45:22"),
+(1, 47, "2024-10-14 17:50:45"),
+(1, 56, "2024-10-16 19:12:08");
+
 (2, 8, "2024-09-10 15:30:22"),
 (2, 14, "2024-09-18 11:25:40"),
 (2, 19, "2024-09-25 09:34:21"),
@@ -247,7 +299,7 @@ INSERT INTO Artista VALUES
 (10, "nirvana.jpg", "Nirvana", "Es una banda estadounidense de grunge formada en 1987 en Aberdeen, Washington, liderada por Kurt Cobain, y pionera del sonido grunge.", "Grunge"),
 (11, "pantera.jpeg", "Pantera", "Es una banda estadounidense de groove metal formada en 1981, conocida por su agresivo estilo de metal y sus poderosos riffs.", "Metal"),
 (12, "gnr.jpg", "Guns N' Roses", "Es una banda estadounidense de hard rock formada en Los Ángeles en 1985, famosa por sus éxitos en los 80 y 90 y su sonido rebelde.", "Glam Metal"),
-(13, "thesmiths.jpg", "The Smiths", "Es una banda británica de rock alternativo formada en Mánchester en 1982, liderada por Morrissey y Johnny Marr, conocida por sus letras melancólicas.", "Rock Alternativo");
+(13, "thesmiths.jpg", "The Smiths", "Es una banda británica de rock alternativo formada en Mánchester en 1982, liderada por Morrissey y Johnny Marr, conocida por sus letras melancólicas.", "Rock Alternativo"),
 (14, "hole.jpg", "Hole", "Es una banda estadounidense de rock alternativo y grunge, formada en Los Ángeles en 1989 por Courtney Love.", "Grunge"),
 (15, "blackSabbath.jpg", "Black Sabbath", "Es una banda británica de heavy metal formada en Birmingham en 1968, considerada pionera del género metal.", "Heavy Metal"),
 (16, "pinkFloyd.jpg", "Pink Floyd", "Es una banda británica de rock formada en Londres en 1965, famosa por sus álbumes conceptuales y su estilo psicodélico y progresivo.", "Rock Progresivo"),
@@ -266,7 +318,7 @@ INSERT INTO Artista VALUES
 INSERT INTO Album VALUES 
 (1, "Highway to Hell", "hth.jpg", "1997-07-29", "Hard Rock", 1),
 (2, "Master of Puppets", "mopp.jpg", "1986-03-03", "Heavy Metal", 2),
-(3, "Hotter than Hell", "hth-kiss.jpg", "1974-10-22", "Hard Rock", 3)
+(3, "Hotter than Hell", "hth-kiss.jpg", "1974-10-22", "Hard Rock", 3),
 (4, "Countdown To Extinction", "cdte.jpg", "1992-07-06", "Heavy Metal", 5),
 (5, "Crazy World", "crazyWorld.jpeg", "1990-11-06", "Hard Rock", 4),
 (6, "Animalize", "animalize.jpg", "1984-09-13", "Hard Rock",3),
@@ -279,7 +331,7 @@ INSERT INTO Album VALUES
 (13, "Love Gun", "lovegun.jpg", "1977-06-30", "Glam Metal", 3),
 (14, "Ride The Lightning", "rtl.jpg", "1984-07-27", "Heavy Metal", 2),
 (15, "Vulgar Display...", "vdop-pantera.jpeg", "1992-02-25", "Groove Metal",11),
-(16, "The Queen Is Dead", "tqid.jpeg", "1986-06-16", "Indie Rock",13);
+(16, "The Queen Is Dead", "tqid.jpeg", "1986-06-16", "Indie Rock",13),
 (17, "Live Through This", "ltt.png", "1994-04-12", "Grunge", 14),
 (18, "Paranoid", "paranoid.jpg", "1970-09-18", "Heavy Metal", 15),
 (19, "The Dark Side of the Moon", "darkside.png", "1973-03-01", "Rock Progresivo", 16),
@@ -291,7 +343,7 @@ INSERT INTO Album VALUES
 (25, "The Number of the Beast", "notb.jpg", "1982-03-22", "Heavy Metal", 22),
 (26, "Iowa", "iowa.jpg", "2001-08-28", "Nu Metal", 23),
 (27, "White Pony", "white_pony.webp", "2000-06-20", "Metal Alternativo", 24),
-(28, "British Steel", "britishSteel.webp", "1980-04-14", "Heavy Metal", 25);
+(28, "British Steel", "britishSteel.webp", "1980-04-14", "Heavy Metal", 25),
 (29, "Meat Is Murder", "meat_is_murder.webp", "1985-02-11", "Rock Alternativo", 13),
 (30, "Use Your Illusion I", "uyi1.webp", "1991-09-17", "Hard Rock", 12),
 (31, "Strangeways, Here We Come", "strangeways.jpg", "1987-09-28", "Rock Alternativo", 13),

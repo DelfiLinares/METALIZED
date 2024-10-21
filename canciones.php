@@ -9,52 +9,30 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $queryPopular = 
-        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN (
-            SELECT idCancion FROM Usuario_escucha_Cancion 
-            WHERE COUNT(idCancion) > (
-                SELECT AVG(cantVecesEscuchadas) FROM (
-                    SELECT COUNT(*) AS cantVecesEscuchadas 
-                    FROM Usuario_escucha_Cancion 
-                    GROUP BY idCancion               ) AS s1
-            ORDER BY cantVecesEscuchadas DESC 
-            LIMIT 5                  ) AS s2
-                            ); ";
+        $queryPopular = /* CONSULTA CORRECTA !!! */
+        "SELECT Album.imagen, Cancion.titulo, Artista.nombre FROM Usuario
+        JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+        JOIN Cancion ON idCancion = Cancion.id
+        JOIN Album ON idAlbum = Album.id
+        JOIN Artista ON idArtista = Artista.id 
+        GROUP BY idCancion ORDER BY count(*) DESC LIMIT 15;";
         
-        
+    
         $queryMasEsc = 
-        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN (
-            SELECT idCancion FROM Usuario_escucha_Cancion 
-            GROUP BY idCancion HAVING COUNT(idCancion) > (
-                SELECT AVG(cantVecesEscuchadas) FROM (
-                    SELECT COUNT(*) AS cantVecesEscuchadas 
-                    FROM Usuario_escucha_Cancion 
-                    GROUP BY idCancion AND idUsuario 
-                    = /* id del user q inicio sesion */
-                ) AS s1
-            )
-        )"; 
+        "SELECT Album.imagen, Cancion.titulo, Artista.nombre FROM Usuario
+        JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+        JOIN Cancion ON idCancion = Cancion.id
+        JOIN Album ON idAlbum = Album.id
+        JOIN Artista ON idArtista = Artista.id 
+        GROUP BY idCancion, idUsuario ORDER BY count(*) DESC LIMIT 15;" ; 
         
         $queryMTSE =
-        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id
-        WHERE Cancion.id IN (
-            SELECT idCancion FROM Usuario_escucha_Cancion 
-            WHERE idCancion =   (
-                SELECT idCancion FROM Usuario_escucha_Cancion
-                WHERE plays < current_date() AND plays < current_time()
-                ORDER BY plays ASC
-                                )
-                            )
-            GROUP BY idCancion 
-        );";
+        "SELECT Album.imagen, Cancion.titulo, Artista.nombre, plays FROM Usuario
+        JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+        JOIN Cancion ON idCancion = Cancion.id
+        JOIN Album ON idAlbum = Album.id
+        JOIN Artista ON idArtista = Artista.id 
+        ORDER BY plays ASC LIMIT 15;";
         
         
         $queryCanAct =
