@@ -68,6 +68,48 @@ CREATE TABLE Playlist_tiene_Cancion(
     foreign key (idCancion) references Cancion(id)
 );*/
 
+/*--------------- CONSULTAS ---------------------*/
+SELECT Album.imagen, Cancion.titulo, Artista.nombre, plays FROM Usuario
+JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+ORDER BY plays ASC LIMIT 15;
+
+/* ---- ALBUM POPULAR ---- */
+SELECT Album.imagen, Album.titulo, Artista.nombre, count(*) FROM Usuario
+JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+GROUP BY idCancion ORDER BY count(*) DESC LIMIT 15;
+
+/* ---- ARTISTA POPULAR --- */
+SELECT Artista.nombre, count(*) FROM Usuario
+JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+GROUP BY idCancion ORDER BY count(*) DESC LIMIT 15;
+
+/* ---- ALBUM MTSE ---- */
+SELECT Album.imagen, Album.titulo, Artista.nombre, MAX(plays) 
+AS ultEscucha FROM Usuario_escucha_Cancion
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+WHERE idUsuario = 1
+GROUP BY Album.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;
+
+SELECT Album.titulo, Album.imagen, Artista.nombre AS nombre FROM Usuario_escucha_Cancion
+JOIN Cancion JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion  
+JOIN Album ON Album.id = Cancion.idAlbum
+JOIN Artista ON Artista.id = Album.idArtista WHERE idUsuario = 1 
+GROUP BY idCancion ORDER BY count(*) DESC, plays ASC;
+/*".$_SESSION['idUsuario']." */
+/*--------------------------------------*/
+
+
 INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays)
 VALUES 
 /*(1,4,"2024-09-27 15:46:45"), 
