@@ -56,8 +56,8 @@
     <header>
     <section id="contenedor">
             <div class="nyl">
-                <img src="calavera.png">
                 <h2>Metalized</h2>
+                <img src="calavera.png">
             </div>
 
             <div class="menu">
@@ -84,7 +84,7 @@
 
                 <div class="seccionUsuario">
                     <img src="ftPerfil.jpg" >
-                    <h2>Username</h2>
+                    <h2><?php echo $_SESSION['usuario'] ?></h2>
                 </div>
 
                 <div class="barraBusq">
@@ -117,7 +117,7 @@
             </section>
             
             <section id="masEscuchados">
-                    <h2>Username's mas escuchadas</h2>
+                    <h2><?php echo $_SESSION['usuario'] ?>'s mas escuchados</h2>
                 <div class="carousel">
                     <div class="seccionBoton">
                     <button class="prevME" onclick="changeSlide(1, -1)">&#10094;</button>
@@ -215,7 +215,5 @@
         }
     }
 </script>
-
-    </script>
 </body>
 </html>

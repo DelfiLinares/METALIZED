@@ -2,7 +2,7 @@ body{
     background-color: black;
     color: white ;
     font-family: "Roboto", sans-serif;
-    font-weight: lighter;
+    font-weight:lighter;
     font-style: normal;
     display: flex;
 }
@@ -15,7 +15,7 @@ header{
     width: 8cm;
 }
 
-#contenedor{
+#contenedor1{
     background-color: rgb(70, 70, 70);
     width: 95%;
     height: 100%;
@@ -33,7 +33,7 @@ header{
     margin-left: 25%;
     margin-right: 25%;
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .nyl img{
@@ -51,7 +51,6 @@ header{
 }
 
 .menu{
-    margin-top: 35px;
     height: 60%;
     font-size: 20px;
     font-weight: bold;  
@@ -71,18 +70,19 @@ a{
     color:white;
 }
 
-#uno, #dos, #tres{
+
+#uno, #dos, #tres, #cuatro, #cinco{
     justify-self: center;
     align-items: center;
 }
 
-
-#uno, #dos, #tres{
+#uno, #dos, #tres, #cuatro, #cinco{
     margin: 8px 3px 10px 3px;
     padding-bottom:9px;
     height: 22px;
     align-items: center;
 }
+
 
 #uno{
     list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABcklEQVRIS8WUvUpDMRTHm0EqSPEVCl1cXLR+0XcQRwUHRx/BxaVbX8PPyUEcfIEqrSguTm6+gKA4WAu9/Z3SSBoTkpv2YuDQm5Pk/zsn5zSqVPBQBeuXgoAsy+4JYgm7xE6VUp08QcUAMkvwlfkZdgLsLQTLA7hCbBubM0TbfJ9LdsA+XLBoAAKK61pEZBfbxxqYPt/j+0auELtla1/DcgHMCIFVx6ADfmvG2guA5akBFmyDuYAOxS/ZzhSgxchq1BD/CyCIOkFsYt+YdM67HZWrW8QXzIANTfYdGwLSetI5E2knARCX1pM2cw7zXlMBTxxcKRLwiXjFA+iRwby9FlOv335lcxeBdQ+gA2DLXIutlwnYQ+DCA9gBcK3X8tRr4qlwRCWaR4i3rOgfma/G1OvPWwRkjYNyHQPsDvFnx91/4VvwAH44U9ZrwcfOJUIQD/glENfoApA/6mikAqLrlQSQyGLrlQwYQ4L1mgrg6yLTPwRDHqwZvGmMwQAAAABJRU5ErkJggg==");
@@ -94,6 +94,14 @@ a{
 
 #tres{
     list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB+0lEQVRIS7WVzSsFURjG7yx8RhZs5PMulKRL+QMoKR9ZYMGGhQgLLJSFCCmxsPCRYqNYKHG7KSmliKWwkY+kKxsWLBQlH9fv1bkaY2buHbpTT2fmPc/7POec98w5mivCjxZhfZetQSAQiGEAdaAcFIBsEAB+cAw2gVfTtFergVoaIF5B0qwStZvoJZ3tmGybkUwNEB+CPOhg+T7g9mIyYcz5ZWAifk/SHcgLw7Abkyk974cB4tV0rusIXt5bQSlYCcNAZlKMyX6Q+22AeALBC5CqOhcgNss7fYU0R2EYCOUMeIKF1xt0qKIK6RrkCAnxXt7HgJMtXUOuT4T0Bht8V6pRdkKYMVmyMCfhmie/zWhwQyBdKbgh+DHYkTVVsVXafhAFxnWDMTM9JL/IaPBMIE6xo9XyPPEdr2IpxGRHSU3cNFc203mAm2w0eCSQaJOUStKtMsiklTpZPY9wk4wGpwRybZLW6OtTsxwNsUQnGOQbDZYJNNgYOOlawqDJaNBIYNGJig23HoOvH1O/TaXA5yDjnyaiUYDByw8DVbwy2q1/GMhRUYL4XlDD7LCTvT7yR5MuxKf1uVbH9QCkYf0ShjB8p78H8Ukjz+7CqYI8B9JCiMuF04L4rhkv1JUZS1ItkDPKA7KAXJnyFx+oevkQf7MahJMT8k9libjBJ4ofoBlOdyqIAAAAAElFTkSuQmCC")
+}
+
+#cuatro{
+    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS72VPUvEQBCGb71CbaysFEQU4X6CYGut2F2jhVraKIIn+HGC+NFoY6mCYGF3jVjZCv4DBcFDESsrGxFO47MyWZaY1dtszsDL5GPmfTKTZKMKLd5Ui/0LPwBRFI0D3UElT/gN+YtKqQu7Lg3wREKvp3mcfg9g8C9ApBNI9BofnafWpXXwvwBubIyGtqTtVWI7WkOfqEKj5/pa5g4ofKC+z/FMzMxDAHXM+x2AOh0MhHYwhcGJAzAJ4DQIIMVV4noCUsV8Iz6XeUSWwSH7M3J8hPmsDcwD0IZhDb2jMgD9FpktGCCj6iA2MG8kn0kuAMeD/j4dDMCgE58FgezRxVsuI8K4iNE00m9Sj5g+y/ExoI/MHWA+QfEuGhLja4nDEu+IS0Bq3iOi8AqNiNGjGJ3J3ZYFHC8hJje5CjtXUzF+JW6jfQr162k27lgvevNoGXXFF5oF6LnqD2uFghfbOLkPqJtzm0h/eMVmAJckzpF4+5txCkj/Yg+oG7Wvef21fIBmZFmKfGq+AIhv5BkYWo60AAAAAElFTkSuQmCC")
+}
+
+#cinco{
+    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAy0lEQVRIS2NkoDFgpLH5DKMWwEP4////V4AcbZgAIxCA2PAgAir4T058wAxC108zC2AGw31Cjqux6YH5YOAsoFYc4PQBzS2gNC6GRhwghy/QxcFAX1cBsR4QvwVicXDGgmYwjGRKTBwgZSp3oAE7sAUrVZIp0DGngIab0tKCL0DDubFY8BvoAzZkcZLKIqQgOgo0xAqLBceBalDEybXAGWj4HiwWOAItOIDVB6TmA2A8BAD11AOxBhBfBeJmoOEb0c0ZrdEIhizNgwgAYc1mGaNV2V8AAAAASUVORK5CYII=");
 }
 
 .milibreria{
@@ -124,7 +132,7 @@ main{
 
 .solapa{
     width: 15%;
-    height: 40px;
+    height: 43px;
     float: left;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
@@ -138,7 +146,6 @@ main{
     margin-left: 10px;
     font-size: 21px;
 }
-
 .seccionUsuario {
     display: inline-block;
     background-color: black;
@@ -191,7 +198,13 @@ main{
 /**/
 
 /**/
-#albumes h2{
+.descripcion{
+    width: 100%;
+    height: 20%;
+    display: inline-block;
+}
+
+.descripcion h2{
     font-size: 18px;
     width: 60%;
     text-align: start;
@@ -199,8 +212,18 @@ main{
     margin: 0px;
 }
 
-#albumes {
-    height: 76vh; 
+.descripcion h3{
+    font-size: 15px;
+    width: 35%;
+    padding-right: 10px;
+    text-align: end;
+    float: right;
+    margin: 0px;
+    color:rgb(168, 167, 167)
+}
+
+#artistas {
+    height: 75vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
@@ -215,22 +238,24 @@ main{
 .carousel{
     padding: 5px;
     width: 100%;
-    display: flex;
+    display: inline-block;
     align-items: center;
     position: relative;
     overflow: hidden; 
 }
 
-.contenedorAlbum{
+.contenedorArtista{
     background-color: rgb(70, 70, 70);
     padding: 5px;
-    align-items: center;
+    align-items: center ;
     width: 18%;
     overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
     position: relative; 
 }
 
-.contenedorAlbum::after {
+.contenedorArtista::after {
     width: 37px;
     height: 45px;
     content: "▶"; 
@@ -248,16 +273,16 @@ main{
     transition: opacity 0.3s; 
 }
 
-.contenedorAlbum:hover::after {
+.contenedorArtista:hover::after {
     opacity: 1;
 }
 
-.contenedorAlbum:hover{
+.contenedorArtista:hover{
     cursor:pointer;
     background-color: #5e5e5e;
 }
 
-.contenedorAlbum img{
+.contenedorArtista img{
     width: 150px;
     align-content: center;
     justify-content: center;
@@ -289,15 +314,6 @@ button:hover{
     height: 100%;
     margin: 0px;
     padding: 0px;
-}
-
-.titulo {
-    margin: 6px 0px;
-    margin-bottom: 0px;
-    text-align: center;
-    justify-content: center;
-    font-weight: bolder;
-    color: black;
 }
 
 .artista {
@@ -359,10 +375,15 @@ footer{
     margin: 3px;
     margin-bottom: 15px;
 }
+
 #barraReproduccion{
     width: 40%;
     display: block;
     margin-left: 35%;
+}
+
+#barraProgreso-responsive{
+    display:none;
 }
 
 #barraReproductora-iconos{
@@ -371,13 +392,13 @@ footer{
     margin-left: 20%;
 }
 
+#barraProgreso-responsive{
+    display:none;
+}
+
 #barraReproductora-iconos img{
     margin: 15px;
     width: 25px;
-}
-
-#barraProgreso-responsive{
-    display:none;
 }
 
 #barraProgeso{
@@ -403,7 +424,9 @@ footer{
     border-radius: 5px;
 }
 
-/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/    
+
+/* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
 @media (max-width: 500px){
     header{
         height: 85vh;
