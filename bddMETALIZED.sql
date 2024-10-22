@@ -107,11 +107,19 @@ JOIN Album ON Album.id = Cancion.idAlbum
 JOIN Artista ON Artista.id = Album.idArtista WHERE idUsuario = 1 
 GROUP BY idCancion ORDER BY count(*) DESC, plays ASC;
 /*".$_SESSION['idUsuario']." */
+
+SELECT Artista.imagen, Artista.nombre, MIN(plays) 
+AS ultEscucha FROM Usuario_escucha_Cancion
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+WHERE idUsuario = 1
+GROUP BY Cancion.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;
 /*--------------------------------------*/
 
-
-INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays)
-VALUES 
+INSERT INTO Usuario VALUES (2, "user", "user@gmail.com", "user1234");
+UPDATE Artista SET imagen = "thesmiths.jpg" WHERE nombre = "The Smiths";
+INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays) VALUES 
 /*(1,4,"2024-09-27 15:46:45"), 
 (1,5,"2024-09-27 15:45:45"), 
 (1,3,"2024-09-26 18:45:35"), 
@@ -135,7 +143,7 @@ VALUES
 (1, 35, "2024-10-11 14:25:33"),
 (1, 39, "2024-10-12 20:45:22"),
 (1, 47, "2024-10-14 17:50:45"),
-(1, 56, "2024-10-16 19:12:08");*/
+(1, 56, "2024-10-16 19:12:08"),
 (1,4,"2024-09-20 15:46:45"), 
 (1,5,"2023-09-28 15:45:45"), 
 (1,40,"2024-05-26 18:47:35"), 
@@ -183,7 +191,7 @@ VALUES
 (1, 35, "2024-10-11 14:25:33"),
 (1, 39, "2024-10-12 20:45:22"),
 (1, 47, "2024-10-14 17:50:45"),
-(1, 56, "2024-10-16 19:12:08");
+(1, 56, "2024-10-16 19:12:08");*/
 
 (2, 8, "2024-09-10 15:30:22"),
 (2, 14, "2024-09-18 11:25:40"),
