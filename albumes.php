@@ -5,6 +5,8 @@
     $username = "alumno";
     $password = "alumnoipm";
 
+    /*$_SESSION['usuario'] = $nombreUser;*/
+
     $conexion = mysqli_connect($servername, $username, $password, $database);
     if (!$conexion) {
         die("Conexion fallida: " . mysqli_connect_error());
@@ -13,14 +15,13 @@
         $queryPopular = 
         "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
         JOIN Cancion ON Album.id = Cancion.idAlbum JOIN Artista ON Artista.id = Album.idArtista
-        GROUP BY Cancion.id 
-        ORDER BY COUNT(Cancion.id) DESC;";
+        GROUP BY Cancion.id ORDER BY COUNT(Cancion.id) DESC limit 10;";
 
         $queryMasEsc = "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album
         JOIN Cancion ON Cancion.idAlbum = Album.id JOIN Artista ON Artista.id = Album.idArtista
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
-        WHERE Usuario_escucha_Cancion.idUsuario = ".$_SESSION['idUsuario']." 
-        GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
+        WHERE Usuario_escucha_Cancion.idUsuario =  1
+        GROUP BY Cancion.id ORDER BY count(*) DESC  limit 10;" ;
 
         $queryMTSE = /* CONSULTA CORRECTA !!! */
         "SELECT Album.imagen, Album.titulo, Artista.nombre, MAX(plays) 
@@ -28,8 +29,7 @@
         JOIN Cancion ON idCancion = Cancion.id
         JOIN Album ON idAlbum = Album.id
         JOIN Artista ON idArtista = Artista.id 
-        WHERE idUsuario = ".$_SESSION['idUsuario']."
-        GROUP BY Album.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;"; 
+        WHERE idUsuario = 1 GROUP BY Album.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;"; 
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
@@ -61,8 +61,8 @@
     <header>
     <section id="contenedor1">
                 <div class="nyl">
-                    <h3>Metalized</h3>
                     <img src="calavera.png">
+                    <h3>Metalized</h3>
                 </div>
 
             <div class="menu">
@@ -101,25 +101,28 @@
 
         <div id="albumes">
             <section id="populares">
-                    <h2>Popular</h2>
+                <h2>Popular</h2>
                 <div class="carousel">
                     <div class="seccionBoton">
                         <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
                     </div>
+
                     <div class="slides">
-                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
-                            <div class="contenedorAlbum">
-                                <img src="<?php echo $fila['imagen']; ?>" alt="Album">
-                                <p class="titulo"><?php echo $fila['titulo']; ?></p>
-                                <p class="artista"><?php echo $fila['nombre']; ?></p>
-                            </div>
-                        <?php } ?>
+                    <?php while($fila = mysqli_fetch_assoc($resultadoP)) { ?>
+                        <div class="contenedorAlbum">
+                            <img src="<?php echo $fila['imagen']; ?>" alt="Album">
+                            <p class="titulo"><?php echo $fila['titulo']; ?></p>
+                            <p class="artista"><?php echo $fila['nombre']; ?></p>
+                        </div>
+                    <?php } ?>
                     </div>
+
                     <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
+                        <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
                     </div>
                 </div>
             </section>
+            
             
             <section id="masEscuchados">
                     <h2>Username's mas escuchadas</h2>
@@ -130,9 +133,9 @@
                     <div class="slides">
                         <?php while($fila = mysqli_fetch_assoc($resultadoME)) { ?>
                             <div class="contenedorAlbum">
-                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
-                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
-                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
+                                <img src="<?php echo  $fila['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $fila['titulo']; ?></p>
+                                <p class="artista"><?php echo $fila['nombre']; ?></p>
                             </div>
                         <?php } ?>
                     </div>
@@ -152,9 +155,9 @@
                     <div class="slides">
                         <?php while($fila = mysqli_fetch_assoc($resultadoMTSE)) { ?>
                             <div class="contenedorAlbum">
-                                <img src="<?php echo $albumes[$i]['imagen']; ?>" alt="Album">
-                                <p class="titulo"><?php echo $albumes[$i]['titulo']; ?></p>
-                                <p class="artista"><?php echo $albumes[$i]['nombre']; ?></p>
+                                <img src="<?php echo $fila['imagen']; ?>" alt="Album">
+                                <p class="titulo"><?php echo $fila['titulo']; ?></p>
+                                <p class="artista"><?php echo $fila['nombre']; ?></p>
                             </div>
                         <?php } ?>
                     </div>
@@ -200,29 +203,27 @@
     let currentSlides = [0, 0, 0]; 
 
     function changeSlide(carouselIndex, direction) {
-        currentSlides[carouselIndex] += direction;
+    currentSlides[carouselIndex] += direction;
 
-        // Limitar el índice de la diapositiva actual
-        if (currentSlides[carouselIndex] < 0) {
-            currentSlides[carouselIndex] = 0;
-        } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
-            currentSlides[carouselIndex] = totalAlbums - 5;
-        }
-
-        // Actualizar solo el carrusel correspondiente
-        slidesContainers[carouselIndex].innerHTML = '';
-        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalAlbums; i++) {
-            const album = <?php echo json_encode($albumes); ?>[i];
-            slidesContainers[carouselIndex].innerHTML += `
-                <div class="contenedorAlbum">
-                <img src="${album.imagen}" alt="Album">
-                <p class="titulo">${album.titulo}</p>
-                <p class="artista">${album.nombre}</p>
-                </div>`;
-        }
+    if (currentSlides[carouselIndex] < 0) {
+        currentSlides[carouselIndex] = 0;
+    } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
+        currentSlides[carouselIndex] = totalAlbums - 5;
     }
-</script>
+    const offset = currentSlides[carouselIndex] * (100 / totalAlbums); // Ajustar el desplazamiento
+    slidesContainers[carouselIndex].style.transform = `translateX(-${offset}%)`;
 
-    </script>
+    slidesContainers[carouselIndex].innerHTML = '';
+    for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalAlbums; i++) {
+        const album = <?php echo json_encode($albumes); ?>[i];
+        slidesContainers[carouselIndex].innerHTML += `
+            <div class="contenedorAlbum">
+            <img src="${album.imagen}" alt="Album">
+            <p class="titulo">${album.titulo}</p>
+            <p class="artista">${album.nombre}</p>
+            </div>`;
+    }
+}
+</script>
 </body>
 </html>

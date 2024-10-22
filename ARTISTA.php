@@ -50,7 +50,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
     </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="artistas.css" type="text/css"/>
+    <link rel="stylesheet" href="ARTISTA.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -96,69 +96,24 @@
                 </div>
             </div>
         
-        <div id="artistas">
+            <div id="artistas">
             <section id="populares">
                     <h2>Popular</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <div class=".slide-container">
+                <div class="carousel-container">
+                    <button class="prev-btn" onclick="moveCarousel(-1)">&#10094;</button>
+                        <div class="carousel">
+                            <div class="carousel-inner">
                             <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
                                 <div class="contenedorArtista">
                                     <img src="<?php echo $fila['imagen']; ?>">
                                     <p class="artista"><?php echo $fila['nombre']; ?></p>
                                 </div>
                             <?php } ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
-                    </div>
+                    <button class="next-btn" onclick="moveCarousel(1)">&#10095;</button>
                 </div>
             </section>
-
-            <section id="masEscuchados">
-                    <h2>Mas Escuchados</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
-                            <div class="contenedorArtista">
-                                <img src="<?php echo $fila['imagen']; ?>">
-                                <p class="artista"><?php echo $fila['nombre']; ?></p>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="masTiempoSinEscuchar">
-                    <h2>Volver a Escuchar</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
-                            <div class="contenedorAlbum">
-                                <img src="<?php echo $fila['imagen']; ?>">
-                                <p class="artista"><?php echo $fila['nombre']; ?></p>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
-                    </div>
-                </div>
-            </section>
-            </div>
     </main>
 
     <footer>
@@ -192,67 +147,29 @@
             </div>
         </section>
     </footer>
-    
+
     <script>
-    const totalArtistas = <?php echo count($artistas); ?>; 
-    const slidesContainers = document.querySelectorAll('.slides');
-    let currentSlides = [0, 0, 0]; 
+        let currentIndex = 0;
+        const imagesToShow = 5;
+        const carouselInner = document.querySelector('.carousel-inner');
+        const images = document.querySelectorAll('.carousel-inner img');
+        const totalImages = images.length;
 
-    /*function changeSlide(carouselIndex, direction) {
-        currentSlides[carouselIndex] += direction;
+        function moveCarousel(direction) {
+            const imageWidth = images[0].offsetWidth + 20;
+            const maxIndex = totalImages - imagesToShow;
 
-        if (currentSlides[carouselIndex] < 0) {
-            currentSlides[carouselIndex] = 0;
-        } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
-            currentSlides[carouselIndex] = totalAlbums - 5;
+            currentIndex += direction;
+            
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            } else if (currentIndex > maxIndex) {
+                currentIndex = maxIndex;
+            }
+            
+            const translateX = -currentIndex * imageWidth;
+            carouselInner.style.transform = `translateX(${translateX}px)`;
         }
-
-        slidesContainers[carouselIndex].innerHTML = '';
-        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalArtistas; i++) {
-            const album = <?php echo json_encode($artistas); ?>[i];
-            slidesContainers[carouselIndex].innerHTML += `
-                <div class="contenedorArtista">
-                <img src="${Artista.imagen}">
-                <p class="artista">${Artista.nombre}</p>
-                </div>`;
-        }
-    }*/
-
-    let currentIndex = 0;
-    const slideContainer = document.querySelector('.slide-container');
-    const totalSlides = document.querySelectorAll('.contenedorArtista').length;
-
-    function changeSlide(direction) {
-    currentIndex += direction;
-
-    // Asegúrate de que currentIndex esté dentro del rango
-    if (currentIndex < 0) {
-        currentIndex = 0;
-    } else if (currentIndex > totalSlides - 5) { // Solo para mostrar 5 elementos
-        currentIndex = totalSlides - 5;
-    }
-
-    // Cambia la posición del contenedor
-    const offset = -currentIndex * (100 / 5); // Ajusta según el ancho
-    slideContainer.style.transform = `translateX(${offset}%)`;
-    }
-
-        /*let currentSlide = 0;
-        const slides = document.querySelectorAll('.contenedorArtista');
-        currentSlide += direction;
-
-        // Ciclo a través de los slides
-        if (currentSlide < 0) {
-            currentSlide = slides.length - 1; // Si es menor que 0, vuelve al último slide
-        } else if (currentSlide >= slides.length) {
-            currentSlide = 0; // Si es mayor o igual al número de slides, vuelve al primero
-        }
-
-        // Desplazar las slides
-        const offset = -currentSlide * 100; // Ajuste el desplazamiento
-        document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
-    }*/
-
     </script>
 </body>
 </html> 

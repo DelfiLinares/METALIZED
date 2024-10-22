@@ -205,20 +205,20 @@ main{
     margin: 5px 0px 0px 0px;
 }
 
-#albumes{
-    display: inline-block;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-content: stretch ;
-}
-
 .descripcion h2{
     display: flex;
     font-size: 20px;
     margin-left: 10px;
 }
 
-.contenedorAlbum {
+#albumes, #canciones{
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: stretch ;
+}
+
+.contenedorAlbum, .contenedorCancion {
     display: inline-block;
     color: black;
     background-color: rgb(124, 124, 124);
@@ -228,7 +228,7 @@ main{
     position: relative; 
 }
 
-.contenedorAlbum::after {
+.contenedorAlbum::after, .contenedorCancion::after {
     width: 37px;
     height: 45px;
     content: "▶"; 
@@ -237,7 +237,7 @@ main{
     padding-left: 23px;
     position: absolute; 
     top: 50%; 
-    right: 69.5%;
+    right: 69%;
     transform: translate(-50%, -50%); 
     color: white;
     background-color: #5e5e5ec7;
@@ -245,18 +245,17 @@ main{
     transition: opacity 0.3s; 
 }
 
-.contenedorAlbum:hover::after {
+.contenedorAlbum:hover::after, .contenedorCancion:hover::after {
     opacity: 1; 
 }
 
-.contenedorAlbum:hover {
+.contenedorAlbum:hover, .contenedorCancion:hover{
     color: white;
     background-color: rgb(44, 44, 44);
     cursor: pointer;
 }
 
-
-.contenedorAlbum img{
+.contenedorAlbum img, .contenedorCancion img{
     width: 60px;
     height: 60px;
     float: left;
@@ -320,21 +319,6 @@ main{
     font-weight: bolder;
 }
 
-.contenedorCancion{
-    background-color: #5e5e5e;
-    display: inline-block;
-    width: 18%;
-    margin: 0px;
-    align-items: center;
-}
-
-.contenedorCancion img{
-    width: 150px;
-    max-width: 100%;
-    max-width: 100%;
-    height: auto;
-}
-
 .titulo {
     font-size: 15px;
     align-items:center;
@@ -343,15 +327,6 @@ main{
     margin: 20px 0px 20px 5px;
 }
 
-.artista {
-    font-size: 20px;
-    margin: 0px;
-    margin-top: 10px;
-    text-align: center;
-    font-weight: bold;
-    justify-content: center;
-    color: rgb(0, 0, 0);
-}
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
@@ -412,6 +387,7 @@ footer{
 }
 
 #barraReproductora-iconos{
+    cursor: pointer;
     height: 55%;
     margin-top: 0px;
 }
