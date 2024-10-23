@@ -1,4 +1,6 @@
-<?php 
+
+    <?php 
+    session_start();
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
@@ -9,12 +11,29 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{
-        $query = 
-        "SELECT imagen, titulo FROM Album ORDER BY fecha ASC LIMIT 8;";
+        $query = /* CONSULTAS CORRECTAS */
+        "SELECT Album.imagen, Album.titulo FROM Album 
+        JOIN Cancion ON Cancion.idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        ORDER BY plays DESC LIMIT 8; ";
+
+        $query2 = "SELECT Artista.imagen, Artista.nombre FROM Album 
+        JOIN Artista ON Artista.id = Album.idArtista
+        JOIN Cancion ON Cancion.idAlbum = Album.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        JOIN Usuario ON idUsuario = Usuario.id
+        GROUP BY Artista.id, idUsuario HAVING nombreUser = '.$_SESSION['usuario'].' ?> ORDER BY count(plays) DESC LIMIT 3;";
+
+        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id 
+        LIMIT 8;";
+
         $resultado = mysqli_query($conexion, $query);
+        $resultado2 = mysqli_query($conexion, $query2);
+        $resultado3 = mysqli_query($conexion, $query3);
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,33 +41,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-        </style>
+    <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="descubre.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="metalized.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
 <body>
     <header>
         <section id="contenedor1">
-            <div class="seccionUsuario">
-                <img src="ftPerfil.jpg" >
-                <h2>Username</h2>
+            <div class="nyl">
+                <img src="calavera.png">
+                <h2>Metalized</h2>
             </div>
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.php">Inicio</a></li>
-                    <li><a href="descubre.php">Descubre</a></li>
-                    <li>Mi libreria
+                    <li class="inicio"><a href="metalized.php">Inicio</a></li>
+                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
+                    <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
-                        <li id="uno"><a href="canciones.php">Canciones</a></li>
+                            <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
-                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
-                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -59,14 +75,14 @@
     <main>
             <div class="barra_horizontal">
                 <div class="solapa">
-                    <h1>Descubre</h1>
+                    <h2>Descubre</h2>
                 </div>
 
-                <div class="nyl">
-                    <h3>Metalized</h3>
-                    <img src="calavera.png">
+                <div class="seccionUsuario">
+                    <img src="ftPerfil.jpg" >
+                    <h2><?php echo $_SESSION['usuario'] ?></h2>
                 </div>
-                
+
                 <div class="barraBusq">
                     <h3>Buscar</h3>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXBJREFUSEu1lH1VA0EMxGcUgAUUAAoAB1QBVAGgAKqAooCigFZBWwdFAeCgVRDe8LK8Pbp7TT8u/93b2/1lkkmIjoMdv48iwMyOAdwBuAZw5kksAIwBvJBcRhNbA5jZLYBnAIKUQo8/kBxFIA2AP/7qFycAhiRn+jazSwBPAC78vEdSilrjD+Bl+fTM+7UMzUyQRwBScrKpXDkgXZyQVO2rYWZSJSUDkrpXjRygJp4CuEplqd3yck0BLEieRwGmH0mGrGtmof9zBaELKVsHrEjW3Pb7664lUo/eAcxJyl2hHqQmj0n2gk3WPAyjAEn9AnAkv5MclC5mNv3WlIdt6sOUpOtTVhRong2a/J9KstGijR5kzdOqkGwpKcXKzwWTtTXtb7UytS27e192mg3Fhy87Pbg0szQ3OhuR7JcgIc9XeiGlaW9VITsDvC/aqDdZAmtK9gJEIHsDCpDGJj4IIIPM/q/5gwG2smnb6G971rmCH/JPnxkOXXf0AAAAAElFTkSuQmCC" 
@@ -74,56 +90,57 @@
                 </div>
             </div>
         
-            <div id="descubre">
+            <div id="inicio">
+                <h3>Escuchado Recientemente</h3>
 
-                <section id="albumes">
-                    <div class="descripcion">
-                        <h2>Ultimos lanzamientos - albumes </h2>
-                        <h3>Mostrar todo</h3>
+                <div class="descripcion">
+                    <h2>Canciones</h2>
+                </div>
+
+                <section id="canciones">
+                <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
+                    <div class="contenedorCancion">
+                        <img src="<?php echo $fila['imagen']; ?>" >
+                        <p class="titulo"><?php echo $fila['titulo']; ?></p>
                     </div>
-
-            <?php 
-            while($fila = mysqli_fetch_assoc($resultado)){ ?> 
-                        <div class="contenedorAlbum">
-                            <img src="<?php echo $fila['imagen']?>">
-                            <p> <?php echo $fila['titulo']?> </p>
-                        </div> 
-            <?php } ?>  
+                <? } ?>
                 </section>
 
-                <section id="populares">
-                    <div class="descripcion">
-                        <h2>Playlists populares</h2>
-                        <h3>Mostrar todo</h3>
-                    </div>
+                <div class="descripcion">
+                    <h2>Artistas</h2>
+                </div>
 
-            <?php 
-            $consulta =
-            "SELECT Playlist.imagen, Playlist.nombre FROM Playlist
-            JOIN Playlist_tiene_Cancion ON Playlist.id = idPlaylist
-            LIMIT 5;";
-            $resultadoo = mysqli_query($conexion, $consulta);
-            while($fila = mysqli_fetch_assoc($resultadoo)){ ?> 
-                <div class="contenedorPlaylists">
-                    <img src="<?php echo $fila['imagen']?>">
-                    <p class="Playlists"> <?php echo $fila['nombre']?> </p>
-                </div> 
-            <?php } ?>  
-                    </div>
+                <section id="artistas">
+                    <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
+                        <div class="contenedorArtista">
+                            <img src=<?php echo $fila['imagen']?>>
+                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                        </div> 
+                    <?php } ?>
+                </section>
+
+                <div class="descripcion">
+                    <h2>Albumes</h2>
+                </div>
+                <section id="albumes">
+                <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
+                        <div class="contenedorAlbum">
+                            <img src=<?php echo $fila['imagen']?>>
+                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                        </div> 
+                <?php } ?>
                 </section>
             </div>
     </main>
 
     <footer>
         <div id="imagenCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
-                <img src="<?php echo $fila['imagen']?>">
-                <div id="infoCancion">
-                    <h2> <?php echo $fila['titulo']?> </h2>
-                    <h3>  <?php echo $fila['nombre']?>  </h3>
-                </div>
-                <?php } ?>  
+            <img src="imagen.png">
+            <di
+    margin-left: 5px;v id="infoCancion">
+                <h2>Peace sells</h2>
+                <h3>Megadeth</h3>
+            </di>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
