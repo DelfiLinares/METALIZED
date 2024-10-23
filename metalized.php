@@ -1,5 +1,11 @@
 <?php 
     session_start();
+
+    if (!isset($_SESSION['usuario'])) {
+        echo "Usuario no está definido en la sesión.";
+        exit();
+    }
+
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
@@ -14,18 +20,24 @@
         "SELECT Album.imagen, Album.titulo FROM Album 
         JOIN Cancion ON Cancion.idAlbum = Album.id
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        JOIN Usuario ON idUsuario = Usuario.id
+        WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         ORDER BY plays DESC LIMIT 6; ";
 
-        $query2 = "SELECT Artista.imagen, Artista.nombre FROM Album 
+        $query2 = "SELECT Artista.id, Artista.imagen, Artista.nombre FROM Album 
         JOIN Artista ON Artista.id = Album.idArtista
         JOIN Cancion ON Cancion.idAlbum = Album.id
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
         JOIN Usuario ON idUsuario = Usuario.id
-        GROUP BY Artista.id, idUsuario HAVING nombreUser = '.$_SESSION['usuario'].' ?> ORDER BY count(plays) DESC LIMIT 3;";
+        WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
+        ORDER BY plays DESC LIMIT 3;";
 
-        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id 
+        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Artista
+        JOIN Album ON idArtista = Artista.id 
+        JOIN Cancion ON idAlbum = Album.id 
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+        JOIN Usuario ON idUsuario = Usuario.id
+        WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         LIMIT 6;";
 
         $resultado = mysqli_query($conexion, $query);

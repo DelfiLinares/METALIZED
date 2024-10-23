@@ -115,6 +115,33 @@ JOIN Album ON idAlbum = Album.id
 JOIN Artista ON idArtista = Artista.id 
 WHERE idUsuario = 1
 GROUP BY Cancion.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;
+
+
+/* ---- ARTISTAS PARA METALIZED.PHP ---- */
+SELECT Artista.id, Artista.imagen, Artista.nombre FROM Album 
+JOIN Artista ON Artista.id = Album.idArtista
+JOIN Cancion ON Cancion.idAlbum = Album.id
+JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
+JOIN Usuario ON idUsuario = Usuario.id
+GROUP BY Artista.id, Usuario.nombreUser HAVING Usuario.nombreUser = "delfi"
+ORDER BY count(plays) DESC LIMIT 5;
+
+/* --- artistas mas escuchada --- */
+SELECT Artista.imagen, Artista.nombre FROM Artista 
+    JOIN Album ON idArtista = Artista.id
+    JOIN Cancion ON idAlbum = Album.id
+    JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
+    WHERE Usuario_escucha_Cancion.idUsuario = 1
+    GROUP BY Artista.id 
+    ORDER BY COUNT(*) DESC;
+/* --- artistas populares --- */
+SELECT Artista.nombre, Artista.imagen, COUNT(*) AS total FROM Usuario_escucha_Cancion
+JOIN Cancion ON idCancion = Cancion.id
+JOIN Album ON idAlbum = Album.id
+JOIN Artista ON idArtista = Artista.id 
+GROUP BY Artista.id 
+ORDER BY total DESC LIMIT 15;
+
 /*--------------------------------------*/
 
 INSERT INTO Usuario VALUES (2, "user", "user@gmail.com", "user1234");
@@ -191,8 +218,7 @@ INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays) VALUES
 (1, 35, "2024-10-11 14:25:33"),
 (1, 39, "2024-10-12 20:45:22"),
 (1, 47, "2024-10-14 17:50:45"),
-(1, 56, "2024-10-16 19:12:08");*/
-
+(1, 56, "2024-10-16 19:12:08");
 (2, 8, "2024-09-10 15:30:22"),
 (2, 14, "2024-09-18 11:25:40"),
 (2, 19, "2024-09-25 09:34:21"),
@@ -266,7 +292,39 @@ INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays) VALUES
 (5, 5, "2024-10-07 10:10:10"),
 (5, 18, "2024-10-09 12:12:12"),
 (5, 22, "2024-10-10 17:45:45"),
+(5, 26, "2024-10-11 16:30:30"),
+*/
+(4, 9, "2024-09-05 11:11:11"),
+(5, 9, "2024-09-10 09:09:09"),
+(6, 19, "2024-09-15 18:18:18"),
+(3, 1, "2024-09-20 16:30:30"),
+(6, 12, "2024-09-25 13:45:45"),
+(3, 3, "2024-09-30 20:22:22"),
+(3, 4, "2024-10-01 15:10:10"),
+(3, 5, "2024-10-05 14:20:20"),
+(3, 12, "2024-10-08 11:15:15"),
+(3, 18, "2024-10-10 17:45:45"),
+(4, 6, "2024-09-02 12:30:12"),
+(4, 6, "2024-09-05 15:00:00"),
+(4, 6, "2024-09-15 10:10:10"),
+(4, 8, "2024-09-20 14:14:14"),
+(4, 10, "2024-09-25 19:19:19"),
+(6, 11, "2024-10-01 11:11:11"),
+(6, 13, "2024-10-02 16:16:16"),
+(6, 19, "2024-10-03 12:30:12"),
+(6, 19, "2024-10-05 20:20:20"),
+(6, 22, "2024-10-07 17:45:45"),
+(6, 31, "2024-09-12 09:30:30"),
+(6, 33, "2024-09-15 14:14:14"),
+(6, 33, "2024-10-23 11:11:11"),
+(6, 2, "2024-07-24 16:45:45"),
+(6, 3, "2024-10-01 19:50:50"),
+(6, 4, "2024-10-23 14:05:05"),
+(6, 5, "2024-10-23 10:10:10"),
+(6, 18, "2024-10-22 12:12:12"),
+(5, 22, "2024-10-10 17:45:45"),
 (5, 26, "2024-10-11 16:30:30");
+
 
 
 INSERT INTO Cancion VALUES 

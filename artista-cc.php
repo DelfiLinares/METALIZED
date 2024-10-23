@@ -9,7 +9,7 @@ $conexion = mysqli_connect($servername, $username, $password, $database);
 if (!$conexion) {
     die("Conexion fallida: " . mysqli_connect_error());
 } else {        
-    $queryPopular = 
+    $queryPopular = /* consulta correcta */
     "SELECT Artista.nombre, Artista.imagen, COUNT(*) AS total FROM Usuario_escucha_Cancion
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
