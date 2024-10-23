@@ -1,5 +1,4 @@
 <?php 
-    session_start();
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
@@ -10,33 +9,43 @@
         die("Conexion fallida: " . mysqli_connect_error());
     }
     else{        
-        $queryPopular = /* consulta correcta */
-        "SELECT Artista.nombre, Artista.imagen,count(*) FROM Usuario_escucha_Cancion
-        JOIN Cancion ON idCancion = Cancion.id
-        JOIN Album ON idAlbum = Album.id
-        JOIN Artista ON idArtista = Artista.id 
-        GROUP BY idCancion, Artista.id ORDER BY count(*) DESC LIMIT 15;";
+        $queryPopular = 
+        "SELECT imagen, nombre FROM Artista 
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion))
+        LIMIT 5;";
 
         $queryMasEsc = 
-        "SELECT Artista.imagen, Artista.nombre FROM Artista 
-        JOIN Album ON idArtista = Artista.id
-        JOIN Cancion ON idAlbum = Album.id
-        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
-        WHERE Usuario_escucha_Cancion.idUsuario = 1
-        GROUP BY Cancion.id ORDER BY count(*) DESC;" ;
+        "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+                    GROUP BY idUsuario)
+        LIMIT 5;" ;
 
         $queryMTSE =
-        "SELECT Artista.imagen, Artista.nombre, MIN(plays) 
-        AS ultEscucha FROM Usuario_escucha_Cancion
-        JOIN Cancion ON idCancion = Cancion.id
-        JOIN Album ON idAlbum = Album.id
-        JOIN Artista ON idArtista = Artista.id 
-        WHERE idUsuario = 1
-        GROUP BY Cancion.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;"; 
+                "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
+        JOIN Album ON idAlbum = Album.id 
+        JOIN Artista ON idArtista = Artista.id
+        WHERE id IN
+                    (SELECT idCancion FROM Usuario_escucha_cancion 
+                    WHERE count(idCancion) > 
+                                            (SELECT avg(cantVecesEscuchadas) FROM 
+                                            (SELECT count(*) AS cantVecesEscuchadas FROM Usuario_escucha_Cancion)
+                    GROUP BY idUsuario)
+        LIMIT 5;" ; 
         
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
-        $resultadoMTSE = mysqli_query($conexion, $queryMTSE);
+        $resultadoVAE = mysqli_query($conexion, $queryMTSE);
+        $resultado = mysqli_query($conexion, $query);
     }
 ?>
 
@@ -57,20 +66,22 @@
 <body>
     <header>
         <section id="contenedor1">
-            <div class="nyl">
-                <h2>Metalized</h2>
-                <img src="calavera.png">
+            <div class="seccionUsuario">
+                <img src="ftPerfil.jpg" >
+                <h2>Username</h2>
             </div>
 
             <div class="menu">
                 <ul>
-                    <li id="inicio"><a href="metalized.php">Inicio</a></li>
-                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
-                    <li id="mi_libreria"><p>Mi libreria</p>
+                    <li><a href="metalized.php">Inicio</a></li>
+                    <li><a href="descubre.php">Descubre</a></li>
+                    <li>Mi libreria
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="cuatro"><a href="favoritos.php">Favoritos</a></li>
+                            <li id="cinco"><a href="playlists.php">Playlists</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -84,9 +95,9 @@
                     <h1>Artistas</h1>
                 </div>
 
-                <div class="seccionUsuario">
-                    <img src="ftPerfil.jpg" >
-                    <h2>Username</h2>
+                <div class="nyl">
+                    <h3>Metalized</h3>
+                    <img src="calavera.png">
                 </div>
 
                 <div class="barraBusq">
@@ -96,86 +107,66 @@
                 </div>
             </div>
         
-        <div id="artistas">
-            <section id="populares">
-                    <h2>Popular</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <div class=".slide-container">
-                            <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
-                                <div class="contenedorArtista">
-                                    <img src="<?php echo $fila['imagen']; ?>">
-                                    <p class="artista"><?php echo $fila['nombre']; ?></p>
-                                </div>
-                            <?php } ?>
+            <div id="artistas">
+                    <section id="populares">
+                        <div class="descripcion">
+                            <h2>Popular</h2>
+                            <h3>Mostrar todo</h3>
                         </div>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
-                    </div>
-                </div>
-            </section>
 
-            <section id="masEscuchados">
-                    <h2>Mas Escuchados</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
+                        <div class="divArtista">
+                <?php while($fila = mysqli_fetch_assoc($resultadoP)){ ?> 
                             <div class="contenedorArtista">
-                                <img src="<?php echo $fila['imagen']; ?>">
-                                <p class="artista"><?php echo $fila['nombre']; ?></p>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
-                    </div>
-                </div>
-            </section>
+                                <img src="<?php echo $fila['imagen']?>">
+                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            </div> 
+                <?php } ?>
+                        </div>
+                    </section>
 
-            <section id="masTiempoSinEscuchar">
-                    <h2>Volver a Escuchar</h2>
-                <div class="carousel">
-                    <div class="seccionBoton">
-                        <button class="prev" onclick="changeSlide(0, -1)">&#10094;</button>
-                    </div>
-                    <div class="slides">
-                        <?php while($fila = mysqli_fetch_assoc($resultadoP)) {?>
-                            <div class="contenedorAlbum">
-                                <img src="<?php echo $fila['imagen']; ?>">
-                                <p class="artista"><?php echo $fila['nombre']; ?></p>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <div class="seccionBoton">
-                    <button class="next" onclick="changeSlide(0, 1)">&#10095;</button>
-                    </div>
-                </div>
-            </section>
+                    <section id="masEscuchados">
+                        <div class="descripcion">
+                            <h2>Username's mas escuchadas</h2>
+                            <h3>Mostrar todo</h3>
+                        </div>
+
+                        <div class="divArtista">
+                <?php 
+                while($fila = mysqli_fetch_assoc($resultadoME)){ ?> 
+                            <div class="contenedorArtista">
+                                <img src="<?php echo $fila['imagen']?>">
+                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            </div> 
+                <?php } ?>
+                        </div>
+                    </section>
+
+                    <section id="masTiempoSinEscuchar">
+                        <div class="descripcion">
+                            <h2>Volver a escuchar</h2>
+                            <h3>Mostrar todo</h3>
+                        </div>
+
+                        <div class="divArtista">
+                <?php 
+                while($fila = mysqli_fetch_assoc($resultadoMTSE)){ ?> 
+                            <div class="contenedorArtista">
+                                <img src="<?php echo $fila['imagen']?>">
+                                <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            </div> 
+                <?php } ?>
+                        </div>
+                    </section>
             </div>
     </main>
 
     <footer>
-        <div id="barraProgreso-responsive">
-            <div class="progress-responsive">
-                <div class="progress-bar-responsive" style="width:75%;"></div>
-            </div> 
-        </div>
         <div id="imagenCancion">
-            <?php 
-            while($fila = mysqli_fetch_assoc($cancionActual)){ ?> 
-                <img src="<?php echo $fila['imagen']?>">
-                <div id="infoCancion">
-                    <h2> <?php echo $fila['titulo']?> </h2>
-                    <h3>  <?php echo $fila['nombre']?>  </h3>
-                </div>
-                <?php } ?>  
+            <img src="imagen.png">
+            <div id="infoCancion">
+                <h2>Peace sells</h2>
+                <h3>Megadeth</h3>
+            </div>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
@@ -192,67 +183,5 @@
             </div>
         </section>
     </footer>
-    
-    <script>
-    const totalArtistas = <?php echo count($artistas); ?>; 
-    const slidesContainers = document.querySelectorAll('.slides');
-    let currentSlides = [0, 0, 0]; 
-
-    /*function changeSlide(carouselIndex, direction) {
-        currentSlides[carouselIndex] += direction;
-
-        if (currentSlides[carouselIndex] < 0) {
-            currentSlides[carouselIndex] = 0;
-        } else if (currentSlides[carouselIndex] > totalAlbums - 5) {
-            currentSlides[carouselIndex] = totalAlbums - 5;
-        }
-
-        slidesContainers[carouselIndex].innerHTML = '';
-        for (let i = currentSlides[carouselIndex]; i < currentSlides[carouselIndex] + 5 && i < totalArtistas; i++) {
-            const album = <?php echo json_encode($artistas); ?>[i];
-            slidesContainers[carouselIndex].innerHTML += `
-                <div class="contenedorArtista">
-                <img src="${Artista.imagen}">
-                <p class="artista">${Artista.nombre}</p>
-                </div>`;
-        }
-    }*/
-
-    let currentIndex = 0;
-    const slideContainer = document.querySelector('.slide-container');
-    const totalSlides = document.querySelectorAll('.contenedorArtista').length;
-
-    function changeSlide(direction) {
-    currentIndex += direction;
-
-    // Asegúrate de que currentIndex esté dentro del rango
-    if (currentIndex < 0) {
-        currentIndex = 0;
-    } else if (currentIndex > totalSlides - 5) { // Solo para mostrar 5 elementos
-        currentIndex = totalSlides - 5;
-    }
-
-    // Cambia la posición del contenedor
-    const offset = -currentIndex * (100 / 5); // Ajusta según el ancho
-    slideContainer.style.transform = `translateX(${offset}%)`;
-    }
-
-        /*let currentSlide = 0;
-        const slides = document.querySelectorAll('.contenedorArtista');
-        currentSlide += direction;
-
-        // Ciclo a través de los slides
-        if (currentSlide < 0) {
-            currentSlide = slides.length - 1; // Si es menor que 0, vuelve al último slide
-        } else if (currentSlide >= slides.length) {
-            currentSlide = 0; // Si es mayor o igual al número de slides, vuelve al primero
-        }
-
-        // Desplazar las slides
-        const offset = -currentSlide * 100; // Ajuste el desplazamiento
-        document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
-    }*/
-
-    </script>
 </body>
 </html> 

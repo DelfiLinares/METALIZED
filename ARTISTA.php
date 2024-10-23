@@ -34,6 +34,16 @@
         WHERE idUsuario = 1
         GROUP BY Cancion.id, idUsuario ORDER BY ultEscucha ASC LIMIT 15;"; 
         
+        $query=
+        "SELECT Album.titulo, Album.imagen, Artista.nombre FROM Album 
+        JOIN Artista ON idArtista = Artista.id;";
+
+        $resultado = mysqli_query($conexion, $query);
+          $albumes = [];
+          while($fila = mysqli_fetch_assoc($resultado)) {
+              $albumes[] = $fila;
+        }
+        
         $resultadoP = mysqli_query($conexion, $queryPopular);
         $resultadoME = mysqli_query($conexion, $queryMasEsc);
         $resultadoMTSE = mysqli_query($conexion, $queryMTSE);
