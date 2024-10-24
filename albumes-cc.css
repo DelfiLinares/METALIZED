@@ -208,7 +208,7 @@ main{
     color:rgb(168, 167, 167)
 }
 
-#artistas {
+#albumes {
     height: 77vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);

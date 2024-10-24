@@ -9,30 +9,30 @@ $conexion = mysqli_connect($servername, $username, $password, $database);
 if (!$conexion) {
     die("Conexion fallida: " . mysqli_connect_error());
 } else {        
-    $queryPopular = /* consulta correcta */
+    $queryPopular =
     "SELECT Artista.nombre, Artista.imagen, COUNT(*) AS total FROM Usuario_escucha_Cancion
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
-    GROUP BY Artista.id 
-    ORDER BY total DESC LIMIT 15;";
+    GROUP BY Artista.id ORDER BY total DESC LIMIT 15;";
 
     $queryMasEsc = 
     "SELECT Artista.imagen, Artista.nombre FROM Artista 
     JOIN Album ON idArtista = Artista.id
     JOIN Cancion ON idAlbum = Album.id
     JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
-    WHERE Usuario_escucha_Cancion.idUsuario = 1
-    GROUP BY Artista.id 
-    ORDER BY COUNT(*) DESC;";
+    JOIN Usuario ON idUsuario = Usuario.id
+    WHERE nombreUser = '".$_SESSION["usuario"]."'
+    GROUP BY Artista.id ORDER BY COUNT(*) DESC;";
 
     $queryMTSE = 
     "SELECT Artista.imagen, Artista.nombre, MIN(plays) AS ultEscucha FROM Usuario_escucha_Cancion
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
-    WHERE idUsuario = 1 GROUP BY Artista.id 
-    ORDER BY ultEscucha ASC LIMIT 15;";
+    JOIN Usuario ON idUsuario = Usuario.id
+    WHERE nombreUser = '".$_SESSION["usuario"]."'
+    GROUP BY Artista.id ORDER BY ultEscucha ASC LIMIT 15;";
 
     $queryArtista = 
     "SELECT Artista.imagen, Artista.nombre FROM Artista;";
@@ -66,9 +66,9 @@ if (!$conexion) {
                     <li id="descubre"><a href="descubre.php">Descubre</a></li>
                     <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
-                            <li id="uno"><a href="canciones.php">Canciones</a></li>
-                            <li id="dos"><a href="artistas.php">Artistas</a></li>
-                            <li id="tres"><a href="albumes.php">Albumes</a></li>
+                            <li id="uno"><a href="canciones-cc.php">Canciones</a></li>
+                            <li id="dos"><a href="artistas-cc.php">Artistas</a></li>
+                            <li id="tres"><a href="albumes-cc.php">Albumes</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -84,7 +84,7 @@ if (!$conexion) {
 
             <div class="seccionUsuario">
                 <img src="ftPerfil.jpg">
-                <h2><!-- <?php echo $_SESSION['usuario']; ?> --></h2>
+                <h2> <?php echo $_SESSION['usuario']; ?> </h2>
             </div>
 
             <div class="barraBusq">
@@ -191,24 +191,40 @@ if (!$conexion) {
     </footer>
     
     <script>
-        function changeSlide(button, direction) {
-            const carousel = button.closest('.carousel');
-            const slides = carousel.querySelector('.slides');
-            const totalSlides = slides.children.length;
-            let currentIndex = [...slides.children].findIndex(slide => slide.classList.contains('active'));
-            if (currentIndex === -1) currentIndex = 0;
+    const slidesToShow = 4; 
+    const slideWidth = 100 / slidesToShow; 
 
-            slides.children[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            slides.children[currentIndex].classList.add('active');
+    function changeSlide(button, direction) {
+        const carousel = button.closest('.carousel');
+        const slides = carousel.querySelector('.slides');
+        const totalSlides = slides.children.length;
+
+        let currentStartIndex = [...slides.children].findIndex(slide => slide.classList.contains('active'));
+        if (currentStartIndex === -1) currentStartIndex = 0;
+
+        for (let i = 0; i < slidesToShow; i++) {
+            const index = (currentStartIndex + i) % totalSlides;
+            slides.children[index].classList.remove('active');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousels = document.querySelectorAll('.carousel .slides');
-            carousels.forEach((carousel) => {
-                carousel.children[0].classList.add('active');
-            });
+        currentStartIndex = (currentStartIndex + direction + totalSlides) % totalSlides;
+
+        for (let i = 0; i < slidesToShow; i++) {
+            const index = (currentStartIndex + i) % totalSlides;
+            slides.children[index].classList.add('active');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const carousels = document.querySelectorAll('.carousel .slides');
+        carousels.forEach((carousel) => {
+            // Activar los primeros 4 slides
+            for (let i = 0; i < slidesToShow && i < carousel.children.length; i++) {
+                carousel.children[i].classList.add('active');
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>

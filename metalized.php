@@ -74,7 +74,7 @@
                     <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
-                            <li id="dos"><a href="artistas.php">Artistas</a></li>
+                            <li id="dos"><a href="artistas-cc.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
                         </ul>
                     </li>
