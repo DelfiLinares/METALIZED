@@ -1,25 +1,27 @@
 <?php
-    $nombreUser= $_GET["nombreUser"];
-    $contraseña = $_GET["contraseña"];
     $servername = "127.0.0.1";
     $database = "Metalized";
     $username = "alumno";
     $password = "alumnoipm";
 
+    $nombreUser= $_POST["nombreUser"];
+    $contraseña = $_POST["contraseña"];
     $conexion = mysqli_connect($servername, $username, $password, $database);
-    if (!$conexion) {
-        die("Conexion fallida: " . mysqli_connect_error());
-    }
-    else{
-        $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser';";
-        $resultado = mysqli_query($conexion, $query);
-        $fila = mysqli_fetch_assoc($resultado);
+    
+    $stmt = $conexion->prepare("SELECT id FROM Usuario WHERE nombreUser = ? AND contraseña = ? ");
+    $stmt->bind_param("ss", $nombreUser, $contraseña);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $fila = $resultado->fetch_assoc();
 
+    if ($fila) {
         session_start();
         $_SESSION["idUsuario"] = $fila["id"];
         header("Location: metalized.php");
+        exit();
+    } else {
+        echo "Usuario o contraseña incorrectos.";
     }
-
-
-    <?php }
-    mysqli_close($conexion);?>
+ 
+mysqli_close($conexion);
+?>

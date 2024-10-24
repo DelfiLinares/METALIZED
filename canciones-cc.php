@@ -79,7 +79,7 @@ if (!$conexion) {
     <main>
         <div class="barra_horizontal">
             <div class="solapa">
-                <h1>Artistas</h1>
+                <h1>Canciones</h1>
             </div>
 
             <div class="seccionUsuario">
@@ -104,10 +104,11 @@ if (!$conexion) {
                         <button class="prev" onclick="changeSlide(this, -1)">&#10094;</button>
                     </section>
                     <div class="slides">
-                        <?php while ($artista = mysqli_fetch_assoc($resultadoP)): ?>
+                        <?php while ($canciones = mysqli_fetch_assoc($resultadoP)): ?>
                         <div class="slide">
-                            <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <h3><?php echo $canciones['titulo']; ?></h3>
+                            <h3><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -127,10 +128,11 @@ if (!$conexion) {
                         <button class="prev" onclick="changeSlide(this, -1)">&#10094;</button>
                     </section>
                     <div class="slides">
-                        <?php while ($artista = mysqli_fetch_assoc($resultadoME)): ?>
+                        <?php while ($canciones = mysqli_fetch_assoc($resultadoME)): ?>
                         <div class="slide">
-                            <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <h3><?php echo $canciones['titulo']; ?></h3>
+                            <h3><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -150,10 +152,11 @@ if (!$conexion) {
                         <button class="prev" onclick="changeSlide(this, -1)">&#10094;</button>
                     </section>
                     <div class="slides">
-                        <?php while ($artista = mysqli_fetch_assoc($resultadoMTSE)): ?>
+                        <?php while ($canciones = mysqli_fetch_assoc($resultadoMTSE)): ?>
                         <div class="slide">
-                            <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <h3><?php echo $canciones['titulo']; ?></h3>
+                            <h3><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>

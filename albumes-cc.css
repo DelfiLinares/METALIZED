@@ -221,10 +221,12 @@ main{
     margin: 15px;
 }
 
+/*
 .divArtista {
     padding: 5px;
     width: 100%;
 }
+*/
 
 .carousel{
     margin-top:5px;
@@ -321,21 +323,21 @@ button.prev, button.next {
     z-index: 10; 
 }
 .slides {
-    display: flex; /* Para mostrar los slides en una fila */
-    transition: transform 0.5s ease; /* Añade transición para el desplazamiento */
+    display: flex; 
+    transition: transform 0.5s ease; 
 }
 
 .slide {
-    width: calc(100% / 4); /* Divide el ancho en 4 partes */
-    display: none; /* Oculta todos los slides por defecto */
+    width: calc(100% / 4); 
+    display: none;
 }
 
 .slide.active {
-    display: block; /* Solo muestra el slide activo */
+    display: block;
 }
 
-
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
+
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
 footer{
@@ -602,7 +604,7 @@ main{
     margin: 7px;
 }
 
-#artista{
+#albumes{
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;

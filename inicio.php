@@ -1,13 +1,14 @@
 <?php
-session_start();
+session_start();    
 $servername = "127.0.0.1";
 $database = "Metalized";
 $username = "alumno";
 $password = "alumnoipm";
+
 $nombreUser = $_POST["nombreUser"];
 $email = $_POST["email"];
 $contraseña = $_POST["contraseña"];
-$_SESSION['usuario'] = $nombreUser;
+$_SESSION['usuario']=$nombreUser;
 
 $conexion = mysqli_connect($servername, $username, $password, $database);
 
