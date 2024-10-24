@@ -113,7 +113,8 @@ if (!$conexion) {
                     <div class="slides">
                         <?php while ($albumes = mysqli_fetch_assoc($resultadoP)): ?>
                         <div class="slide">
-                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $albumes['titulo']; ?>">
+                            <h3><?php echo $albumes['titulo']; ?></h3>
                             <h3><?php echo $albumes['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
@@ -136,7 +137,8 @@ if (!$conexion) {
                     <div class="slides">
                         <?php while ($albumes = mysqli_fetch_assoc($resultadoME)): ?>
                         <div class="slide">
-                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $albumes['titulo']; ?>">
+                            <h3><?php echo $albumes['titulo']; ?></h3>
                             <h3><?php echo $albumes['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
@@ -159,7 +161,8 @@ if (!$conexion) {
                     <div class="slides">
                         <?php while ($albumes = mysqli_fetch_assoc($resultadoMTSE)): ?>
                         <div class="slide">
-                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $albumes['titulo']; ?>">
+                            <h3><?php echo $albumes['titulo']; ?></h3>
                             <h3><?php echo $albumes['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
