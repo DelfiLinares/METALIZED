@@ -246,6 +246,7 @@ main{
 .slide:hover{
     background-color: #5e5e5e;
     cursor:pointer;
+
 }
 
 .slides img {
@@ -334,6 +335,57 @@ button.prev, button.next {
     display: block; /* Solo muestra el slide activo */
 }
 
+
+.contenedorArtista{
+    background-color: rgb(70, 70, 70);
+    padding: 5px;
+    align-items: center ;
+    width: 18%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
+    position: relative; 
+}
+
+.contenedorArtista::after {
+    width: 37px;
+    height: 45px;
+    content: "▶"; 
+    font-size: 25px; 
+    padding-top: 15px;
+    padding-left: 23px;
+    position: absolute; 
+    top: 70%; 
+    right: 29%;
+    transform: translate(-50%, -50%); 
+    color: white;
+    background-color: #5e5e5ec7;
+    border-radius: 100%;
+    opacity: 0; 
+    transition: opacity 0.3s; 
+}
+
+.contenedorArtista:hover::after {
+    opacity: 1;
+}
+
+.contenedorArtista:hover{
+    cursor:pointer;
+    background-color: #5e5e5e;
+}
+
+.contenedorArtista img{
+    width: 150px;
+    align-content: center;
+    justify-content: center;
+    margin: 5%;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+}
 
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 

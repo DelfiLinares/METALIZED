@@ -5,6 +5,7 @@ body{
     font-weight: lighter;
     font-style: normal;
     display: flex;
+
 }
 
 /* ------------ HEADER (MENU) --------------- */
@@ -24,25 +25,29 @@ header{
     border-radius: 10px;
 }
 
-.seccionUsuario{
+.nyl{
     height: 22%;
-    display: inline-block;
-    margin: 15px;
-}
-
-.seccionUsuario img{
-    width: 100px;
-    height: 100px;
-    border-radius: 60%;
-    float: left;
-}
-
-.seccionUsuario h2{
-    float: right;
-    margin-top: 20%;
-    margin-left: 15px;
-    font-size: 20px;
+    display: inline-block;   
+    justify-content: center;
     align-content: center;
+    margin: 15px;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 12px 3px;
+}
+
+.nyl img{
+    width: 120px;
+    height: 120px;
+    justify-content: center;
+    align-content: center;
+}
+
+.nyl h2{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 20px;
+    text-align: center;
 }
 
 .menu{
@@ -50,6 +55,7 @@ header{
     font-size: 20px;
     font-weight: bold;  
     border-top: 1px solid rgb(109, 109, 109);
+    margin-top: 5%;
 }
 
 .menu ul li{
@@ -65,11 +71,15 @@ a{
     color:white;
 }
 
-
-#uno, #dos, #tres, #cuatro, #cinco{
+#uno, #dos, #tres{
     justify-self: center;
     align-items: center;
+    margin: 8px 3px 10px 3px;
+    padding-bottom:9px;
+    height: 22px;
+    align-items: center
 }
+
 
 #uno{
     list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABcklEQVRIS8WUvUpDMRTHm0EqSPEVCl1cXLR+0XcQRwUHRx/BxaVbX8PPyUEcfIEqrSguTm6+gKA4WAu9/Z3SSBoTkpv2YuDQm5Pk/zsn5zSqVPBQBeuXgoAsy+4JYgm7xE6VUp08QcUAMkvwlfkZdgLsLQTLA7hCbBubM0TbfJ9LdsA+XLBoAAKK61pEZBfbxxqYPt/j+0auELtla1/DcgHMCIFVx6ADfmvG2guA5akBFmyDuYAOxS/ZzhSgxchq1BD/CyCIOkFsYt+YdM67HZWrW8QXzIANTfYdGwLSetI5E2knARCX1pM2cw7zXlMBTxxcKRLwiXjFA+iRwby9FlOv335lcxeBdQ+gA2DLXIutlwnYQ+DCA9gBcK3X8tRr4qlwRCWaR4i3rOgfma/G1OvPWwRkjYNyHQPsDvFnx91/4VvwAH44U9ZrwcfOJUIQD/glENfoApA/6mikAqLrlQSQyGLrlQwYQ4L1mgrg6yLTPwRDHqwZvGmMwQAAAABJRU5ErkJggg==");
@@ -81,14 +91,6 @@ a{
 
 #tres{
     list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAB+0lEQVRIS7WVzSsFURjG7yx8RhZs5PMulKRL+QMoKR9ZYMGGhQgLLJSFCCmxsPCRYqNYKHG7KSmliKWwkY+kKxsWLBQlH9fv1bkaY2buHbpTT2fmPc/7POec98w5mivCjxZhfZetQSAQiGEAdaAcFIBsEAB+cAw2gVfTtFergVoaIF5B0qwStZvoJZ3tmGybkUwNEB+CPOhg+T7g9mIyYcz5ZWAifk/SHcgLw7Abkyk974cB4tV0rusIXt5bQSlYCcNAZlKMyX6Q+22AeALBC5CqOhcgNss7fYU0R2EYCOUMeIKF1xt0qKIK6RrkCAnxXt7HgJMtXUOuT4T0Bht8V6pRdkKYMVmyMCfhmie/zWhwQyBdKbgh+DHYkTVVsVXafhAFxnWDMTM9JL/IaPBMIE6xo9XyPPEdr2IpxGRHSU3cNFc203mAm2w0eCSQaJOUStKtMsiklTpZPY9wk4wGpwRybZLW6OtTsxwNsUQnGOQbDZYJNNgYOOlawqDJaNBIYNGJig23HoOvH1O/TaXA5yDjnyaiUYDByw8DVbwy2q1/GMhRUYL4XlDD7LCTvT7yR5MuxKf1uVbH9QCkYf0ShjB8p78H8Ukjz+7CqYI8B9JCiMuF04L4rhkv1JUZS1ItkDPKA7KAXJnyFx+oevkQf7MahJMT8k9libjBJ4ofoBlOdyqIAAAAAElFTkSuQmCC")
-}
-
-#cuatro{
-    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAABjElEQVRIS72VPUvEQBCGb71CbaysFEQU4X6CYGut2F2jhVraKIIn+HGC+NFoY6mCYGF3jVjZCv4DBcFDESsrGxFO47MyWZaY1dtszsDL5GPmfTKTZKMKLd5Ui/0LPwBRFI0D3UElT/gN+YtKqQu7Lg3wREKvp3mcfg9g8C9ApBNI9BofnafWpXXwvwBubIyGtqTtVWI7WkOfqEKj5/pa5g4ofKC+z/FMzMxDAHXM+x2AOh0MhHYwhcGJAzAJ4DQIIMVV4noCUsV8Iz6XeUSWwSH7M3J8hPmsDcwD0IZhDb2jMgD9FpktGCCj6iA2MG8kn0kuAMeD/j4dDMCgE58FgezRxVsuI8K4iNE00m9Sj5g+y/ExoI/MHWA+QfEuGhLja4nDEu+IS0Bq3iOi8AqNiNGjGJ3J3ZYFHC8hJje5CjtXUzF+JW6jfQr162k27lgvevNoGXXFF5oF6LnqD2uFghfbOLkPqJtzm0h/eMVmAJckzpF4+5txCkj/Yg+oG7Wvef21fIBmZFmKfGq+AIhv5BkYWo60AAAAAElFTkSuQmCC")
-}
-
-#cinco{
-    list-style-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAy0lEQVRIS2NkoDFgpLH5DKMWwEP4////V4AcbZgAIxCA2PAgAir4T058wAxC108zC2AGw31Cjqux6YH5YOAsoFYc4PQBzS2gNC6GRhwghy/QxcFAX1cBsR4QvwVicXDGgmYwjGRKTBwgZSp3oAE7sAUrVZIp0DGngIab0tKCL0DDubFY8BvoAzZkcZLKIqQgOgo0xAqLBceBalDEybXAGWj4HiwWOAItOIDVB6TmA2A8BAD11AOxBhBfBeJmoOEb0c0ZrdEIhizNgwgAYc1mGaNV2V8AAAAASUVORK5CYII=");
 }
 
 .milibreria{
@@ -108,7 +110,6 @@ main{
     margin-top: -10px;
 }
 
-/**/
 .barra_horizontal{
     width: 100%;
     height: 15%;
@@ -119,7 +120,7 @@ main{
 
 .solapa{
     width: 15%;
-    height: 43px;
+    height: 40px;
     float: left;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;
@@ -128,31 +129,50 @@ main{
     padding: 5px;
 }
 
-.solapa h1{
+.solapa h2{
     margin-top: 5px;
     margin-left: 10px;
     font-size: 21px;
 }
 
-.nyl {
+#inicio{
+    background-color: rgb(70, 70, 70);
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    padding: 5px 12px;
+    height: 76vh;
+    overflow-y: auto;
+}
+
+#inicio h3{
+    margin: 10px;
+    font-size: 15px;
+    color:#a7a7a7;
+}
+
+.seccionUsuario {
+    display: inline-block;
     background-color: black;
     float: right;
 }
 
-.nyl h3{
+.seccionUsuario h2{
     float: left;
     margin-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
     color: #8E1717;
+    font-size: 16px;
 } 
 
-.nyl img{
+.seccionUsuario img{
     width: 48px;
     height: 48px;
     float: right;
     margin-top: -3px;
+    border-radius: 100%;
 }
+
 
 .barraBusq{
     background-color: rgb(124, 124, 124);
@@ -180,45 +200,9 @@ main{
     margin-top: -34px;
     padding-right: 10px;
 }
-/**/
 
-/**/
 .descripcion{
-    margin-top: 5px;
-    width: 100%;
-    height: 20%;
-    display: inline-block;
-}
-
-.descripcion h2{
-    font-size: 18px;
-    width: 60%;
-    text-align: start;
-    float: left;
-    margin: 0px;
-}
-
-.descripcion h3{
-    font-size: 15px;
-    width: 35%;
-    padding-right: 10px;
-    text-align: end;
-    float: right;
-    margin: 0px;
-    color:rgb(168, 167, 167)
-}
-
-#descubre {
-    height: 75vh; 
-    overflow-y: auto;
-    background-color: rgb(70, 70, 70);
-    border-radius: 10px;
-    border-top-left-radius: 0px;
-    padding: 7px 12px;
-}
-
-#populares{
-    margin: 15px;
+    margin: 5px 0px 0px 0px;
 }
 
 #albumes{
@@ -228,13 +212,49 @@ main{
     align-content: stretch ;
 }
 
-.contenedorAlbum{
+.descripcion h2{
+    display: flex;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.contenedorAlbum {
     display: inline-block;
+    color: black;
     background-color: rgb(124, 124, 124);
-    width: 22.5%;
+    width: 30.5%;
     margin: 10px;
     align-items: center;
+    position: relative; 
 }
+
+.contenedorAlbum::after {
+    width: 37px;
+    height: 45px;
+    content: "▶"; 
+    font-size: 25px; 
+    padding-top: 15px;
+    padding-left: 23px;
+    position: absolute; 
+    top: 50%; 
+    right: 69.5%;
+    transform: translate(-50%, -50%); 
+    color: white;
+    background-color: #5e5e5ec7;
+    opacity: 0; 
+    transition: opacity 0.3s; 
+}
+
+.contenedorAlbum:hover::after {
+    opacity: 1; 
+}
+
+.contenedorAlbum:hover {
+    color: white;
+    background-color: rgb(44, 44, 44);
+    cursor: pointer;
+}
+
 
 .contenedorAlbum img{
     width: 60px;
@@ -243,51 +263,95 @@ main{
     margin-right: 3px;
 }
 
-.contenedorAlbum p{
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    align-content:center;
-    float: left;
-    font-weight: bold;
-    margin-left: 5px;
-    margin-top: 10%;
-}
-
-.divPlaylists{
-    padding: 5px;
+#artistas{
+    display: inline-block;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-content: stretch;
     width:100%;
 }
 
-.contenedorPlaylists {
+.contenedorArtista{
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    align-items: center;
+    position: relative; 
+    justify-content: center;
+}
+
+.contenedorArtista::after {
+    width: 37px;
+    height: 45px;
+    content: "▶"; 
+    font-size: 25px; 
+    padding-top: 15px;
+    padding-left: 23px;
+    position: absolute; 
+    top: 70%; 
+    right: 29%;
+    transform: translate(-50%, -50%); 
+    color: white;
+    background-color: #5e5e5ec7;
+    border-radius: 100%;
+    opacity: 0; 
+    transition: opacity 0.3s; 
+}
+
+.contenedorArtista:hover::after {
+    opacity: 1;
+}
+
+.contenedorArtista:hover{
+    cursor:pointer;
+}
+
+.contenedorArtista img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    margin: 0px;
+}
+
+.contenedorArtista p {
+    text-align: center;
+    justify-content: center;
+    align-self: center ;
+    font-weight: bolder;
+}
+
+.contenedorCancion{
     background-color: #5e5e5e;
     display: inline-block;
     width: 18%;
     margin: 0px;
     align-items: center;
-    border-radius: 5%;
-    text-align: center;
 }
 
-.contenedorPlaylists img{
+.contenedorCancion img{
     width: 150px;
-    align-content: center;
-    justify-content: center;
-    margin: 5%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100%;
     max-width: 100%;
     height: auto;
 }
 
-.Playlists {
-    margin: 8px 0px;
-    text-align: center;
-    justify-content: center;
-    font-weight: bolder;
-    color: black;
+.titulo {
+    font-size: 15px;
+    align-items:center;
+    float: left;
+    font-weight: bold;
+    margin: 20px 0px 20px 5px;
 }
-/**/
+
+.artista {
+    font-size: 20px;
+    margin: 0px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+}
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
@@ -338,6 +402,25 @@ footer{
     margin-bottom: 15px;
 }
 
+#barraProgreso-responsive{
+    display:none;
+}
+
+#barraReproduccion{
+    display: block;
+    margin-left: 50%;
+}
+
+#barraReproductora-iconos{
+    height: 55%;
+    margin-top: 0px;
+}
+
+#barraReproductora-iconos img{
+    margin: 15px;
+    width: 25px;
+}
+
 #barraReproduccion{
     width: 40%;
     display: block;
@@ -379,5 +462,255 @@ footer{
 }
 
 
-
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
+
+@media (max-width: 500px){
+    header{
+        height: 85vh;
+        width: 1cm;
+    }
+
+    #contenedor{
+        width: 100%;
+    }
+
+    .menu a{
+        display: none;
+    }
+
+    .menu ul{
+        margin-left: -26px;
+    }
+
+    #inicio, #descubre{
+    display: none;
+}
+
+    .seccionUsuario{
+        justify-content: center;
+        margin: 5px 7px 0px 7px;
+    }
+
+    .seccionUsuario h2{
+        display: none;
+    }
+
+    .seccionUsuario img{
+        width: 40px;
+        height: 40px; 
+    }
+
+    #mi_libreria p{
+        display:none;
+    }
+
+    .nyl h2{
+        display: none;
+    }
+
+    .nyl{
+        width: 45px;
+        height: 45px;
+        padding: 0px;
+        margin: 0px;
+        margin-left: -2px;
+    }
+
+    .nyl img{
+        width: 42px;
+        height: 42px;
+    }
+
+    main{
+        width: 95%;
+        margin-left: 10px;
+        margin-right: -7px;
+        height: 100%;
+        float: right;
+    }
+
+    .solapa h1{
+        display:none;
+    }
+
+    .solapa{
+        width: 100px;
+        height: 43px;
+    }
+
+    .barra_horizontal{
+        height:45px;
+        margin-bottom: 0px;
+    }
+
+    .barraBusq{
+        background-color: rgb(0, 0, 0);
+        border: black;
+        margin-left: 190px;
+        width: 30px;
+    }
+
+    .barraBusq img{
+        width: 25px;
+        height: 25px;
+        margin: 10px;
+    }
+
+    .barraBusq h3{
+        display: none;
+    }
+
+    #imagenCancion img{
+        width: 50px;
+        height: 50px;
+        margin: 7px;
+    }
+
+    #artista{
+        height: 78vh;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    #artista img{
+        width: 30%;
+        height: 70%;
+        margin: 3px;
+    }
+
+    .fotoynombre{
+        padding: 5px;
+        width: 97%;
+        height: 20%;
+        margin-bottom: 5px;
+    }
+
+    .info{
+        width:65%;
+    }
+
+    .info h1{
+        font-size: 20px;
+        margin: 10px 20px 10px 3px;
+    }
+
+    .info p{
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    #imagenCancion{
+        width: 70%;
+        margin-top: 2%;
+    }
+
+    #imagenCancion img{
+        margin-right: 0px;
+        width: 20%;
+        height: 20% ;
+    }
+
+    #infoCancion{
+        width: 75%;
+        height: 25%;
+        margin-top: -25px;
+        margin-left: 0px;
+    }
+
+    #infoCancion h2{
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    #infoCancion h3{
+        font-size: 14px;
+    }
+
+    #barraProgreso{
+        display:none;
+    }
+
+    #barraProgreso-responsive{
+        display: flex;
+        background-color: #5f1010;
+        height: 3px;
+        width: 95%;;
+        margin-left: 1.25%;
+        margin-right: 1.25%;
+    }
+
+    .progress-responsive {
+        height: 3px;
+        border-radius: 5px;
+        background-color: #000000;
+        justify-content: center;
+    }
+
+    .progress-bar-responsive {
+        height: 100%;
+        display: flex;
+        background-color: #0e0e0e;
+        align-items: center;
+        border-radius: 5px;
+    }
+    
+    #barraReproductora-iconos{
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding-top: 15%;
+    }
+
+    #barraReproductora-iconos img{
+        width: 22px;
+        height: 22px;
+        margin: 4px;
+    }
+
+    #repetir, #aleatorio{
+        display: none;
+    }
+
+    #barraReproduccion{
+        width: 30%;
+        height: 90%;
+        margin: 0;
+        margin-top: 2%;
+        float: left;
+        flex-wrap: wrap;
+        align-content: center;
+    }
+
+    #contenedor2{
+        width: 100%;
+        height: 50%;
+    }
+
+    #canciones{
+        width: 96%;
+        padding: 6px;
+    }
+
+    #canciones h1{
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #cancion{
+        width: 98%;
+        height: 30%;
+    }
+
+    #cancion img{
+        width: 20%;
+        height: 20%;
+    }
+
+    .info-popular{
+        margin-right: 20%;
+    }
+
+    .info-popular h3{
+        font-size: 15px;
+    }
+}
