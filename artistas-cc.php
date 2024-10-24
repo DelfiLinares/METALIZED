@@ -49,7 +49,7 @@ if (!$conexion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="artistas.css">
+    <link rel="stylesheet" href="artistas-cc.css">
     <title>Metalized</title>
 </head>
 <body>
@@ -57,14 +57,14 @@ if (!$conexion) {
         <section id="contenedor">
             <div class="nyl">
                 <img src="calavera.png">
-                <h3>Metalized</h3>
+                <h2>Metalized</h2>
             </div>
 
             <div class="menu">
                 <ul>
-                    <li><a href="metalized.php">Inicio</a></li>
-                    <li><a href="descubre.php">Descubre</a></li>
-                    <li>Mi libreria
+                    <li id="inicio"><a href="metalized.php">Inicio</a></li>
+                    <li id="descubre"><a href="descubre.php">Descubre</a></li>
+                    <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
                             <li id="dos"><a href="artistas.php">Artistas</a></li>
