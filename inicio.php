@@ -8,7 +8,7 @@ $password = "alumnoipm";
 $nombreUser = $_POST["nombreUser"];
 $email = $_POST["email"];
 $contraseña = $_POST["contraseña"];
-$_SESSION['usuario']=$nombreUser;
+$_SESSION['usuario'] = $nombreUser;
 
 $conexion = mysqli_connect($servername, $username, $password, $database);
 
@@ -18,6 +18,7 @@ if (!$conexion) {
 else {
     $query = "INSERT INTO Usuario VALUES (null, '$nombreUser', '$email', '$contraseña');";
     $resultado = mysqli_query($conexion, $query);
+
     if ($resultado) {
         $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser';";
         $resultado = mysqli_query($conexion, $query);

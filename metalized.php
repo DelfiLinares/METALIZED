@@ -32,13 +32,21 @@
         WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         ORDER BY plays DESC LIMIT 3;";
 
-        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Artista
+        $query3 = "SELECT Cancion.id AS idC, Cancion.titulo, Album.imagen, Artista.nombre FROM Artista
         JOIN Album ON idArtista = Artista.id 
         JOIN Cancion ON idAlbum = Album.id 
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
         JOIN Usuario ON idUsuario = Usuario.id
         WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         LIMIT 6;";
+
+        $query4 = 
+        "SELECT Album.imagen, Cancion.titulo, Artista.nombre FROM Usuario
+        JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
+        JOIN Cancion ON idCancion = Cancion.id
+        JOIN Album ON idAlbum = Album.id
+        JOIN Artista ON idArtista = Artista.id 
+        GROUP BY idCancion HAVING plays = now() DESC LIMIT 15;";
 
         $resultado = mysqli_query($conexion, $query);
         $resultado2 = mysqli_query($conexion, $query2);
@@ -74,7 +82,7 @@
                     <li id="mi_libreria"><p>Mi libreria</p>
                         <ul class="milibreria">
                             <li id="uno"><a href="canciones.php">Canciones</a></li>
-                            <li id="dos"><a href="artistas-cc.php">Artistas</a></li>
+                            <li id="dos"><a href="artistas.php">Artistas</a></li>
                             <li id="tres"><a href="albumes.php">Albumes</a></li>
                         </ul>
                     </li>
@@ -109,12 +117,12 @@
                 </div>
 
                 <section id="canciones">
-                <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
-                    <div class="contenedorCancion">
-                        <img src="<?php echo $fila['imagen']; ?>" >
-                        <p class="titulo"><?php echo $fila['titulo']; ?></p>
-                    </div>
-                <? } ?>
+                    <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
+                        <div class="contenedorCancion" data-id="<?php echo $fila['idC']; ?>">
+                            <img src="<?php echo $fila['imagen']; ?>" >
+                            <p class="titulo"><?php echo $fila['titulo']; ?></p>
+                        </div>
+                    <?php } ?>
                 </section>
 
                 <div class="descripcion">
@@ -147,11 +155,10 @@
     <footer>
         <div id="imagenCancion">
             <img src="imagen.png">
-            <di
-    margin-left: 5px;v id="infoCancion">
-                <h2>Peace sells</h2>
-                <h3>Megadeth</h3>
-            </di>
+            <div id="infoCancion">
+                <h2 class="titulo"></h2>
+                <h3 class="artista"></h3>
+            </div>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">
@@ -168,5 +175,19 @@
             </div>
         </section>
     </footer>
+
+    <script>
+    let isPlaying = false;
+
+    document.getElementById('play-boton').addEventListener('click', function() {
+        isPlaying = !isPlaying; 
+
+        if (isPlaying) {
+            this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAIFJREFUSEvtlUEOgCAQA8vDTfQ9+iB/o2kiN6XLmkYPcAV26CyBAvMo5voYAGn4c0UrgAnALo/6sEAlOK59M4AlA4kCWJspmGbrAfUAal0CwtoygAoKaXsDCGn7NYC3ipqaI5PA1mTrNQ3puHOlFNmfCtVDOa8SyAJqwQAoQ/5P/wRI2x4ZwEPsdgAAAABJRU5ErkJggg=='; // Pausa
+        } else {
+            this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAERJREFUSEtjZKAxYKSx+QyjFhAM4ZERRP+RwgHmY2xiWIOLmCAatYBgShsNotEgwl8iE5PRCIYhPgWjFhAMvtEgIhhEAKEpFBmRjTAEAAAAAElFTkSuQmCC'; // Playing
+        }
+    });
+    </script>
 </body>
 </html> 

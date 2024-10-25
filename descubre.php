@@ -150,5 +150,19 @@
             </div>
         </section>
     </footer>
+
+    <script>
+    let isPlaying = false;
+
+    document.getElementById('play-boton').addEventListener('click', function() {
+        isPlaying = !isPlaying; 
+
+        if (isPlaying) {
+            this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAIFJREFUSEvtlUEOgCAQA8vDTfQ9+iB/o2kiN6XLmkYPcAV26CyBAvMo5voYAGn4c0UrgAnALo/6sEAlOK59M4AlA4kCWJspmGbrAfUAal0CwtoygAoKaXsDCGn7NYC3ipqaI5PA1mTrNQ3puHOlFNmfCtVDOa8SyAJqwQAoQ/5P/wRI2x4ZwEPsdgAAAABJRU5ErkJggg=='; // Pausa
+        } else {
+            this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAERJREFUSEtjZKAxYKSx+QyjFhAM4ZERRP+RwgHmY2xiWIOLmCAatYBgShsNotEgwl8iE5PRCIYhPgWjFhAMvtEgIhhEAKEpFBmRjTAEAAAAAElFTkSuQmCC'; // Playing
+        }
+    });
+    </script>
 </body>
 </html> 
