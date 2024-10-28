@@ -461,6 +461,27 @@ footer{
     border-radius: 5px;
 }
 
+#generos{
+    margin-top: 5px;
+    width: 100%;
+    display: inline-flex;
+}
+
+.opcion, .opcion_d{
+    width: 25%;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+    color:#a7a7a7;
+}
+
+.opcion:hover, .opcion_d{
+    background-color:#4e4e4e;
+    color:aliceblue;
+    cursor: pointer;
+}
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
 
