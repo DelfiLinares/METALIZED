@@ -11,20 +11,30 @@
     }
     else{
         $query = 
-        "SELECT Album.imagen, Album.titulo FROM Album 
-        JOIN Cancion ON Cancion.idAlbum = Album.id
-        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
-        ORDER BY plays DESC LIMIT 6";
+        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Album
+        JOIN Artista ON Album.idArtista = Artista.id
+        JOIN Cancion ON Album.id = Cancion.idAlbum
+        JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion
+        WHERE Album.genero = 'Hard Rock'
+        GROUP BY Album.titulo, Album.imagen, Artista.nombre
+        ORDER BY rep DESC LIMIT 6;";
 
-        $query2 = "SELECT Artista.imagen, Artista.nombre FROM Album 
-        JOIN Artista ON Artista.id = Album.idArtista
-        JOIN Cancion ON Cancion.idAlbum = Album.id
-        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
-        GROUP BY Artista.id ORDER BY count(plays) DESC LIMIT 3;";
+        $query2 = 
+        "SELECT Artista.nombre, Artista.imagen, COUNT(idCancion) AS rep FROM Artista
+        JOIN Album ON Artista.id = Album.idArtista
+        JOIN Cancion ON Album.id = Cancion.idAlbum
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
+        WHERE Artista.genero = 'Hard Rock'
+        GROUP BY Artista.nombre, Artista.imagen
+        ORDER BY rep DESC LIMIT 3;";
 
-        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
-        JOIN Album ON idAlbum = Album.id 
-        JOIN Artista ON idArtista = Artista.id LIMIT 3";
+        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Cancion
+        JOIN Album ON Cancion.idAlbum = Album.id
+        JOIN Artista ON Album.idArtista = Artista.id
+        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
+        WHERE Cancion.genero = 'Hard Rock'
+        GROUP BY Cancion.titulo, Album.imagen, Artista.nombre
+        ORDER BY rep DESC LIMIT 6;";
 
         $resultado = mysqli_query($conexion, $query);
         $resultado2 = mysqli_query($conexion, $query2);
@@ -88,7 +98,12 @@
             </div>
         
             <div id="inicio">
-                <h3>Escuchado Recientemente</h3>
+                <section id="generos">
+                    <div class="opcion_d"><a href="descubre.php">Hard Rock</a></div>
+                    <div class="opcion"><a href="descubre-rp.php">Rock Progresivo</a></div>
+                    <div class="opcion"><a href="descubre-g.php">Grunge</a></div>
+                    <div class="opcion"><a href="descubre-hm.php">Heavy Metal</a></div>
+                </section>
 
                 <div class="descripcion">
                     <h2>Albumes</h2>
