@@ -450,6 +450,10 @@ footer{
     margin-left: 20%;
 }
 
+#barraReproductora-iconos:hover{
+    cursor:pointer;
+}
+
 #barraReproductora-iconos img{
     margin: 15px;
     width: 25px;

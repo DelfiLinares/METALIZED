@@ -237,7 +237,7 @@ main{
     padding-left: 23px;
     position: absolute; 
     top: 50%; 
-    right: 69.5%;
+    right: 71%;
     transform: translate(-50%, -50%); 
     color: white;
     background-color: #5e5e5ec7;
@@ -352,6 +352,29 @@ main{
     justify-content: center;
     color: rgb(0, 0, 0);
 }
+
+#generos{
+    margin-top: 5px;
+    width: 100%;
+    display: inline-flex;
+}
+
+.opcion, .opcion_d{
+    width:25%;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+    color:#a7a7a7;
+}
+
+.opcion:hover, .opcion_d{
+    background-color:#4e4e4e;
+    color:aliceblue;
+    cursor: pointer;
+}
+
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
 /* '''''''''''''' FOOTER (BARRA REP) '''''''''''''''*/
@@ -431,6 +454,10 @@ footer{
     height: 55%;
     margin-top: 0px;
     margin-left: 20%;
+}
+
+#barraReproductora-iconos:hover{
+    cursor:pointer;
 }
 
 #barraReproductora-iconos img{

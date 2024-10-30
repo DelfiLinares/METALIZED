@@ -408,6 +408,9 @@ footer{
     margin-top: 0px;
     margin-left: 20%;
 }
+#barraReproductora-iconos:hover{
+    cursor:pointer;
+}
 
 #barraReproductora-iconos img{
     margin: 15px;
@@ -685,7 +688,9 @@ footer{
     .info-popular{
         margin-right: 20%;
     }
-
+    #barraReproductora-iconos:hover{
+        cursor:pointer;
+    }
     .info-popular h3{
         font-size: 15px;
     }

@@ -1,9 +1,3 @@
-<!-------
-    SELECT imagen, titulo FROM Album
-    WHERE idArtista = "tal artista"
-    ORDER BY titulo DESC;
--->
-
 <?php 
     session_start();
     $servername = "127.0.0.1";
@@ -17,18 +11,19 @@
     }
     else{
         $queryAlbum =  
-        "SELECT imagen FROM Album WHERE idArtista = 1 ORDER BY titulo DESC; ";
+        "SELECT imagen FROM Album WHERE  ORDER BY titulo DESC; ";
         
         $queryArtista =
-        "SELECT nombre, imagen FROM Artista WHERE id = 1 "
+        "SELECT nombre, imagen, bio FROM Artista WHERE id = 1; ";
         
-        $queryCancion =
-        "SELECT Cancion.titulo, Cancion.duracion, Album.imagen
+        $queryCancion = "SELECT Cancion.titulo, Cancion.duracion, Album.imagen 
         FROM Usuario_escucha_Cancion 
         JOIN Cancion ON idCancion = Cancion.id
         JOIN Album ON idAlbum = Album.id
-        GROUP BY count(idCancion) HAVING idArtista = 1
-        ORDER BY count(*) DESC ";
+        JOIN Artista ON Album.idArtista = Artista.id
+        WHERE Artista.id = 1
+        GROUP BY Cancion.titulo, Cancion.duracion, Album.imagen
+        ORDER BY COUNT(*) DESC;";
 
         $queryCanAct =
         "SELECT Cancion.titulo, Album.imagen, Artista.nombre FROM Cancion 
@@ -54,7 +49,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
     </style>
     <link rel="icon" type="image/png" href="calavera.png">
-    <link rel="stylesheet" href="infoArtista.css" type="text/css"/>
+    <link rel="stylesheet" href="InfoArtista.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -117,22 +112,22 @@
                     <section id="canciones">
                         <h1>Populares</h1>
                     
-                        <div class="cancion">
                         <?php while($fila = mysqli_fetch_assoc($resultadoC)) {?>
-                            <img src="mopp.jpg">
-                            <div class="info-popular">
-                                <h3 class="tituloC"><?php echo $fila['titulo'];?></h3>
-                                <h3 class="duracion"><?php echo $fila['duracion'];?></h3>
+                            <div class="cancion">
+                                <img src="<?php echo $fila['imagen'] ?>">
+                                <div class="info-popular">
+                                    <h3 class="tituloC"><?php echo $fila['titulo'];?></h3>
+                                    <h3 class="duracion"><?php echo $fila['duracion'];?></h3>
+                                </div>
                             </div>
                         <?php } ?>
-                        </div>
                     </section>
                 
                     <section id="albumes">
                         <h1>Albumes</h1>
                         
                             <section id="gridAlbums">
-                            <?php while($fila = mysqli_fetch_assoc($resultadoC)) {?>
+                            <?php while($fila = mysqli_fetch_assoc($resultadoA)) {?>
                                 <div class="album">
                                     <img src="<?php echo $fila['imagen'];?>">
                                     <h3 class="titulo"><?php echo $fila['titulo'];?></h3>

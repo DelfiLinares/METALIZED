@@ -9,32 +9,36 @@ $conexion = mysqli_connect($servername, $username, $password, $database);
 if (!$conexion) {
     die("Conexion fallida: " . mysqli_connect_error());
 } else {        
-    $queryPopular = /* CONSULTA CORRECTA */
-    "SELECT Album.imagen, Cancion.titulo, Artista.nombre FROM Usuario
+    $queryPopular = "SELECT Album.imagen, Cancion.titulo, Artista.nombre, Artista.id as a_id FROM Usuario
     JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
-    GROUP BY idCancion ORDER BY count(*) DESC LIMIT 15;";
+    GROUP BY Album.imagen, Cancion.titulo, Artista.nombre, Artista.id
+    ORDER BY COUNT(*) DESC LIMIT 15;";
 
     $queryMasEsc = 
-    "SELECT Album.imagen, Cancion.titulo, Artista.nombre FROM Artista 
+    "SELECT Album.imagen, Cancion.titulo, Artista.nombre, Artista.id as a_id FROM Artista 
     JOIN Album ON idArtista = Artista.id
     JOIN Cancion ON idAlbum = Album.id
     JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
     JOIN Usuario ON idUsuario = Usuario.id
     WHERE nombreUser = '".$_SESSION["usuario"]."'
-    GROUP BY Album.imagen, Cancion.titulo, Artista.nombre ORDER BY COUNT(*) DESC LIMIT 15;";
+    GROUP BY Album.imagen, Cancion.titulo, Artista.nombre, Artista.id
+    ORDER BY COUNT(*) DESC LIMIT 15;";
+    ;
 
     $queryMTSE = 
-    "SELECT Album.imagen, Cancion.titulo, Artista.nombre, max(plays) AS ult_escucha FROM Usuario
+    "SELECT Album.imagen, Cancion.titulo, Artista.nombre, MAX(plays) AS ult_escucha, Artista.id as a_id
+    FROM Usuario
     JOIN Usuario_escucha_Cancion ON idUsuario = Usuario.id
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
     WHERE nombreUser = '".$_SESSION["usuario"]."'
-    GROUP BY Cancion.id, Album.imagen, Artista.nombre
+    GROUP BY Cancion.id, Album.imagen, Artista.nombre, Artista.id
     ORDER BY ult_escucha ASC LIMIT 15;";
+
 
     $queryCancion = 
     "SELECT Album.imagen, Artista.nombre, Cancion.titulo
@@ -108,11 +112,13 @@ if (!$conexion) {
                         <button class="prev" onclick="changeSlide(this, -1)">&#10094;</button>
                     </section>
                     <div class="slides">
-                        <?php while ($canciones = mysqli_fetch_assoc($resultadoP)): ?>
+                        <?php while ($canciones = mysqli_fetch_assoc($resultadoP)): 
+                            
+                        ?>
                         <div class="slide">
-                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -134,9 +140,9 @@ if (!$conexion) {
                     <div class="slides">
                         <?php while ($canciones = mysqli_fetch_assoc($resultadoME)): ?>
                         <div class="slide">
-                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -158,9 +164,9 @@ if (!$conexion) {
                     <div class="slides">
                         <?php while ($canciones = mysqli_fetch_assoc($resultadoMTSE)): ?>
                         <div class="slide">
-                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
+                            <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
