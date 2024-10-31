@@ -10,14 +10,14 @@ if (!$conexion) {
     die("Conexion fallida: " . mysqli_connect_error());
 } else {        
     $queryPopular =
-    "SELECT Artista.nombre, Artista.imagen, COUNT(*) AS total FROM Usuario_escucha_Cancion
+    "SELECT Artista.nombre, Artista.imagen, COUNT(*) AS total, Artista.id as a_id FROM Usuario_escucha_Cancion
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
     GROUP BY Artista.id ORDER BY total DESC LIMIT 15;";
 
     $queryMasEsc = 
-    "SELECT Artista.imagen, Artista.nombre FROM Artista 
+    "SELECT Artista.imagen, Artista.nombre, Artista.id as a_id FROM Artista 
     JOIN Album ON idArtista = Artista.id
     JOIN Cancion ON idAlbum = Album.id
     JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
@@ -26,7 +26,7 @@ if (!$conexion) {
     GROUP BY Artista.id ORDER BY COUNT(*) DESC;";
 
     $queryMTSE = 
-    "SELECT Artista.imagen, Artista.nombre, MIN(plays) AS ultEscucha FROM Usuario_escucha_Cancion
+    "SELECT Artista.imagen, Artista.nombre, MIN(plays) AS ultEscucha, Artista.id as a_id FROM Usuario_escucha_Cancion
     JOIN Cancion ON idCancion = Cancion.id
     JOIN Album ON idAlbum = Album.id
     JOIN Artista ON idArtista = Artista.id 
@@ -41,8 +41,7 @@ if (!$conexion) {
     $resultadoME = mysqli_query($conexion, $queryMasEsc);
     $resultadoMTSE = mysqli_query($conexion, $queryMTSE);
     $resultadoArtista = mysqli_query($conexion, $queryArtista);
-}
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +106,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoP)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista ['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -130,7 +129,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoME)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -153,7 +152,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoMTSE)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>

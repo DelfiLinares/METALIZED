@@ -11,7 +11,7 @@
     }
     else{
         $query = 
-        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Album
+        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep,  FROM Album
         JOIN Artista ON Album.idArtista = Artista.id
         JOIN Cancion ON Album.id = Cancion.idAlbum
         JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion
@@ -112,7 +112,7 @@
                 <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorAlbum">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="titulo"> <?php echo $fila['titulo']?> </p>
+                            <p class="titulo"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['titulo']?> </p>
                         </div> 
                 <?php } ?>
                 </section>
@@ -125,7 +125,7 @@
                     <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['nombre']?> </p>
                         </div> 
                     <?php } ?>
                 </section>
@@ -133,9 +133,9 @@
                 <section id="canciones">
                 <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
                     <div class="contenedorCancion">
-                        <img src="<?php echo $resultado3[$i]['imagen']; ?>" >
-                        <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
-                        <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
+                        <img src="<?php echo $fila[$i]['imagen']; ?>" >
+                        <p class="titulo"><?php echo $fila[$i]['titulo']; ?></p>
+                        <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila[$i]['nombre']; ?></p>
                     </div>
                 <? } ?>
                 </section>

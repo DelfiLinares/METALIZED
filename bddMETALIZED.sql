@@ -322,42 +322,84 @@ INSERT INTO Usuario_escucha_Cancion (idUsuario, idCancion, plays) VALUES
 (6, 5, "2024-10-23 10:10:10"),
 (6, 18, "2024-10-22 12:12:12"),
 (5, 22, "2024-10-10 17:45:45"),
-(5, 26, "2024-10-11 16:30:30");*/
-(7, 9, "2024-01-05 11:11:11"),
-(7, 29, "2024-09-10 09:09:09"),
-(7, 19, "2024-06-15 18:18:18"),
-(7, 1, "2023-02-20 16:30:30"),
-(7, 12, "2024-09-25 13:45:45"),
-(7, 32, "2024-09-30 20:22:22"),
-(7, 40, "2024-03-01 15:10:10"),
-(7, 45, "2024-03-05 14:20:20"),
-(7, 12, "2024-10-08 11:15:15"),
-(7, 38, "2024-10-10 17:45:45"),
-(7, 56, "2024-09-02 12:30:12"),
-(7, 46, "2024-09-05 15:00:00"),
-(7, 6, "2024-09-15 10:10:10"),
-(7, 8, "2024-09-20 14:14:14"),
+(5, 26, "2024-10-11 16:30:30");
+(5, 69, "2024-01-05 11:11:11"),
+(5, 69, "2024-09-10 09:09:09"),
+(5, 69, "2024-06-15 18:18:18"),
+(5, 79, "2023-02-20 16:30:30"),
+(6, 72, "2024-09-25 13:45:45"),
+(6, 71, "2024-09-30 20:22:22"),
+(6, 70, "2024-03-01 15:10:10"),
+(6, 75, "2024-03-19 14:20:20"),
+(7, 79, "2024-10-08 11:15:15"),
+(3, 80, "2024-10-10 17:45:45"),
+(3, 81, "2024-09-02 12:30:12"),
+(4, 76, "2024-09-05 15:00:00"),
+(4, 76, "2024-09-15 10:10:10"),
+(4, 80, "2024-09-20 14:14:14"),
 (7, 10, "2024-09-25 19:19:19"),
 (7, 11, "2024-10-01 11:11:11"),
-(7, 49, "2024-10-02 16:16:16"),
-(7, 49, "2024-10-03 12:30:12"),
-(7, 49, "2024-10-05 20:20:20"),
-(7, 22, "2024-10-07 17:45:45"),
-(7, 31, "2024-09-12 09:30:30"),
-(7, 32, "2024-09-15 14:14:14"),
-(7, 34, "2024-10-23 11:11:11"),
-(7, 2, "2024-07-24 16:45:45"),
-(7, 53, "2024-10-01 19:50:50"),
-(7, 56, "2024-10-24 14:05:05"),
-(7, 53, "2024-10-24 10:10:10"),
-(7, 8, "2024-10-22 12:12:12"),
-(7, 22, "2024-10-10 17:45:45"),
-(7, 26, "2024-10-11 16:30:30");
-
+(7, 66, "2024-10-02 16:16:16"),
+(7, 66, "2024-10-03 12:30:12"),
+(7, 65, "2024-10-05 20:20:20"),
+(4, 64, "2024-10-07 17:45:45"),
+(4, 65, "2024-09-12 09:30:30"),
+(4, 64, "2024-09-15 14:14:14"),
+(4, 64, "2024-10-23 11:11:11"),
+(4, 67, "2024-07-24 16:45:45"),
+(2, 68, "2024-10-01 19:50:50"),
+(2, 69, "2024-10-24 14:05:05"),
+(2, 70, "2024-10-24 10:10:10"),
+(2, 68, "2024-10-22 12:12:12"),
+(2, 69, "2024-10-10 17:45:45"),
+(2, 66, "2024-10-11 16:30:30");
+(5, 86, "2024-10-11 16:30:30"),
+(5, 86, "2024-01-05 11:11:11"),
+(5, 86, "2024-09-10 09:09:09"),
+(5, 86, "2024-06-15 18:18:18"),
+(5, 85, "2023-02-20 16:30:30"),
+(6, 84, "2024-09-25 13:45:45"),
+(6, 83, "2024-09-30 20:22:22"),
+(6, 82, "2024-03-01 15:10:10"),
+(6, 85, "2024-03-19 14:20:20"),
+(7, 86, "2024-10-08 11:15:15"),
+(3, 82, "2024-10-10 17:45:45"),
+(3, 83, "2024-09-02 12:30:12"),
+(4, 82, "2024-09-05 15:00:00"),
+(4, 82, "2024-09-15 10:10:10"),
+(4, 82, "2024-09-20 14:14:14"),
+(7, 83, "2024-09-25 19:19:19"),
+(7, 82, "2024-10-01 11:11:11"),
+(7, 86, "2024-10-02 16:16:16"),
+(7, 86, "2024-10-03 12:30:12"),
+(7, 85, "2024-10-05 20:20:20"),
+(4, 84, "2024-10-07 17:45:45");
+(3, 76, "2024-09-05 15:00:00"),
+(3, 76, "2024-09-15 10:10:10"),
+(2, 76, "2024-09-20 14:14:14"),
+(2, 83, "2024-09-25 19:19:19"),
+(2, 82, "2024-10-01 11:11:11"),
+(4, 86, "2024-10-02 16:16:16"),
+(4, 87, "2024-10-03 12:30:12"),
+(2, 89, "2024-09-20 14:14:14"),
+(3, 88, "2024-09-25 19:19:19"),
+(3, 88, "2024-10-01 11:11:11"),
+(4, 86, "2024-10-02 16:16:16"),
+(4, 87, "2024-10-03 12:30:12");*/
+(2, 90, "2024-10-01 11:11:11"),
+(3, 90, "2024-10-02 16:16:16"),
+(4, 90, "2024-10-03 12:30:12"),
+(1, 90, "2024-10-01 11:11:11"),
+(3, 90, "2024-10-02 16:16:16"),
+(3, 90, "2024-10-30 12:12:12"),
+(5, 90, "2024-10-30 11:11:11"),
+(3, 90, "2024-10-02 16:16:16"),
+(4, 90, "2024-10-03 12:30:12"),
+(5, 90, "2024-09-30 14:14:14");
 
 
 INSERT INTO Cancion VALUES 
-(1, "Highway to Hell", "Hard Rock","03:29" , 1),
+/*(1, "Highway to Hell", "Hard Rock","03:29" , 1),
 (2, "Master of Puppets", "Thrash Metal", "08:03", 2),
 (3, "Girls got Rythm", "Hard Rock", "03:24", 1),
 (4, "Psychotron", "Heavy Metal", "04:42", 4),		
@@ -421,9 +463,36 @@ INSERT INTO Cancion VALUES
 (62, "Breaking the Law", "Heavy Metal", "02:34", 28),
 (63, "Living After Midnight", "Heavy Metal", "03:30", 28),
 (64, "Metal Gods", "Heavy Metal", "04:00", 28);
+(65, "Heart-Shaped Box", "Grunge", "04:43", 9),
+(66, "Tourette's", "Grunge", "01:37", 9),
+(67, "Dumb", "Grunge", "02:33", 9),
+(68, "Milk it", "Grunge", "03:57", 9),
+(69, "Tourette's", "Grunge", "01:37", 9),
+(70, "Once", "Grunge", "03:52", 45),
+(71, "Even Flow", "Grunge", "04:54", 45),
+(72, "Black", "Grunge", "05:44", 45),
+(73, "Alive", "Grunge", "05:41", 45),
+(74, "We Die Young", "Grunge", "02:33", 46),
+(75, "Sea of Sorrow", "Grunge", "05:50", 46),
+(76, "I Can't Remember", "Grunge", "03:43", 46),
+(77, "Man in The Box", "Grunge", "04:46", 46),
+(78, "Mama", "Rock Progresivo", "06:48", 47),
+(79, "Home by The Sea", "Rock Progresivo", "04:53", 48),
+(80, "Illegal Alien", "Rock Progresivo", "05:15", 48),
+(81, "Just a Job to Do", "Rock Progresivo", "04:48", 48);
+(82, "Have A Cigar", "Rock Progresivo", "05:48", 52),
+(83, "Wish You Were Here", "Rock Progresivo", "05:40", 52),
+(84, "In The Flesh?", "Rock Progresivo", "03:20", 51),
+(85, "Scared of Fear", "Grunge", "04:24", 50),
+(86, "Nutshell", "Grunge", "04:58", 49);
+(87, "Dreamline", "Rock Progresivo", "04:38", 47),
+(88, "Bravado", "Rock Progresivo", "04:36", 47),
+(89, "Dreamline", "Rock Progresivo", "04:38", 47);*/
+(90, "Tom Sawyer", "Rock Progresivo", "04:35", 53);
 
                   
-INSERT INTO Artista VALUES 
+/* INSERT INTO Artista VALUES
+/*
 (1, "hth.jpg", "AC/DC", "Es una banda australiana de hard rock formada en Sídney en 1973 por los hermanos Malcolm y Angus Young.", "Hard Rock"),
 (2, "metallica.png", "Metallica", "Es una banda estadounidense de thrash metal formada en 1981 en Los Ángeles, conocida por su gran impacto en el heavy metal.", "Metal"),
 (3, "kiss.jpg", "Kiss", "Es una banda estadounidense de rock formada en Nueva York en 1973 por Gene Simmons (bajo), Paul Stanley (guitarra y voz) y Peter Criss (batería), a los que más tarde se uniría Ace Frehley (guitarra).", "Glam Metal"),
@@ -449,11 +518,13 @@ INSERT INTO Artista VALUES
 (23, "slipknot.jpeg", "Slipknot", "Es una banda estadounidense de metal alternativo formada en 1995, conocida por su estilo agresivo y su imagen característica con máscaras.", "Nu Metal"),
 (24, "deftones.jpg", "Deftones", "Es una banda estadounidense de metal alternativo formada en Sacramento en 1988, conocida por su mezcla de estilos que incluye metal y shoegaze.", "Metal Alternativo"),
 (25, "judasPriest.jpg", "Judas Priest", "Es una banda británica de heavy metal formada en 1969, considerada una de las más influyentes del género.", "Heavy Metal");
-
-UPDATE Artista SET imagen = "TheSmiths.jpg" WHERE nombre = "The Smiths";
-                                                 
+(26, "pearljam.jpg", "Pearl Jam", "es un grupo de grunge formado en Seattle, Estados Unidos, en el año 1990, con integrantes de las bandas Mother Love Bone y Temple of the Dog", "Grunge"),
+(27, "aic.webp", "Alice in Chains", "Es una banda de grunge estadounidense fundada en 1987 en Seattle, por Layne Staley, Jerry Cantrell, Mike Starr y Sean Kinney. En 1993 Mike Inez se uniría como reemplazo de Starr.", "Grunge"),
+(28, "rush.webp", "Rush", "Fue una banda canadiense de rock progresivo formada en 1968 en Toronto, Ontario. La formación se mantuvo estable desde 1974", "Rock Progresivo"),
+(29, "genesis.webp", "Genesis", "Fue un grupo británico de rock progresivo creado en 1967 por Tony Banks, Mike Rutherford, Peter Gabriel y Anthony Phillips","Rock Progresivo");
+			*/
 INSERT INTO Album VALUES 
-(1, "Highway to Hell", "hth.jpg", "1997-07-29", "Hard Rock", 1),
+/*(1, "Highway to Hell", "hth.jpg", "1997-07-29", "Hard Rock", 1),
 (2, "Master of Puppets", "mopp.jpg", "1986-03-03", "Heavy Metal", 2),
 (3, "Hotter than Hell", "hth-kiss.jpg", "1974-10-22", "Hard Rock", 3),
 (4, "Countdown To Extinction", "cdte.jpg", "1992-07-06", "Heavy Metal", 5),
@@ -461,7 +532,7 @@ INSERT INTO Album VALUES
 (6, "Animalize", "animalize.jpg", "1984-09-13", "Hard Rock",3),
 (7, "Appetite for Destruction", "afd-gnr.jpg", "1987-07-21", "Hard Rock",12),
 (8, "Dynasty", "dynasty.jpeg", "1979-05-23", "Hard Rock",3),
-(9, "In Utero", "inutero.jpg", "1993-09-23", "Grunge",10),
+(9, "In Utero", "inutero.jpg", "1993-09-23", "Grunge", 10),
 (10, "Black Album", "black.jpeg", "1991-08-12", "Heavy Metal", 2),
 (11, "Daemon", "daemon-mayhem.jpg", "2019-10-25", "Black Metal", 6),
 (12, "De Mysteriis", "demysteriis.jpg", "1994-05-24", "Black Metal", 6),
@@ -497,5 +568,16 @@ INSERT INTO Album VALUES
 (42, "Rust In Peace", "rip.jpg", "1990-09-24", "Heavy Metal", 5),
 (43, "Peace Sells...", "peacesells.jpg", "1986-09-19", "Heavy Metal", 5),
 (44, "Youthanasia", "youthanasia.jpg", "1994-11-01", "Heavy Metal", 5);
+(45, "Ten", "ten.jpeg", "1991-08-27", "Grunge", 26),
+(46, "Facelift", "rythmverse.webp", "1990-08-21", "Grunge", 27),
+(47, "Roll the Bones", "rtb.webp", "1991-09-03", "Rock Progresivo", 28),
+(48, "Genesis", "genesis.jpg",  "1983-10-03", "Rock Progresivo", 29);
+(49, "MTV Unplugged", "aic.jpeg", "1996-07-30", "Grunge", 27),
+(50, "Dark Matter", "dm.jpg", "2024-04-19", "Grunge", 26),
+(51, "The Wall", "wall.jpeg", "1979-11-30", "Rock Progresivo", 16),
+(52, "Wish You Were Here", "wywh.jpeg", "1975-09-12", "Rock Progresivo", 16);*/
+(53, "Moving Pictures", "mp.jpg", "1981-02-12", "Rock Progresivo", 28);
+
+UPDATE Album SET titulo = "AIC - MTV Unplugged" WHERE id = 49;
 
 
