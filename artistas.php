@@ -48,7 +48,7 @@ if (!$conexion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="artistas.css">
+    <link rel="stylesheet" href="Artistas.css">
     <title>Metalized</title>
 </head>
 <body>
@@ -106,7 +106,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoP)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><a href="infoArtista.php?artista=<?php echo $artista ['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista ['a_id'] ?>"><?php echo $artista['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -129,7 +129,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoME)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -152,7 +152,7 @@ if (!$conexion) {
                         <?php while ($artista = mysqli_fetch_assoc($resultadoMTSE)): ?>
                         <div class="slide">
                             <img src="<?php echo $artista['imagen']; ?>" alt="<?php echo $artista['nombre']; ?>">
-                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></h3>
+                            <h3><a href="infoArtista.php?artista=<?php echo $artista['a_id'] ?>"><?php echo $artista['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>

@@ -11,7 +11,7 @@
     }
     else{
         $query = 
-        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep,  FROM Album
+        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Album
         JOIN Artista ON Album.idArtista = Artista.id
         JOIN Cancion ON Album.id = Cancion.idAlbum
         JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion
@@ -20,20 +20,20 @@
         ORDER BY rep DESC LIMIT 6;";
 
         $query2 = 
-        "SELECT Artista.nombre, Artista.imagen, COUNT(idCancion) AS rep FROM Artista
+        "SELECT Artista.nombre, Artista.imagen, COUNT(idCancion) AS rep, Artista.id as a_id FROM Artista
         JOIN Album ON Artista.id = Album.idArtista
         JOIN Cancion ON Album.id = Cancion.idAlbum
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
-        WHERE Artista.genero = 'Hard Rock'
-        GROUP BY Artista.nombre, Artista.imagen
+        WHERE Artista.genero = 'Hard Rock' OR Artista.genero = 'Punk Rock' OR Artista.genero = 'Rock'
+        GROUP BY Artista.nombre, Artista.imagen, Artista.id
         ORDER BY rep DESC LIMIT 3;";
 
-        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Cancion
+        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep, Artista.id as a_id FROM Cancion
         JOIN Album ON Cancion.idAlbum = Album.id
         JOIN Artista ON Album.idArtista = Artista.id
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
         WHERE Cancion.genero = 'Hard Rock'
-        GROUP BY Cancion.titulo, Album.imagen, Artista.nombre
+        GROUP BY Cancion.titulo, Album.imagen, Artista.nombre, Artista.id
         ORDER BY rep DESC LIMIT 6;";
 
         $resultado = mysqli_query($conexion, $query);
@@ -51,7 +51,7 @@
     <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="descubre.css" type="text/css"/>
+    <link rel="stylesheet" href="Descubre.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -112,7 +112,7 @@
                 <?php while($fila = mysqli_fetch_assoc($resultado)){ ?> 
                         <div class="contenedorAlbum">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="titulo"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['titulo']?> </p>
+                            <p class="titulo"><?php echo $fila['titulo']?> </p>
                         </div> 
                 <?php } ?>
                 </section>
@@ -125,30 +125,33 @@
                     <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['nombre']?> </p>
+                            <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['nombre']?></a></p>
                         </div> 
                     <?php } ?>
                 </section>
-
+                
+                <!---
+                <div class="descripcion">
+                    <h2>Canciones</h2>
+                </div>
                 <section id="canciones">
                 <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
                     <div class="contenedorCancion">
-                        <img src="<?php echo $fila[$i]['imagen']; ?>" >
-                        <p class="titulo"><?php echo $fila[$i]['titulo']; ?></p>
-                        <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila[$i]['nombre']; ?></p>
+                        <img src="<?php echo $fila['imagen']; ?>" >
+                        <p class="titulo"><?php echo $fila['titulo']; ?></p>
                     </div>
                 <? } ?>
-                </section>
+                </section>--->
             </div>
     </main>
 
     <footer>
-        <div id="imagenCancion">
+    <div id="imagenCancion">
             <img src="imagen.png">
             <div id="infoCancion">
                 <h2>Peace sells</h2>
                 <h3>Megadeth</h3>
-            </di>
+            </div>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">

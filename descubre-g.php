@@ -11,34 +11,24 @@
     }
     else{
         $query = 
-        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Album
+        "SELECT Album.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep, Artista.id as a_id  FROM Album
         JOIN Artista ON Album.idArtista = Artista.id
         JOIN Cancion ON Album.id = Cancion.idAlbum
         JOIN Usuario_escucha_Cancion ON Cancion.id = idCancion
         WHERE Album.genero = 'Grunge'
-        GROUP BY Album.titulo, Album.imagen, Artista.nombre
+        GROUP BY Album.titulo, Album.imagen, Artista.nombre, Artista.id
         ORDER BY rep DESC LIMIT 6;";
 
         $query2 = 
-        "SELECT Artista.nombre, Artista.imagen, COUNT(idCancion) AS rep FROM Artista
+        "SELECT Artista.nombre, Artista.imagen, COUNT(idCancion) AS rep, Artista.id as a_id  FROM Artista
         JOIN Album ON Artista.id = Album.idArtista
         JOIN Cancion ON Album.id = Cancion.idAlbum
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
         WHERE Artista.genero = 'Grunge'
-        GROUP BY Artista.nombre, Artista.imagen
+        GROUP BY Artista.nombre, Artista.imagen, Artista.id
         ORDER BY rep DESC limit 3;";
-
-        $query3 = "SELECT Cancion.titulo, Album.imagen, Artista.nombre, COUNT(idCancion) AS rep FROM Cancion
-        JOIN Album ON Cancion.idAlbum = Album.id
-        JOIN Artista ON Album.idArtista = Artista.id
-        JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion
-        WHERE Cancion.genero = 'Grunge'
-        GROUP BY Cancion.titulo, Album.imagen, Artista.nombre
-        ORDER BY rep DESC LIMIT 6;";
-
         $resultado = mysqli_query($conexion, $query);
         $resultado2 = mysqli_query($conexion, $query2);
-        $resultado3 = mysqli_query($conexion, $query3);
     }
 ?>
 
@@ -125,30 +115,20 @@
                     <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['nombre']; ?> </a></p>
                         </div> 
                     <?php } ?>
-                </section>
-
-                <section id="canciones">
-                <?php while($fila = mysqli_fetch_assoc($resultado3)){ ?>
-                    <div class="contenedorCancion">
-                        <img src="<?php echo $resultado3[$i]['imagen']; ?>" >
-                        <p class="titulo"><?php echo $canciones[$i]['titulo']; ?></p>
-                        <p class="artista"><?php echo $canciones[$i]['nombre']; ?></p>
-                    </div>
-                <? } ?>
                 </section>
             </div>
     </main>
 
     <footer>
-        <div id="imagenCancion">
+    <div id="imagenCancion">
             <img src="imagen.png">
             <div id="infoCancion">
                 <h2>Peace sells</h2>
                 <h3>Megadeth</h3>
-            </di>
+            </div>
         </div>
         <section id="barraReproduccion">
             <div id="barraReproductora-iconos">

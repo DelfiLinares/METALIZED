@@ -366,10 +366,11 @@ footer{
     margin-bottom: 5%;
 }
 
-#infoCancion h3{
+#infoCancion h3, .artistaF{
     font-size:12px;
     color: rgba(0, 0, 0, 0.651);
     margin-top: 0px;
+    margin-left: 15px;
 }
 
 #imagenCancion img{

@@ -57,7 +57,7 @@ if (!$conexion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="canciones.css">
+    <link rel="stylesheet" href="Canciones.css">
     <title>Metalized</title>
 </head>
 <body>
@@ -118,7 +118,7 @@ if (!$conexion) {
                         <div class="slide">
                             <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -142,7 +142,7 @@ if (!$conexion) {
                         <div class="slide">
                             <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?> </a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>
@@ -166,7 +166,7 @@ if (!$conexion) {
                         <div class="slide">
                             <img src="<?php echo $canciones['imagen']; ?>" alt="<?php echo $canciones['nombre']; ?>">
                             <h3 class="titulo"><?php echo $canciones['titulo']; ?></h3>
-                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>

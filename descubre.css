@@ -205,7 +205,7 @@ main{
     margin: 5px 0px 0px 0px;
 }
 
-#albumes{
+#albumes, #canciones{
     display: inline-block;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -218,7 +218,7 @@ main{
     margin-left: 10px;
 }
 
-.contenedorAlbum {
+.contenedorAlbum, .contenedorCancion {
     display: inline-block;
     color: black;
     background-color: rgb(124, 124, 124);
@@ -228,7 +228,7 @@ main{
     position: relative; 
 }
 
-.contenedorAlbum::after {
+.contenedorAlbum::after, .contenedorCancion::after{
     width: 37px;
     height: 45px;
     content: "▶"; 
@@ -245,18 +245,18 @@ main{
     transition: opacity 0.3s; 
 }
 
-.contenedorAlbum:hover::after {
+.contenedorAlbum:hover::after, .contenedorCancion:hover::after {
     opacity: 1; 
 }
 
-.contenedorAlbum:hover {
+.contenedorAlbum:hover, .contenedorCancion:hover {
     color: white;
     background-color: rgb(44, 44, 44);
     cursor: pointer;
 }
 
 
-.contenedorAlbum img{
+.contenedorAlbum img, .contenedorCancion img{
     width: 60px;
     height: 60px;
     float: left;
@@ -319,22 +319,6 @@ main{
     align-self: center ;
     font-weight: bolder;
 }
-
-.contenedorCancion{
-    background-color: #5e5e5e;
-    display: inline-block;
-    width: 18%;
-    margin: 0px;
-    align-items: center;
-}
-
-.contenedorCancion img{
-    width: 150px;
-    max-width: 100%;
-    max-width: 100%;
-    height: auto;
-}
-
 .titulo {
     font-size: 15px;
     align-items:center;
@@ -352,28 +336,10 @@ main{
     justify-content: center;
     color: rgb(0, 0, 0);
 }
-
-#generos{
-    margin-top: 5px;
-    width: 100%;
-    display: inline-flex;
+.artista a{
+    color: rgb(0, 0, 0);
 }
 
-.opcion, .opcion_d{
-    width:25%;
-    text-align: center;
-    padding: 10px;
-    margin: 5px;
-    font-size: 15px;
-    font-weight: bolder;
-    color:#a7a7a7;
-}
-
-.opcion:hover, .opcion_d{
-    background-color:#4e4e4e;
-    color:aliceblue;
-    cursor: pointer;
-}
 
 /* ++++++++++++ MAIN (INICIO) +++++++++++ */
 
@@ -423,25 +389,6 @@ footer{
 #imagenCancion img{
     margin: 3px;
     margin-bottom: 15px;
-}
-
-#barraProgreso-responsive{
-    display:none;
-}
-
-#barraReproduccion{
-    display: block;
-    margin-left: 50%;
-}
-
-#barraReproductora-iconos{
-    height: 55%;
-    margin-top: 0px;
-}
-
-#barraReproductora-iconos img{
-    margin: 15px;
-    width: 25px;
 }
 
 #barraReproduccion{

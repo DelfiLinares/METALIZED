@@ -425,25 +425,6 @@ footer{
     margin-bottom: 15px;
 }
 
-#barraProgreso-responsive{
-    display:none;
-}
-
-#barraReproduccion{
-    display: block;
-    margin-left: 50%;
-}
-
-#barraReproductora-iconos{
-    height: 55%;
-    margin-top: 0px;
-}
-
-#barraReproductora-iconos img{
-    margin: 15px;
-    width: 25px;
-}
-
 #barraReproduccion{
     width: 40%;
     display: block;
@@ -454,6 +435,10 @@ footer{
     height: 55%;
     margin-top: 0px;
     margin-left: 20%;
+}
+
+#barraReproductora-iconos:hover{
+    cursor:pointer;
 }
 
 #barraReproductora-iconos img{
@@ -483,6 +468,8 @@ footer{
     transition: width 0.25s;
     border-radius: 5px;
 }
+
+
 
 #generos{
     margin-top: 5px;

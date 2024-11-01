@@ -17,14 +17,15 @@
     }
     else{
         $query = /* CONSULTAS CORRECTAS */
-        "SELECT Album.imagen, Album.titulo FROM Album 
+        "SELECT Album.imagen, Album.titulo, Artista.id as a_id FROM Album 
+        JOIN Artista ON Artista.id = Album.idArtista
         JOIN Cancion ON Cancion.idAlbum = Album.id
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
         JOIN Usuario ON idUsuario = Usuario.id
         WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         ORDER BY plays DESC LIMIT 6; ";
 
-        $query2 = "SELECT Artista.id, Artista.imagen, Artista.nombre FROM Album 
+        $query2 = "SELECT Artista.id, Artista.imagen, Artista.nombre, Artista.id as a_id FROM Album 
         JOIN Artista ON Artista.id = Album.idArtista
         JOIN Cancion ON Cancion.idAlbum = Album.id
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
@@ -32,7 +33,7 @@
         WHERE Usuario.nombreUser = '".$_SESSION['usuario']."' 
         ORDER BY plays DESC LIMIT 3;";
 
-        $query3 = "SELECT Cancion.id AS idC, Cancion.titulo, Album.imagen, Artista.nombre FROM Artista
+        $query3 = "SELECT Cancion.id AS idC, Cancion.titulo, Album.imagen, Artista.nombre, Artista.id as a_id FROM Artista
         JOIN Album ON idArtista = Artista.id 
         JOIN Cancion ON idAlbum = Album.id 
         JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion 
@@ -133,7 +134,7 @@
                     <?php while($fila = mysqli_fetch_assoc($resultado2)){ ?> 
                         <div class="contenedorArtista">
                             <img src=<?php echo $fila['imagen']?>>
-                            <p class="artista"> <?php echo $fila['nombre']?> </p>
+                            <p class="artista"><a href="infoArtista.php?artista=<?php echo $fila['a_id'] ?>"><?php echo $fila['nombre']; ?> </a> </p>
                         </div> 
                     <?php } ?>
                 </section>
@@ -153,11 +154,11 @@
     </main>
 
     <footer>
-        <div id="imagenCancion">
+    <div id="imagenCancion">
             <img src="imagen.png">
             <div id="infoCancion">
-                <h2 class="titulo"></h2>
-                <h3 class="artista"></h3>
+                <h2>Peace sells</h2>
+                <h3>Megadeth</h3>
             </div>
         </div>
         <section id="barraReproduccion">
