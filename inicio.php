@@ -1,5 +1,6 @@
 <?php
 session_start();    
+
 $servername = "127.0.0.1";
 $database = "Metalized";
 $username = "alumno";
@@ -16,17 +17,32 @@ if (!$conexion) {
     die("Conexión fallida: " . mysqli_connect_error());
 } 
 else {
-    $query = "INSERT INTO Usuario VALUES (null, '$nombreUser', '$email', '$contraseña');";
-    $resultado = mysqli_query($conexion, $query);
-
-    if ($resultado) {
-        $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser';";
-        $resultado = mysqli_query($conexion, $query);
+    $ee = "SELECT COUNT(*) as count FROM Usuario WHERE email = '$email'";
+    $resultado = mysqli_query($conexion, $ee);
+    
+    if($resultado){
         $fila = mysqli_fetch_assoc($resultado);
-        header("Location: metalized.php");
-        exit();
+        
+        if($fila['count'] > 0){
+            echo "Ya existe ese email, debe ingresar con uno nuevo";
+        } 
+        else{
+            $query = "INSERT INTO Usuario (nombreUser, email, contraseña) VALUES ('$nombreUser', '$email', '$contraseña')";
+            $resultado = mysqli_query($conexion, $query);
+
+            if ($resultado) {
+                $query = "SELECT id FROM Usuario WHERE nombreUser = '$nombreUser'";
+                $resultado = mysqli_query($conexion, $query);
+                $fila = mysqli_fetch_assoc($resultado);
+                // Redirigir al usuario a la página correspondiente
+                header("Location: metalized.php");
+                exit();
+            } else {
+                echo "Error en la inserción: " . mysqli_error($conexion);
+            }
+        }
     } else {
-        echo "Error en la inserción: " . mysqli_error($conexion);
+        echo "Error al consultar el correo: " . mysqli_error($conexion);
     }
 }
 

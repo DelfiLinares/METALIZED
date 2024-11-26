@@ -150,9 +150,18 @@ main{
     color:#a7a7a7;
 }
 
+button{
+    border: black;
+}
+
+button:hover{
+    cursor:pointer;
+}
+
 .seccionUsuario {
     display: inline-block;
     background-color: black;
+    border: black;
     float: right;
 }
 
@@ -237,7 +246,7 @@ main{
     padding-left: 23px;
     position: absolute; 
     top: 50%; 
-    right: 71%;
+    right: 69%;
     transform: translate(-50%, -50%); 
     color: white;
     background-color: #5e5e5ec7;
@@ -289,7 +298,7 @@ main{
     padding-left: 23px;
     position: absolute; 
     top: 70%; 
-    right: 29%;
+    right: 25%;
     transform: translate(-50%, -50%); 
     color: white;
     background-color: #5e5e5ec7;

@@ -35,9 +35,20 @@ header{
 display: none;
 }
 
+button{
+    border: black;
+    color: black;
+    background-color: rgb(182, 113, 113);
+}
+
+button:hover{
+    cursor:pointer;
+}
+
 .seccionUsuario{
     display: inline-block;
     background-color: black;
+    border:none;
     float: right;
     justify-content: center;
     margin: 5px 7px 0px 7px;
@@ -750,7 +761,7 @@ footer{
         padding-left: 23px;
         position: absolute; 
         top: 50%; 
-        right: 58%;
+        right: 55%;
         transform: translate(-50%, -50%); 
         color: white;
         background-color: #5e5e5ec7;
@@ -815,8 +826,8 @@ footer{
         padding-left: 13px;
         padding-right: 10px;
         position: absolute; 
-        top: 37%; 
-        right: 15%;
+        top: 36%; 
+        right: 14%;
         transform: translate(-50%, -50%); 
         color: white;
         background-color: #5e5e5ec7;
@@ -1214,7 +1225,7 @@ footer{
 
 @media(min-width: 1200px){
     .cancion::after {
-        left: 9%; 
+        left: 10%; 
     }
     .fotoynombre img{
         width: 250px;

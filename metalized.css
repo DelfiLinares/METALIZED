@@ -150,9 +150,18 @@ main{
     color:#a7a7a7;
 }
 
+button{
+    border: black;
+}
+
+button:hover{
+    cursor:pointer;
+}
+
 .seccionUsuario {
     display: inline-block;
     background-color: black;
+    border: black;
     float: right;
 }
 
@@ -377,6 +386,10 @@ footer{
     margin-bottom: 15px;
 }
 
+#infoCancion h3{
+    margin-left: -20px;
+}
+
 #barraProgreso-responsive{
     display:none;
 }
@@ -407,6 +420,9 @@ footer{
     height: 55%;
     margin-top: 0px;
     margin-left: 20%;
+}
+#barraReproductora-iconos:hover{
+    cursor:pointer;
 }
 
 #barraReproductora-iconos img{
@@ -685,8 +701,11 @@ footer{
     .info-popular{
         margin-right: 20%;
     }
-
+    #barraReproductora-iconos:hover{
+        cursor:pointer;
+    }
     .info-popular h3{
         font-size: 15px;
     }
 }
+

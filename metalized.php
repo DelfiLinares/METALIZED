@@ -64,7 +64,7 @@
     <style> @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); </style>
     <link rel="icon" type="image/png" href="calavera.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="Metalized.css" type="text/css"/>
+    <link rel="stylesheet" href="metalized.css" type="text/css"/>
     <title>Metalized</title>
 </head>
 
@@ -98,10 +98,26 @@
                     <h2>Inicio</h2>
                 </div>
 
-                <div class="seccionUsuario">
+                <button class="seccionUsuario" onclick="cerrarSesion()">
                     <img src="ftPerfil.jpg" >
                     <h2><?php echo $_SESSION['usuario'] ?></h2>
-                </div>
+                </button>
+
+                    <script>
+                    function cerrarSesion() {
+                        // fetch para enviar una solicitud al servidor
+                        fetch('cerrar_sesion.php', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            // si la sesión fue cerrada correctamente, redirige al usuario
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                    </script>
 
                 <div class="barraBusq">
                     <h3>Buscar</h3>
@@ -189,6 +205,7 @@
             this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAERJREFUSEtjZKAxYKSx+QyjFhAM4ZERRP+RwgHmY2xiWIOLmCAatYBgShsNotEgwl8iE5PRCIYhPgWjFhAMvtEgIhhEAKEpFBmRjTAEAAAAAElFTkSuQmCC'; // Playing
         }
     });
+
     </script>
 </body>
 </html> 

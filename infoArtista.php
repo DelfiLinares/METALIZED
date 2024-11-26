@@ -95,13 +95,30 @@
             <div class="solapa">
                 <h1>Metallica</h1>
             </div>
-            <div class="seccionUsuario">
-                <img src="ftPerfil.jpg">
-                <h2><?php echo $_SESSION['usuario'] ?></h2>
-            </div>
+            <button class="seccionUsuario" onclick="cerrarSesion()">
+                    <img src="ftPerfil.jpg" >
+                    <h2><?php echo $_SESSION['usuario'] ?></h2>
+                </button>
+
+                    <script>
+                    function cerrarSesion() {
+                        // fetch para enviar una solicitud al servidor
+                        fetch('cerrar_sesion.php', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            // si la sesión fue cerrada correctamente, redirige al usuario
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                    </script>
             <div class="barraBusq">
                 <h3>Buscar</h3>
-                <img src="lupa.png" id="lupa"/>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXBJREFUSEu1lH1VA0EMxGcUgAUUAAoAB1QBVAGgAKqAooCigFZBWwdFAeCgVRDe8LK8Pbp7TT8u/93b2/1lkkmIjoMdv48iwMyOAdwBuAZw5kksAIwBvJBcRhNbA5jZLYBnAIKUQo8/kBxFIA2AP/7qFycAhiRn+jazSwBPAC78vEdSilrjD+Bl+fTM+7UMzUyQRwBScrKpXDkgXZyQVO2rYWZSJSUDkrpXjRygJp4CuEplqd3yck0BLEieRwGmH0mGrGtmof9zBaELKVsHrEjW3Pb7664lUo/eAcxJyl2hHqQmj0n2gk3WPAyjAEn9AnAkv5MclC5mNv3WlIdt6sOUpOtTVhRong2a/J9KstGijR5kzdOqkGwpKcXKzwWTtTXtb7UytS27e192mg3Fhy87Pbg0szQ3OhuR7JcgIc9XeiGlaW9VITsDvC/aqDdZAmtK9gJEIHsDCpDGJj4IIIPM/q/5gwG2smnb6G971rmCH/JPnxkOXXf0AAAAAElFTkSuQmCC" 
+                    id="lupa" />
             </div>
         </div>
         

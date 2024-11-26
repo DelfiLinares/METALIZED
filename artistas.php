@@ -48,7 +48,7 @@ if (!$conexion) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Artistas.css">
+    <link rel="stylesheet" href="artistas.css">
     <title>Metalized</title>
 </head>
 <body>
@@ -81,10 +81,26 @@ if (!$conexion) {
                 <h1>Artistas</h1>
             </div>
 
-            <div class="seccionUsuario">
-                <img src="ftPerfil.jpg">
-                <h2> <?php echo $_SESSION['usuario']; ?> </h2>
-            </div>
+            <button class="seccionUsuario" onclick="cerrarSesion()">
+                    <img src="ftPerfil.jpg" >
+                    <h2><?php echo $_SESSION['usuario'] ?></h2>
+                </button>
+
+                    <script>
+                    function cerrarSesion() {
+                        // fetch para enviar una solicitud al servidor
+                        fetch('cerrar_sesion.php', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            // si la sesión fue cerrada correctamente, redirige al usuario
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                    </script>
 
             <div class="barraBusq">
                 <h3>Buscar</h3>

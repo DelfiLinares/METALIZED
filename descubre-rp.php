@@ -76,10 +76,26 @@
                     <h2>Descubre</h2>
                 </div>
 
-                <div class="seccionUsuario">
+                <button class="seccionUsuario" onclick="cerrarSesion()">
                     <img src="ftPerfil.jpg" >
                     <h2><?php echo $_SESSION['usuario'] ?></h2>
-                </div>
+                </button>
+
+                    <script>
+                    function cerrarSesion() {
+                        // fetch para enviar una solicitud al servidor
+                        fetch('cerrar_sesion.php', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            // si la sesión fue cerrada correctamente, redirige al usuario
+                            window.location.href = 'login.html';
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                    </script>
 
                 <div class="barraBusq">
                     <h3>Buscar</h3>
