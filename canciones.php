@@ -90,26 +90,26 @@ if (!$conexion) {
                 <h1>Canciones</h1>
             </div>
 
-            <button class="seccionUsuario" onclick="cerrarSesion()">
-                    <img src="ftPerfil.jpg" >
-                    <h2><?php echo $_SESSION['usuario'] ?></h2>
-                </button>
+            <div class="seccionUsuario" onclick="cerrarSesion()">
+                <img src="ftPerfil.jpg" >
+                <h2><?php echo $_SESSION['usuario'] ?></h2>
+            </div>
 
-                    <script>
-                    function cerrarSesion() {
-                        // fetch para enviar una solicitud al servidor
-                        fetch('cerrar_sesion.php', {
-                            method: 'POST',
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
-                        })
-                        .then(response => response.text())
-                        .then(data => {
-                            // si la sesión fue cerrada correctamente, redirige al usuario
-                            window.location.href = 'login.html';
-                        })
-                        .catch(error => console.error('Error:', error));
-                    }
-                    </script>
+            <script>
+                function cerrarSesion() {
+                // fetch para enviar una solicitud al servidor
+                    fetch('cerrar_sesion.php', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                    // si la sesión fue cerrada correctamente, redirige al usuario
+                        window.location.href = 'login.html';
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            </script>
 
             <div class="barraBusq">
                 <h3>Buscar</h3>

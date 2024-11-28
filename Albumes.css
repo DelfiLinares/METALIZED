@@ -133,21 +133,17 @@ main{
     font-size: 21px;
 }
 
-button{
-    border: black;
-    color: black;
-    background-color: rgb(182, 113, 113);
-}
-
-button:hover{
-    cursor:pointer;
-}
-
 .seccionUsuario {
     display: inline-block;
     background-color: black;
     border: black;
+    padding: 0;
+    margin:0;
     float: right;
+}
+
+.seccionUsuario:hover{
+    cursor:pointer;
 }
 
 
@@ -221,7 +217,7 @@ button:hover{
 }
 
 #albumes {
-    height: 77vh; 
+    height: 76vh; 
     overflow-y: auto;
     background-color: rgb(70, 70, 70);
     border-radius: 10px;

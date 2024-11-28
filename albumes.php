@@ -18,7 +18,7 @@ if (!$conexion) {
     GROUP BY idCancion ORDER BY count(*) DESC LIMIT 15;";
 
     $queryMasEsc = 
-    "SELECT Album.imagen, Album.titulo, Artista.nombre, count(*) as cant FROM Artista 
+    "SELECT Album.imagen, Album.titulo, Artista.nombre, count(*) as cant, Artista.id as a_id FROM Artista 
     JOIN Album ON idArtista = Artista.id
     JOIN Cancion ON idAlbum = Album.id
     JOIN Usuario_escucha_Cancion ON Cancion.id = Usuario_escucha_Cancion.idCancion  
@@ -89,21 +89,21 @@ if (!$conexion) {
                 <h1>Albumes</h1>
             </div>
 
-            <button class="seccionUsuario" onclick="cerrarSesion()">
-                    <img src="ftPerfil.jpg" >
-                    <h2><?php echo $_SESSION['usuario'] ?></h2>
-                </button>
+            <div class="seccionUsuario" onclick="cerrarSesion()">
+                <img src="ftPerfil.jpg" >
+                <h2><?php echo $_SESSION['usuario'] ?></h2>
+            </div>
 
-                    <script>
-                    function cerrarSesion() {
-                        // fetch para enviar una solicitud al servidor
-                        fetch('cerrar_sesion.php', {
-                            method: 'POST',
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
-                        })
-                        .then(response => response.text())
-                        .then(data => {
-                            // si la sesión fue cerrada correctamente, redirige al usuario
+            <script>
+                function cerrarSesion() {
+                // fetch para enviar una solicitud al servidor
+                    fetch('cerrar_sesion.php', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                // si la sesión fue cerrada correctamente, redirige al usuario
                             window.location.href = 'login.html';
                         })
                         .catch(error => console.error('Error:', error));
@@ -179,7 +179,7 @@ if (!$conexion) {
                         <div class="slide">
                             <img src="<?php echo $albumes['imagen']; ?>" alt="<?php echo $albumes['titulo']; ?>">
                             <h3 class="titulo"><?php echo $albumes['titulo']; ?></h3>
-                            <h3 class="artista"><?php echo $albumes['nombre']; ?></h3>
+                            <h3 class="artista"><a href="infoArtista.php?artista=<?php echo $canciones['a_id'] ?>"><?php echo $canciones['nombre']; ?></a></h3>
                         </div>
                         <?php endwhile; ?>
                     </div>

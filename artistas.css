@@ -133,11 +133,7 @@ main{
     font-size: 21px;
 }
 
-button{
-    border: black;
-}
-
-button:hover{
+.seccionUsuario:hover{
     cursor:pointer;
 }
 
@@ -145,6 +141,8 @@ button:hover{
     display: inline-block;
     background-color: black;
     border: black;
+    padding: 0;
+    margin:0;
     float: right;
 }
 
